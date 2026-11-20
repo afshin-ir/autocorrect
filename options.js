@@ -5,6 +5,7 @@ const rowsElement = $("rows");
 const searchInput = $("search");
 const halfSpaceMiInput = $("half-space-mi");
 const halfSpaceHaInput = $("half-space-ha");
+const halfSpaceSuffixInput = $("half-space-suffix");
 const symbolTriggers = new Set([
   ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
   ":.:", ":':", ":/:", ":\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
@@ -86,7 +87,8 @@ async function persist() {
 async function saveHalfSpaceSettings() {
   await browser.storage.local.set({
     halfSpaceMiEnabled: halfSpaceMiInput.checked,
-    halfSpaceHaEnabled: halfSpaceHaInput.checked
+    halfSpaceHaEnabled: halfSpaceHaInput.checked,
+    halfSpaceSuffixEnabled: halfSpaceSuffixInput.checked
   });
   showStatus("تنظیمات نیم‌فاصله ذخیره شد.");
 }
@@ -94,10 +96,12 @@ async function saveHalfSpaceSettings() {
 async function loadHalfSpaceSettings() {
   const settings = await browser.storage.local.get({
     halfSpaceMiEnabled: true,
-    halfSpaceHaEnabled: true
+    halfSpaceHaEnabled: true,
+    halfSpaceSuffixEnabled: true
   });
   halfSpaceMiInput.checked = settings.halfSpaceMiEnabled !== false;
   halfSpaceHaInput.checked = settings.halfSpaceHaEnabled !== false;
+  halfSpaceSuffixInput.checked = settings.halfSpaceSuffixEnabled !== false;
 }
 
 function beginEdit(rule) {
@@ -157,6 +161,7 @@ function validateRules(data) {
 $("save").addEventListener("click", saveRule);
 halfSpaceMiInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 halfSpaceHaInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceSuffixInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 $("cancel-edit").addEventListener("click", endEdit);
 searchInput.addEventListener("input", render);
 
