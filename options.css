@@ -19,9 +19,6 @@ h1 { margin: 0; font-size: 27px; font-weight: 700; color: #203c38; }
 .button:hover { filter: brightness(.97); }
 .primary { color: #fff; background: #287c70; }
 .secondary { color: #34564f; background: #fff; border-color: #d4dddc; }
-.intro { display: flex; flex-direction: column; gap: 5px; padding: 16px 19px; margin-bottom: 16px; background: #e7f2ef; border: 1px solid #d3e8e2; border-radius: 9px; line-height: 1.8; }
-.intro strong { color: #245b51; font-size: 15px; }
-.intro span { color: #536b67; font-size: 13px; }
 .card { background: #fff; border: 1px solid #dce3e3; border-radius: 9px; box-shadow: 0 2px 8px #1a3b3510; }
 .half-space-settings { padding: 15px 19px; margin-bottom: 18px; }
 .half-space-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
@@ -45,7 +42,7 @@ input:focus { outline: 2px solid #a3d4c9; border-color: #398b7c; }
 .list-heading h2 { display: inline; margin: 0 9px 0 0; font-size: 17px; color: #294540; }
 .count { color: #758581; font-size: 12px; }
 .search-wrap { position: relative; width: min(300px, 40%); }
-.search { width: 100%; min-height: 38px; padding-inline-start: 11px; padding-inline-end: 38px; }
+.search { width: 100%; min-height: 38px; padding-inline-start: 38px; padding-inline-end: 11px; }
 .search-icon { position: absolute; inset-inline-start: 12px; top: 50%; width: 17px; height: 17px; color: #287c70; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transform: translateY(-50%); pointer-events: none; }
 .table-wrap { max-height: 560px; overflow: auto; }
 table { width: 100%; border-collapse: collapse; text-align: right; }

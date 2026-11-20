@@ -20,11 +20,6 @@
       </div>
     </header>
 
-    <section class="intro">
-      <strong>هر جا در فایرفاکس می‌نویسی، واژه‌ها به‌طور خودکار تصحیح می‌شوند.</strong>
-      <span>بانک واژه‌ها روی همین دستگاه نگهداری می‌شود. برای نمونه، پس از افزودن «می روم ← می‌روم»، با زدن کلید فاصله تصحیح انجام می‌شود.</span>
-    </section>
-
     <section class="half-space-settings card" aria-labelledby="half-space-title">
       <div class="half-space-heading">
         <h2 id="half-space-title">قواعد نیم‌فاصله</h2>
@@ -49,7 +44,7 @@
       <label class="setting-row" for="half-space-suffix">
         <input id="half-space-suffix" type="checkbox" checked>
         <span class="setting-copy">
-          <strong>نیم‌فاصله‌گذاری شناسه‌های فعلی «ام/ای/ایم/اید/اند» پس از «ه»</strong>
+          <strong>نیم‌فاصله‌گذاری شناسه‌های فعلی «ام/ای/ایم/اید/اند» پس از واژه‌های مختوم به «ه»</strong>
           <small>مثلاً: رفته ام و رفتهام ← رفته‌ام؛ رفته ای ← رفته‌ای؛ نرفته ای ← نرفته‌ای</small>
         </span>
       </label>
@@ -58,12 +53,12 @@
     <section class="editor card" aria-label="افزودن یا ویرایش واژه">
       <div class="field">
         <label for="trigger">اگر این را تایپ کردم</label>
-        <input id="trigger" type="text" autocomplete="off" placeholder="مثلاً: می روم">
+        <input id="trigger" type="text" autocomplete="off" placeholder="مثلاً: انظباط">
       </div>
       <div class="arrow" aria-hidden="true">←</div>
       <div class="field">
         <label for="replacement">تصحیحش کن به</label>
-        <input id="replacement" type="text" autocomplete="off" placeholder="مثلاً: می‌روم">
+        <input id="replacement" type="text" autocomplete="off" placeholder="مثلاً: انضباط">
       </div>
       <button id="save" class="button primary" type="button">افزودن واژه</button>
       <button id="cancel-edit" class="button secondary" type="button" hidden>لغو ویرایش</button>
