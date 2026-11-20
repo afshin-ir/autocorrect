@@ -25,6 +25,27 @@
       <span>بانک واژه‌ها روی همین دستگاه نگهداری می‌شود. برای نمونه، پس از افزودن «می روم ← می‌روم»، با زدن کلید فاصله تصحیح انجام می‌شود.</span>
     </section>
 
+    <section class="half-space-settings card" aria-labelledby="half-space-title">
+      <div class="half-space-heading">
+        <h2 id="half-space-title">قواعد نیم‌فاصله</h2>
+        <span>هر قاعده را می‌توانی جداگانه روشن یا خاموش کنی.</span>
+      </div>
+      <label class="setting-row" for="half-space-mi">
+        <input id="half-space-mi" type="checkbox" checked>
+        <span class="setting-copy">
+          <strong>نیم‌فاصله‌گذاری پیشوند «می/نمی»</strong>
+          <small>مثلاً: می روم ← می‌روم؛ نمی نویسم ← نمی‌نویسم</small>
+        </span>
+      </label>
+      <label class="setting-row" for="half-space-ha">
+        <input id="half-space-ha" type="checkbox" checked>
+        <span class="setting-copy">
+          <strong>نیم‌فاصله‌گذاری نشانهٔ جمع «ها»</strong>
+          <small>مثلاً: کتاب ها و کتابها ← کتاب‌ها</small>
+        </span>
+      </label>
+    </section>
+
     <section class="editor card" aria-label="افزودن یا ویرایش واژه">
       <div class="field">
         <label for="trigger">اگر این را تایپ کردم</label>
@@ -45,7 +66,13 @@
           <h2>بانک واژه‌ها</h2>
           <span id="count" class="count">در حال بارگذاری…</span>
         </div>
-        <div class="search-wrap">\n          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">\n            <circle cx="10.8" cy="10.8" r="6.3"></circle>\n            <path d="m15.5 15.5 4.2 4.2"></path>\n          </svg>\n          <input id="search" class="search" type="search" placeholder="جست‌وجو در واژه‌ها" aria-label="جست‌وجو در واژه‌ها">\n        </div>
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="10.8" cy="10.8" r="6.3"></circle>
+            <path d="m15.5 15.5 4.2 4.2"></path>
+          </svg>
+          <input id="search" class="search" type="search" placeholder="جست‌وجو در واژه‌ها" aria-label="جست‌وجو در واژه‌ها">
+        </div>
       </div>
       <div class="table-wrap">
         <table>
