@@ -165,7 +165,7 @@ function endEdit() {
   editingTrigger = null;
   triggerInput.value = "";
   replacementInput.value = "";
-  $("save").textContent = "افزودن واژه";
+  $("save").textContent = "اضافه کن";
   $("cancel-edit").hidden = true;
 }
 
