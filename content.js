@@ -80,22 +80,25 @@
     }
 
     if (halfSpaceSettings.ha) {
-      if (text.endsWith("\u200cها")) return null;
+      const canonicalMatch = /(^|[^\p{L}\p{M}\p{N}_])[\p{L}\p{M}\u200c]+\u200c(?:هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
+      if (canonicalMatch) return null;
 
-      const spacedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +ها$/u.exec(text);
+      const spacedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +(هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
       if (spacedMatch) {
         const stem = spacedMatch[2].replace(/\u200c+$/u, "");
+        const wholeWord = stem + spacedMatch[3];
+        if ([...halfSpaceExceptions].some((exception) => wholeWord.startsWith(exception))) return null;
         const start = spacedMatch.index + spacedMatch[1].length;
-        return { start, end: text.length, replace: stem + "\u200cها" };
+        return { start, end: text.length, replace: stem + "\u200c" + spacedMatch[3] };
       }
 
-      const attachedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+)ها$/u.exec(text);
+      const attachedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+?)(هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
       if (attachedMatch) {
-        const wholeWord = attachedMatch[2] + "ها";
-        if (halfSpaceExceptions.has(wholeWord)) return null;
         const stem = attachedMatch[2].replace(/\u200c+$/u, "");
+        const wholeWord = stem + attachedMatch[3];
+        if ([...halfSpaceExceptions].some((exception) => wholeWord.startsWith(exception))) return null;
         const start = attachedMatch.index + attachedMatch[1].length;
-        return { start, end: text.length, replace: stem + "\u200cها" };
+        return { start, end: text.length, replace: stem + "\u200c" + attachedMatch[3] };
       }
     }
 
