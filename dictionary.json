@@ -1,0 +1,4605 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "trigger": ":_-:",
+      "replace": "₋"
+    },
+    {
+      "trigger": ":_(:",
+      "replace": "₍"
+    },
+    {
+      "trigger": ":_):",
+      "replace": "₎"
+    },
+    {
+      "trigger": ":---:",
+      "replace": "—"
+    },
+    {
+      "trigger": ":--:",
+      "replace": "–"
+    },
+    {
+      "trigger": ":-:",
+      "replace": "−"
+    },
+    {
+      "trigger": ":!:",
+      "replace": "❕"
+    },
+    {
+      "trigger": ":!!:",
+      "replace": "‼"
+    },
+    {
+      "trigger": ":!?:",
+      "replace": "⁉"
+    },
+    {
+      "trigger": ":?:",
+      "replace": "❓"
+    },
+    {
+      "trigger": ":.:",
+      "replace": "…"
+    },
+    {
+      "trigger": ":':",
+      "replace": "’"
+    },
+    {
+      "trigger": ":/:",
+      "replace": "∕"
+    },
+    {
+      "trigger": ":\\\\:",
+      "replace": "∖"
+    },
+    {
+      "trigger": ":^-:",
+      "replace": "⁻"
+    },
+    {
+      "trigger": ":^(:",
+      "replace": "⁽"
+    },
+    {
+      "trigger": ":^):",
+      "replace": "⁾"
+    },
+    {
+      "trigger": ":<<:",
+      "replace": "≪"
+    },
+    {
+      "trigger": ":>>:",
+      "replace": "≫"
+    },
+    {
+      "trigger": "1/2",
+      "replace": "½"
+    },
+    {
+      "trigger": "1/4",
+      "replace": "¼"
+    },
+    {
+      "trigger": "3/4",
+      "replace": "¾"
+    },
+    {
+      "trigger": "آروق",
+      "replace": "آروغ"
+    },
+    {
+      "trigger": "آزوقه",
+      "replace": "آذوقه"
+    },
+    {
+      "trigger": "آماده‌ایی",
+      "replace": "آماده‌ای"
+    },
+    {
+      "trigger": "آنفلوآنزا",
+      "replace": "آنفولانزا"
+    },
+    {
+      "trigger": "آنهائیکه",
+      "replace": "آن‌هایی که"
+    },
+    {
+      "trigger": "آواکادو",
+      "replace": "آووکادو"
+    },
+    {
+      "trigger": "آیت‌اله",
+      "replace": "آیت‌الله"
+    },
+    {
+      "trigger": "آیه الله",
+      "replace": "آیت‌الله"
+    },
+    {
+      "trigger": "آیة الله",
+      "replace": "آیت‌الله"
+    },
+    {
+      "trigger": "ابدا",
+      "replace": "ابداً"
+    },
+    {
+      "trigger": "ابولفضل",
+      "replace": "ابوالفضل"
+    },
+    {
+      "trigger": "اپوزوسیون",
+      "replace": "اپوزیسیون"
+    },
+    {
+      "trigger": "اتفاقا",
+      "replace": "اتفاقاً"
+    },
+    {
+      "trigger": "اتلاق",
+      "replace": "اطلاق"
+    },
+    {
+      "trigger": "اتوموبیل",
+      "replace": "اتومبیل"
+    },
+    {
+      "trigger": "اثرگزاری",
+      "replace": "اثرگذاری"
+    },
+    {
+      "trigger": "اجالتا",
+      "replace": "عجالتاً"
+    },
+    {
+      "trigger": "اجالتاً",
+      "replace": "عجالتاً"
+    },
+    {
+      "trigger": "اجمالا",
+      "replace": "اجمالاً"
+    },
+    {
+      "trigger": "احتراض",
+      "replace": "احتراز"
+    },
+    {
+      "trigger": "احتراما",
+      "replace": "احتراماً"
+    },
+    {
+      "trigger": "احتزاز",
+      "replace": "اهتزاز"
+    },
+    {
+      "trigger": "احتما",
+      "replace": "احتماء"
+    },
+    {
+      "trigger": "احتمالا",
+      "replace": "احتمالاً"
+    },
+    {
+      "trigger": "احر",
+      "replace": "احرّ"
+    },
+    {
+      "trigger": "احیانا",
+      "replace": "احیاناً"
+    },
+    {
+      "trigger": "اختاپوث",
+      "replace": "اختاپوس"
+    },
+    {
+      "trigger": "اختلاص",
+      "replace": "اختلاس"
+    },
+    {
+      "trigger": "اخطراع",
+      "replace": "اختراع"
+    },
+    {
+      "trigger": "اخلاقا",
+      "replace": "اخلاقاً"
+    },
+    {
+      "trigger": "اخیرا",
+      "replace": "اخیراً"
+    },
+    {
+      "trigger": "ارازل",
+      "replace": "اراذل"
+    },
+    {
+      "trigger": "ارازل و اوباش",
+      "replace": "اراذل و اوباش"
+    },
+    {
+      "trigger": "اراعه",
+      "replace": "ارائه"
+    },
+    {
+      "trigger": "ارتقاع",
+      "replace": "ارتقاء"
+    },
+    {
+      "trigger": "ارجینال",
+      "replace": "اریجینال"
+    },
+    {
+      "trigger": "ارخا",
+      "replace": "ارخاء"
+    },
+    {
+      "trigger": "ارزش‌گزاری",
+      "replace": "ارزش‌گذاری"
+    },
+    {
+      "trigger": "ارشدتر",
+      "replace": "ارشد"
+    },
+    {
+      "trigger": "ارضا",
+      "replace": "ارضاء"
+    },
+    {
+      "trigger": "ازدهام",
+      "replace": "ازدحام"
+    },
+    {
+      "trigger": "ازعان",
+      "replace": "اذعان"
+    },
+    {
+      "trigger": "اساسا",
+      "replace": "اساساً"
+    },
+    {
+      "trigger": "استثنا",
+      "replace": "استثناء"
+    },
+    {
+      "trigger": "استثنائا",
+      "replace": "استثنائاً"
+    },
+    {
+      "trigger": "استحظار",
+      "replace": "استحضار"
+    },
+    {
+      "trigger": "استنبات",
+      "replace": "استنباط"
+    },
+    {
+      "trigger": "اسداله",
+      "replace": "اسدالله "
+    },
+    {
+      "trigger": "اسطخدوس",
+      "replace": "اسطوخودوس"
+    },
+    {
+      "trigger": "اسطنبات",
+      "replace": "استنباط"
+    },
+    {
+      "trigger": "اسطنباط",
+      "replace": "استنباط"
+    },
+    {
+      "trigger": "اسطوخدوس",
+      "replace": "اسطوخودوس"
+    },
+    {
+      "trigger": "اسم گزاری",
+      "replace": "اسم‌گذاری"
+    },
+    {
+      "trigger": "اسم‌گزاری",
+      "replace": "اسم‌گذاری"
+    },
+    {
+      "trigger": "اسن",
+      "replace": "است"
+    },
+    {
+      "trigger": "اشتراک‌گزاری",
+      "replace": "اشتراک‌گذاری"
+    },
+    {
+      "trigger": "اشیا",
+      "replace": "اشیاء"
+    },
+    {
+      "trigger": "اصالتا",
+      "replace": "اصالتاً"
+    },
+    {
+      "trigger": "اصراف",
+      "replace": "اسراف "
+    },
+    {
+      "trigger": "اصطحکاک",
+      "replace": "اصطکاک"
+    },
+    {
+      "trigger": "اصطرلاب",
+      "replace": "اسطرلاب"
+    },
+    {
+      "trigger": "اصطلاحا",
+      "replace": "اصطلاحاً"
+    },
+    {
+      "trigger": "اصلا",
+      "replace": "اصلاً"
+    },
+    {
+      "trigger": "اصلن",
+      "replace": "اصلاً"
+    },
+    {
+      "trigger": "اصلوب",
+      "replace": "اسلوب"
+    },
+    {
+      "trigger": "اصولا",
+      "replace": "اصولاً"
+    },
+    {
+      "trigger": "اضهار",
+      "replace": "اظهار"
+    },
+    {
+      "trigger": "اضهارات",
+      "replace": "اظهارات"
+    },
+    {
+      "trigger": "اطاق",
+      "replace": "اتاق"
+    },
+    {
+      "trigger": "اطراق",
+      "replace": "اتراق"
+    },
+    {
+      "trigger": "اطریش",
+      "replace": "اتریش"
+    },
+    {
+      "trigger": "اطریشی",
+      "replace": "اتریشی"
+    },
+    {
+      "trigger": "اطو",
+      "replace": "اتو"
+    },
+    {
+      "trigger": "اظافه",
+      "replace": "اضافه"
+    },
+    {
+      "trigger": "اظافی",
+      "replace": "اضافی"
+    },
+    {
+      "trigger": "اظطراب",
+      "replace": "اضطراب"
+    },
+    {
+      "trigger": "اظطراری",
+      "replace": "اضطراری"
+    },
+    {
+      "trigger": "اعراب گزاری",
+      "replace": "اعراب‌گذاری"
+    },
+    {
+      "trigger": "اعراب‌گزاری",
+      "replace": "اعراب‌گذاری"
+    },
+    {
+      "trigger": "اعطلا",
+      "replace": "اعتلا"
+    },
+    {
+      "trigger": "اعلا حضرت",
+      "replace": "اعلی‌حضرت"
+    },
+    {
+      "trigger": "اعلاء",
+      "replace": "اعلا"
+    },
+    {
+      "trigger": "اعلاحضرت",
+      "replace": "اعلی‌حضرت"
+    },
+    {
+      "trigger": "اعلمتر",
+      "replace": "اعلم"
+    },
+    {
+      "trigger": "افریقا",
+      "replace": "آفریقا"
+    },
+    {
+      "trigger": "افریقایی",
+      "replace": "آفریقایی"
+    },
+    {
+      "trigger": "افضلتر",
+      "replace": "افضل"
+    },
+    {
+      "trigger": "اقلا",
+      "replace": "اقلاً"
+    },
+    {
+      "trigger": "اکثرا",
+      "replace": "اکثراً"
+    },
+    {
+      "trigger": "اکولاد",
+      "replace": "آکولاد"
+    },
+    {
+      "trigger": "الا",
+      "replace": "الّا"
+    },
+    {
+      "trigger": "البوم",
+      "replace": "آلبوم"
+    },
+    {
+      "trigger": "التفاط",
+      "replace": "التفات"
+    },
+    {
+      "trigger": "الحمدالله",
+      "replace": "الحمدلله"
+    },
+    {
+      "trigger": "الزاما",
+      "replace": "الزاماً"
+    },
+    {
+      "trigger": "الزاماً",
+      "replace": "لزوماً"
+    },
+    {
+      "trigger": "القا",
+      "replace": "القاء"
+    },
+    {
+      "trigger": "اللخصوص",
+      "replace": "علی‌الخصوص"
+    },
+    {
+      "trigger": "المانی",
+      "replace": "آلمانی"
+    },
+    {
+      "trigger": "الوات",
+      "replace": "الواط"
+    },
+    {
+      "trigger": "الواتی",
+      "replace": "الواطی"
+    },
+    {
+      "trigger": "الویت",
+      "replace": "اولویت"
+    },
+    {
+      "trigger": "امپراطور",
+      "replace": "امپراتور"
+    },
+    {
+      "trigger": "امپراطوری",
+      "replace": "امپراتوری"
+    },
+    {
+      "trigger": "امتهان",
+      "replace": "امتحان"
+    },
+    {
+      "trigger": "امریکا",
+      "replace": "آمریکا"
+    },
+    {
+      "trigger": "امریکایی",
+      "replace": "آمریکایی"
+    },
+    {
+      "trigger": "امها",
+      "replace": "امحا"
+    },
+    {
+      "trigger": "انبسات",
+      "replace": "انبساط"
+    },
+    {
+      "trigger": "انبیا",
+      "replace": "انبیاء"
+    },
+    {
+      "trigger": "انتخواب",
+      "replace": "انتخاب"
+    },
+    {
+      "trigger": "انشاالله",
+      "replace": "ان‌شاء‌الله"
+    },
+    {
+      "trigger": "انشالله",
+      "replace": "ان‌شاء‌الله"
+    },
+    {
+      "trigger": "انشان",
+      "replace": "انسان"
+    },
+    {
+      "trigger": "انصافا",
+      "replace": "انصافاً"
+    },
+    {
+      "trigger": "انضجار",
+      "replace": "انزجار"
+    },
+    {
+      "trigger": "انظباط",
+      "replace": "انضباط"
+    },
+    {
+      "trigger": "انظمام",
+      "replace": "انضمام"
+    },
+    {
+      "trigger": "انکشت",
+      "replace": "انگشت"
+    },
+    {
+      "trigger": "انگشت‌گزاری",
+      "replace": "انگشت‌گذاری"
+    },
+    {
+      "trigger": "انیستیتو",
+      "replace": "انستیتو"
+    },
+    {
+      "trigger": "اورجینال",
+      "replace": "اریجینال"
+    },
+    {
+      "trigger": "اوکرایین",
+      "replace": "اوکراین"
+    },
+    {
+      "trigger": "اولا",
+      "replace": "اولاً"
+    },
+    {
+      "trigger": "اولیا",
+      "replace": "اولیاء"
+    },
+    {
+      "trigger": "اهراز",
+      "replace": "احراز"
+    },
+    {
+      "trigger": "اهراز هویت",
+      "replace": "احراز هویت"
+    },
+    {
+      "trigger": "ایدئال",
+      "replace": "ایده‌آل"
+    },
+    {
+      "trigger": "ایده آل",
+      "replace": "ایدئال"
+    },
+    {
+      "trigger": "ایده آلیسم",
+      "replace": "ایدئالیسم"
+    },
+    {
+      "trigger": "ایده‌آل",
+      "replace": "ایدئال"
+    },
+    {
+      "trigger": "ایده‌آلیست",
+      "replace": "ایدئالیست"
+    },
+    {
+      "trigger": "ایده‌آلیستی",
+      "replace": "ایدئالیستی"
+    },
+    {
+      "trigger": "ایده‌آلیسم",
+      "replace": "ایدئالیسم"
+    },
+    {
+      "trigger": "ایضا",
+      "replace": "ایضاً"
+    },
+    {
+      "trigger": "ایطالیا",
+      "replace": "ایتالیا"
+    },
+    {
+      "trigger": "این حا",
+      "replace": "این جا"
+    },
+    {
+      "trigger": "اینست",
+      "replace": "این است"
+    },
+    {
+      "trigger": "اینم",
+      "replace": "این‌ام"
+    },
+    {
+      "trigger": "باالطبع",
+      "replace": "بالطبع"
+    },
+    {
+      "trigger": "باالعکس",
+      "replace": "بالعکس"
+    },
+    {
+      "trigger": "باالفطره",
+      "replace": "بالفطره"
+    },
+    {
+      "trigger": "باالقوه",
+      "replace": "بالقوه"
+    },
+    {
+      "trigger": "باباقوری",
+      "replace": "باباغوری"
+    },
+    {
+      "trigger": "باجناق",
+      "replace": "باجناغ"
+    },
+    {
+      "trigger": "بارگزار",
+      "replace": "بارگذار"
+    },
+    {
+      "trigger": "بارگزاری",
+      "replace": "بارگذاری"
+    },
+    {
+      "trigger": "باطری",
+      "replace": "باتری"
+    },
+    {
+      "trigger": "باطلاق",
+      "replace": "باتلاق"
+    },
+    {
+      "trigger": "باطنا",
+      "replace": "باطناً"
+    },
+    {
+      "trigger": "باع",
+      "replace": "باغ"
+    },
+    {
+      "trigger": "باقلا",
+      "replace": "باقِلّا"
+    },
+    {
+      "trigger": "بتری",
+      "replace": "بطری"
+    },
+    {
+      "trigger": "بتون",
+      "replace": "بتن"
+    },
+    {
+      "trigger": "بته",
+      "replace": "بوته"
+    },
+    {
+      "trigger": "بجای",
+      "replace": "به‌جای"
+    },
+    {
+      "trigger": "بچه‌ایی",
+      "replace": "بچه‌ای"
+    },
+    {
+      "trigger": "بچه‌گانه",
+      "replace": "بچگانه"
+    },
+    {
+      "trigger": "بحال",
+      "replace": "به حال"
+    },
+    {
+      "trigger": "بح‌بح",
+      "replace": "به‌به"
+    },
+    {
+      "trigger": "بحبوهه",
+      "replace": "بحبوحه"
+    },
+    {
+      "trigger": "بحر خیابان",
+      "replace": "بر خیابان"
+    },
+    {
+      "trigger": "بخصوص",
+      "replace": "به‌خصوص"
+    },
+    {
+      "trigger": "بخصوصی",
+      "replace": "به‌خصوصی"
+    },
+    {
+      "trigger": "بخوبی",
+      "replace": "به‌خوبی"
+    },
+    {
+      "trigger": "بدرستی",
+      "replace": "به‌درستی"
+    },
+    {
+      "trigger": "بدست",
+      "replace": "به‌دست"
+    },
+    {
+      "trigger": "بدقت",
+      "replace": "به‌دقت"
+    },
+    {
+      "trigger": "بدلایل",
+      "replace": "به‌دلایل"
+    },
+    {
+      "trigger": "بدلیل",
+      "replace": "به‌دلیل"
+    },
+    {
+      "trigger": "بدنبال",
+      "replace": "به‌دنبال"
+    },
+    {
+      "trigger": "بر علیه",
+      "replace": "علیه"
+    },
+    {
+      "trigger": "براحتی",
+      "replace": "به‌راحتی"
+    },
+    {
+      "trigger": "برامدم",
+      "replace": "برآمدم"
+    },
+    {
+      "trigger": "براورد",
+      "replace": "برآورد"
+    },
+    {
+      "trigger": "براورده",
+      "replace": "برآورده"
+    },
+    {
+      "trigger": "برحه",
+      "replace": "برهه"
+    },
+    {
+      "trigger": "برخواست",
+      "replace": "برخاست"
+    },
+    {
+      "trigger": "برخواستن",
+      "replace": "برخاستن"
+    },
+    {
+      "trigger": "برخواسته",
+      "replace": "برخاسته"
+    },
+    {
+      "trigger": "برده گی",
+      "replace": "بردگی"
+    },
+    {
+      "trigger": "برده‌گی",
+      "replace": "بردگی"
+    },
+    {
+      "trigger": "برسی",
+      "replace": "بررسی"
+    },
+    {
+      "trigger": "برّسی",
+      "replace": "بررسی"
+    },
+    {
+      "trigger": "برعلیه",
+      "replace": "علیه"
+    },
+    {
+      "trigger": "برگذار",
+      "replace": "برگزار"
+    },
+    {
+      "trigger": "برگذاری",
+      "replace": "برگزاری"
+    },
+    {
+      "trigger": "بزار",
+      "replace": "بذار"
+    },
+    {
+      "trigger": "بسادگی",
+      "replace": "به‌سادگی"
+    },
+    {
+      "trigger": "بسر",
+      "replace": "به‌سر"
+    },
+    {
+      "trigger": "بسرعت",
+      "replace": "به‌سرعت"
+    },
+    {
+      "trigger": "بسمه تعالی",
+      "replace": "باسمه تعالی"
+    },
+    {
+      "trigger": "بشدت",
+      "replace": "به‌شدت"
+    },
+    {
+      "trigger": "بشکل",
+      "replace": "به‌شکل"
+    },
+    {
+      "trigger": "بشکلی",
+      "replace": "به‌شکلی"
+    },
+    {
+      "trigger": "بصورت",
+      "replace": "به‌صورت"
+    },
+    {
+      "trigger": "بصورتی",
+      "replace": "به‌صورتی"
+    },
+    {
+      "trigger": "بطور",
+      "replace": "به‌طور"
+    },
+    {
+      "trigger": "بطورکلی",
+      "replace": "به‌طور کلی"
+    },
+    {
+      "trigger": "بطوری",
+      "replace": "به‌طوری"
+    },
+    {
+      "trigger": "بعدا",
+      "replace": "بعداً"
+    },
+    {
+      "trigger": "بعضا",
+      "replace": "بعضاً"
+    },
+    {
+      "trigger": "بعلاوه",
+      "replace": "به‌علاوه"
+    },
+    {
+      "trigger": "بعلت",
+      "replace": "به‌علت"
+    },
+    {
+      "trigger": "بعنوان",
+      "replace": "به‌عنوان"
+    },
+    {
+      "trigger": "بغچه",
+      "replace": "بقچه"
+    },
+    {
+      "trigger": "بکارگیری",
+      "replace": "به‌کارگیری"
+    },
+    {
+      "trigger": "بکلی",
+      "replace": "به‌کلی"
+    },
+    {
+      "trigger": "بگفته",
+      "replace": "به‌گفتهٔ"
+    },
+    {
+      "trigger": "بگفتهٔ",
+      "replace": "به‌گفتهٔ"
+    },
+    {
+      "trigger": "بلاخره",
+      "replace": "بالاخره"
+    },
+    {
+      "trigger": "بلخره",
+      "replace": "بالاخره"
+    },
+    {
+      "trigger": "بلقور",
+      "replace": "بلغور"
+    },
+    {
+      "trigger": "بلهوس",
+      "replace": "بوالهوس"
+    },
+    {
+      "trigger": "بلیط",
+      "replace": "بلیت"
+    },
+    {
+      "trigger": "بمب‌گزاری",
+      "replace": "بمب‌گذاری"
+    },
+    {
+      "trigger": "بمدت",
+      "replace": "به‌مدت"
+    },
+    {
+      "trigger": "بمناسبت",
+      "replace": "به‌مناسبت"
+    },
+    {
+      "trigger": "بمنظور",
+      "replace": "به‌منظور"
+    },
+    {
+      "trigger": "بندرت",
+      "replace": "به‌ندرت"
+    },
+    {
+      "trigger": "بنیانا",
+      "replace": "بنیاناً"
+    },
+    {
+      "trigger": "بنیانگزار",
+      "replace": "بنیان‌گذار"
+    },
+    {
+      "trigger": "بنیان‌گزار",
+      "replace": "بنیان‌گذار"
+    },
+    {
+      "trigger": "بنیان‌گزاری",
+      "replace": "بنیان‌گذاری"
+    },
+    {
+      "trigger": "بواسطه",
+      "replace": "به‌واسطه"
+    },
+    {
+      "trigger": "بوجود",
+      "replace": "به‌وجود"
+    },
+    {
+      "trigger": "بوسیله",
+      "replace": "به‌وسیلهٔ"
+    },
+    {
+      "trigger": "بوضوح",
+      "replace": "به‌وضوح"
+    },
+    {
+      "trigger": "بوقت",
+      "replace": "به‌وقت"
+    },
+    {
+      "trigger": "بویژه",
+      "replace": "به‌ویژه"
+    },
+    {
+      "trigger": "به طریق اولی",
+      "replace": "به طریق اولیٰ"
+    },
+    {
+      "trigger": "به عینه",
+      "replace": "بعینه"
+    },
+    {
+      "trigger": "به قطع یقین",
+      "replace": "به قطع و یقین"
+    },
+    {
+      "trigger": "بهبوحه",
+      "replace": "بحبوحه"
+    },
+    {
+      "trigger": "بهبوهه",
+      "replace": "بحبوحه"
+    },
+    {
+      "trigger": "به‌بینم",
+      "replace": "ببینم"
+    },
+    {
+      "trigger": "به‌ذاته",
+      "replace": "بذاته"
+    },
+    {
+      "trigger": "به‌رأی‌العین",
+      "replace": "برأی‌العین"
+    },
+    {
+      "trigger": "بهرحال",
+      "replace": "به‌هرحال"
+    },
+    {
+      "trigger": "به‌رفت",
+      "replace": "برفت"
+    },
+    {
+      "trigger": "به‌شخصه",
+      "replace": "بشخصه"
+    },
+    {
+      "trigger": "به‌عینه",
+      "replace": "بعینه"
+    },
+    {
+      "trigger": "به‌عینه‌",
+      "replace": "بعینه"
+    },
+    {
+      "trigger": "به‌گفت",
+      "replace": "بگفت"
+    },
+    {
+      "trigger": "بهمراه",
+      "replace": "به‌همراه"
+    },
+    {
+      "trigger": "به‌نفسه‌",
+      "replace": "بنفسه"
+    },
+    {
+      "trigger": "به‌نویسد",
+      "replace": "بنویسد"
+    },
+    {
+      "trigger": "بهیچ",
+      "replace": "به‌هیچ"
+    },
+    {
+      "trigger": "بهیچوجه",
+      "replace": "به‌هیچ‌وجه"
+    },
+    {
+      "trigger": "بهیچ‌وجه",
+      "replace": "به‌هیچ‌وجه"
+    },
+    {
+      "trigger": "بی انظباطی",
+      "replace": "بی‌انضباطی"
+    },
+    {
+      "trigger": "بی مهابا",
+      "replace": "بی‌محابا"
+    },
+    {
+      "trigger": "بیازار",
+      "replace": "بی‌آزار"
+    },
+    {
+      "trigger": "بیافتاد",
+      "replace": "بیفتاد"
+    },
+    {
+      "trigger": "بیافتد",
+      "replace": "بیفتد"
+    },
+    {
+      "trigger": "بیافروز",
+      "replace": "بیفروز"
+    },
+    {
+      "trigger": "بیافروزد",
+      "replace": "بیفروزد"
+    },
+    {
+      "trigger": "بیافزود",
+      "replace": "بیفزود"
+    },
+    {
+      "trigger": "بیافگند",
+      "replace": "بیفگند"
+    },
+    {
+      "trigger": "بیان که",
+      "replace": "بی‌آن‌که"
+    },
+    {
+      "trigger": "بیانجامد",
+      "replace": "بینجامد"
+    },
+    {
+      "trigger": "بیانداز",
+      "replace": "بینداز"
+    },
+    {
+      "trigger": "بیاندازد",
+      "replace": "بیندازد"
+    },
+    {
+      "trigger": "بیاندازم",
+      "replace": "بیندازم "
+    },
+    {
+      "trigger": "بیاندازند",
+      "replace": "بیندازند"
+    },
+    {
+      "trigger": "بیاندازی",
+      "replace": "بیندازی "
+    },
+    {
+      "trigger": "بیاندازید",
+      "replace": "بیندازید"
+    },
+    {
+      "trigger": "بیاندازیم",
+      "replace": "بیندازیم"
+    },
+    {
+      "trigger": "بیاندوخت",
+      "replace": "بیندوخت"
+    },
+    {
+      "trigger": "بیاندیشد",
+      "replace": "بیندیشد"
+    },
+    {
+      "trigger": "بیانگارد",
+      "replace": "بینگارد"
+    },
+    {
+      "trigger": "بیانگیزد",
+      "replace": "بینگیزد"
+    },
+    {
+      "trigger": "بیایان",
+      "replace": "بیابان"
+    },
+    {
+      "trigger": "بیثار",
+      "replace": "بیسار"
+    },
+    {
+      "trigger": "بیستاد",
+      "replace": "بایستاد"
+    },
+    {
+      "trigger": "بی‌مهابا",
+      "replace": "بی‌محابا"
+    },
+    {
+      "trigger": "بیمه‌گزار",
+      "replace": "بیمه‌گذار"
+    },
+    {
+      "trigger": "بیمه‌گزاری",
+      "replace": "بیمه‌گذاری"
+    },
+    {
+      "trigger": "بیوفتد",
+      "replace": "بیفتد"
+    },
+    {
+      "trigger": "بیوفتم",
+      "replace": "بیفتیم"
+    },
+    {
+      "trigger": "بیوفتند",
+      "replace": "بیفتند"
+    },
+    {
+      "trigger": "بیوفتی",
+      "replace": "بیفتی"
+    },
+    {
+      "trigger": "بیوفتید",
+      "replace": "بیفتید"
+    },
+    {
+      "trigger": "بیوفتیم",
+      "replace": "بیفتیم"
+    },
+    {
+      "trigger": "پائیز",
+      "replace": "پاییز"
+    },
+    {
+      "trigger": "پائین",
+      "replace": "پایین"
+    },
+    {
+      "trigger": "پاتوغ",
+      "replace": "پاتوق"
+    },
+    {
+      "trigger": "پاچه خواری",
+      "replace": "پاچه‌خاری"
+    },
+    {
+      "trigger": "پاچه‌خوار",
+      "replace": "پاچه‌خار"
+    },
+    {
+      "trigger": "پاچه‌خواری",
+      "replace": "پاچه‌خاری"
+    },
+    {
+      "trigger": "پاراالمپیک",
+      "replace": "پارالمپیک"
+    },
+    {
+      "trigger": "پاسح",
+      "replace": "پاسخ"
+    },
+    {
+      "trigger": "پاناروما",
+      "replace": "پانوراما"
+    },
+    {
+      "trigger": "پایتن",
+      "replace": "پایتون"
+    },
+    {
+      "trigger": "پایه‌گزار",
+      "replace": "پایه‌گذار"
+    },
+    {
+      "trigger": "پایه‌گزاری",
+      "replace": "پایه‌گذاری"
+    },
+    {
+      "trigger": "پرفسور",
+      "replace": "پروفسور"
+    },
+    {
+      "trigger": "پست‌گزاری",
+      "replace": "پست‌گذاری"
+    },
+    {
+      "trigger": "پلمپ",
+      "replace": "پلمب"
+    },
+    {
+      "trigger": "پهباد",
+      "replace": "پهپاد"
+    },
+    {
+      "trigger": "پیارسال",
+      "replace": "پیرارسال"
+    },
+    {
+      "trigger": "پیام اور",
+      "replace": "پیام‌آور"
+    },
+    {
+      "trigger": "پیش‌خوان",
+      "replace": "پیش‌خان"
+    },
+    {
+      "trigger": "پیغام‌گذاری",
+      "replace": "پیغام‌گزاری"
+    },
+    {
+      "trigger": "تآتر",
+      "replace": "تئاتر"
+    },
+    {
+      "trigger": "تائید",
+      "replace": "تأیید"
+    },
+    {
+      "trigger": "تاتر",
+      "replace": "تئاتر"
+    },
+    {
+      "trigger": "تاثر",
+      "replace": "تأثر"
+    },
+    {
+      "trigger": "تاثیر",
+      "replace": "تأثیر"
+    },
+    {
+      "trigger": "تاثیرات",
+      "replace": "تأثیرات"
+    },
+    {
+      "trigger": "تاثیرش",
+      "replace": "تأثیرش"
+    },
+    {
+      "trigger": "تاثیری",
+      "replace": "تأثیری"
+    },
+    {
+      "trigger": "تاج‌گزاری",
+      "replace": "تاج‌گذاری"
+    },
+    {
+      "trigger": "تاخیر",
+      "replace": "تأخیر"
+    },
+    {
+      "trigger": "تادیه",
+      "replace": "تأدیه"
+    },
+    {
+      "trigger": "تاس",
+      "replace": "طاس"
+    },
+    {
+      "trigger": "تاسف",
+      "replace": "تأسف"
+    },
+    {
+      "trigger": "تاسی",
+      "replace": "تأسی"
+    },
+    {
+      "trigger": "تاسیسات",
+      "replace": "تأسیسات"
+    },
+    {
+      "trigger": "تاق",
+      "replace": "طاق"
+    },
+    {
+      "trigger": "تاقچه",
+      "replace": "طاقچه"
+    },
+    {
+      "trigger": "تاق‌چه",
+      "replace": "طاقچه"
+    },
+    {
+      "trigger": "تاکنیم",
+      "replace": "تاکتیک"
+    },
+    {
+      "trigger": "تاکید",
+      "replace": "تأکید"
+    },
+    {
+      "trigger": "تاکیدات",
+      "replace": "تأکیدات"
+    },
+    {
+      "trigger": "تالیف",
+      "replace": "تألیف"
+    },
+    {
+      "trigger": "تالیفات",
+      "replace": "تألیفات"
+    },
+    {
+      "trigger": "تامل",
+      "replace": "تأمل"
+    },
+    {
+      "trigger": "تامه",
+      "replace": "تامّه"
+    },
+    {
+      "trigger": "تامین",
+      "replace": "تأمین"
+    },
+    {
+      "trigger": "تایید",
+      "replace": "تأیید"
+    },
+    {
+      "trigger": "تأئید",
+      "replace": "تأیید"
+    },
+    {
+      "trigger": "تأئیدی",
+      "replace": "تأییدی"
+    },
+    {
+      "trigger": "تأثیرگزاری",
+      "replace": "تأثیرگذاری"
+    },
+    {
+      "trigger": "تبئات",
+      "replace": "تبعات"
+    },
+    {
+      "trigger": "تجربیان",
+      "replace": "تجربیات"
+    },
+    {
+      "trigger": "تچربه",
+      "replace": "تجربه"
+    },
+    {
+      "trigger": "تحت الفظی",
+      "replace": "تحت‌اللفظی"
+    },
+    {
+      "trigger": "تحت‌الفظی",
+      "replace": "تحت‌اللفظی"
+    },
+    {
+      "trigger": "تحربه",
+      "replace": "تجربه"
+    },
+    {
+      "trigger": "تخذیر",
+      "replace": "تخدیر"
+    },
+    {
+      "trigger": "تخریف",
+      "replace": "تحریف"
+    },
+    {
+      "trigger": "تخمک‌گزاری",
+      "replace": "تخمک‌گذاری"
+    },
+    {
+      "trigger": "تخم‌گزاری",
+      "replace": "تخم‌گذاری"
+    },
+    {
+      "trigger": "تذکره الولیا",
+      "replace": "تذکره‌الولیاء"
+    },
+    {
+      "trigger": "ترجیحا",
+      "replace": "ترجیحاً"
+    },
+    {
+      "trigger": "ترجیه",
+      "replace": "ترجیح"
+    },
+    {
+      "trigger": "ترجیها",
+      "replace": "ترجیحاً"
+    },
+    {
+      "trigger": "ترقیب",
+      "replace": "ترغیب"
+    },
+    {
+      "trigger": "تزئین",
+      "replace": "تزیین"
+    },
+    {
+      "trigger": "تشریخ",
+      "replace": "تشریح"
+    },
+    {
+      "trigger": "تصادفا",
+      "replace": "تصادفاً"
+    },
+    {
+      "trigger": "تضاهر",
+      "replace": "تظاهر"
+    },
+    {
+      "trigger": "تعجب اور",
+      "replace": "تعجب‌آور"
+    },
+    {
+      "trigger": "تغزیه",
+      "replace": "تغذیه"
+    },
+    {
+      "trigger": "تقریبا",
+      "replace": "تقریباً"
+    },
+    {
+      "trigger": "تقریبن",
+      "replace": "تقریباً"
+    },
+    {
+      "trigger": "تکنسین",
+      "replace": "تکنیسین"
+    },
+    {
+      "trigger": "تکون",
+      "replace": "تکوّن"
+    },
+    {
+      "trigger": "تکه کلام",
+      "replace": "تکیه‌کلام"
+    },
+    {
+      "trigger": "تکه‌کلام",
+      "replace": "تکیه‌کلام"
+    },
+    {
+      "trigger": "تلفون",
+      "replace": "تلفن"
+    },
+    {
+      "trigger": "تلفونی",
+      "replace": "تلفنی"
+    },
+    {
+      "trigger": "تلمبار",
+      "replace": "تلنبار"
+    },
+    {
+      "trigger": "تلورانس",
+      "replace": "تولرانس"
+    },
+    {
+      "trigger": "تلوزیون",
+      "replace": "تلویزیون"
+    },
+    {
+      "trigger": "تلوزیونی",
+      "replace": "تلویزیونی"
+    },
+    {
+      "trigger": "تماما",
+      "replace": "تماماً"
+    },
+    {
+      "trigger": "تمانینه",
+      "replace": "طمأنینه"
+    },
+    {
+      "trigger": "تمأنینه",
+      "replace": "طمأنینه"
+    },
+    {
+      "trigger": "تمبر هندی",
+      "replace": "تمر هندی"
+    },
+    {
+      "trigger": "تناب",
+      "replace": "طناب"
+    },
+    {
+      "trigger": "تنفیض",
+      "replace": "تنفیذ"
+    },
+    {
+      "trigger": "توام",
+      "replace": "توأم"
+    },
+    {
+      "trigger": "تواما",
+      "replace": "توأماً"
+    },
+    {
+      "trigger": "توتی",
+      "replace": "طوطی"
+    },
+    {
+      "trigger": "توجیح",
+      "replace": "توجیه"
+    },
+    {
+      "trigger": "توحه",
+      "replace": "توجه"
+    },
+    {
+      "trigger": "تورک",
+      "replace": "ترک"
+    },
+    {
+      "trigger": "توسوت",
+      "replace": "توسط"
+    },
+    {
+      "trigger": "توصعه",
+      "replace": "توسعه"
+    },
+    {
+      "trigger": "توضیع",
+      "replace": "توزیع"
+    },
+    {
+      "trigger": "توطعه",
+      "replace": "توطئه"
+    },
+    {
+      "trigger": "توفان",
+      "replace": "طوفان"
+    },
+    {
+      "trigger": "تولّای",
+      "replace": "تولّا"
+    },
+    {
+      "trigger": "تولّی",
+      "replace": "تولّا"
+    },
+    {
+      "trigger": "تومار",
+      "replace": "طومار"
+    },
+    {
+      "trigger": "تووی",
+      "replace": "توی"
+    },
+    {
+      "trigger": "تهئیه",
+      "replace": "تهیه"
+    },
+    {
+      "trigger": "تهجی",
+      "replace": "تهجّی"
+    },
+    {
+      "trigger": "تهکم",
+      "replace": "تحکم"
+    },
+    {
+      "trigger": "تهییه",
+      "replace": "تهیه"
+    },
+    {
+      "trigger": "تیوپ",
+      "replace": "تیوب"
+    },
+    {
+      "trigger": "ثالثا",
+      "replace": "ثالثاً"
+    },
+    {
+      "trigger": "ثانیا",
+      "replace": "ثانیاً"
+    },
+    {
+      "trigger": "ثقور",
+      "replace": "ثغور"
+    },
+    {
+      "trigger": "جائی",
+      "replace": "جایی"
+    },
+    {
+      "trigger": "جائیکه",
+      "replace": "جایی که"
+    },
+    {
+      "trigger": "جاضر",
+      "replace": "حاضر"
+    },
+    {
+      "trigger": "جالا",
+      "replace": "حالا"
+    },
+    {
+      "trigger": "جالش",
+      "replace": "چالش"
+    },
+    {
+      "trigger": "جای‌گزاری",
+      "replace": "جای‌گذاری"
+    },
+    {
+      "trigger": "جداناپذیر",
+      "replace": "جدایی‌ناپذیر"
+    },
+    {
+      "trigger": "جدول‌گزاری",
+      "replace": "جدول‌گذاری"
+    },
+    {
+      "trigger": "جدیدا",
+      "replace": "جدیداً"
+    },
+    {
+      "trigger": "جذرومد",
+      "replace": "جزرومد"
+    },
+    {
+      "trigger": "جرات",
+      "replace": "جرئت"
+    },
+    {
+      "trigger": "جراتی",
+      "replace": "جرئتی"
+    },
+    {
+      "trigger": "جرئت",
+      "replace": "جرأت"
+    },
+    {
+      "trigger": "جرأتش",
+      "replace": "جرئتش"
+    },
+    {
+      "trigger": "جرعت",
+      "replace": "جرئت"
+    },
+    {
+      "trigger": "جزام",
+      "replace": "جذام"
+    },
+    {
+      "trigger": "جزب",
+      "replace": "جذب"
+    },
+    {
+      "trigger": "جزیی",
+      "replace": "جزئی"
+    },
+    {
+      "trigger": "جزییات",
+      "replace": "جزئیات"
+    },
+    {
+      "trigger": "جسارتا",
+      "replace": "جسارتاً"
+    },
+    {
+      "trigger": "جسین",
+      "replace": "حسین"
+    },
+    {
+      "trigger": "جمع اوری",
+      "replace": "جمع‌آوری"
+    },
+    {
+      "trigger": "جناغ سینه",
+      "replace": "جناق سینه"
+    },
+    {
+      "trigger": "جید",
+      "replace": "جیّد"
+    },
+    {
+      "trigger": "جید الجوهر",
+      "replace": "جیّدالجوهر"
+    },
+    {
+      "trigger": "چجوری",
+      "replace": "چه‌جوری"
+    },
+    {
+      "trigger": "چرخ و فلک",
+      "replace": "چرخ‌فلک"
+    },
+    {
+      "trigger": "چقک",
+      "replace": "چغک"
+    },
+    {
+      "trigger": "چک‌نویس",
+      "replace": "چرک‌نویس"
+    },
+    {
+      "trigger": "چه سان",
+      "replace": "چسان"
+    },
+    {
+      "trigger": "چه طور",
+      "replace": "چطور"
+    },
+    {
+      "trigger": "چه طوری",
+      "replace": "چطوری"
+    },
+    {
+      "trigger": "چه قدر",
+      "replace": "چقدر"
+    },
+    {
+      "trigger": "چه‌قدر",
+      "replace": "چقدر"
+    },
+    {
+      "trigger": "حاده",
+      "replace": "حادّه"
+    },
+    {
+      "trigger": "حار",
+      "replace": "حارّ"
+    },
+    {
+      "trigger": "حاره",
+      "replace": "حارّه"
+    },
+    {
+      "trigger": "حاشیح",
+      "replace": "حاشیه"
+    },
+    {
+      "trigger": "حاظر",
+      "replace": "حاضر"
+    },
+    {
+      "trigger": "حبه",
+      "replace": "حبّه"
+    },
+    {
+      "trigger": "حتاکی",
+      "replace": "هتاکی"
+    },
+    {
+      "trigger": "حتما",
+      "replace": "حتماً"
+    },
+    {
+      "trigger": "حتمن",
+      "replace": "حتماً"
+    },
+    {
+      "trigger": "حجگذار",
+      "replace": "حج‌گزار"
+    },
+    {
+      "trigger": "حج‌گذار",
+      "replace": "حج‌گزار"
+    },
+    {
+      "trigger": "حج‌گذاران",
+      "replace": "حج‌گزاران"
+    },
+    {
+      "trigger": "حجگذاردن",
+      "replace": "حج‌گزاردن"
+    },
+    {
+      "trigger": "حج‌گذاری",
+      "replace": "حج‌گزاری"
+    },
+    {
+      "trigger": "حجوم",
+      "replace": "هجوم"
+    },
+    {
+      "trigger": "حدالامکان",
+      "replace": "حتی‌الامکان"
+    },
+    {
+      "trigger": "حدالمقدور",
+      "replace": "حتی‌المقدور"
+    },
+    {
+      "trigger": "حدت",
+      "replace": "حدّت"
+    },
+    {
+      "trigger": "حدود و ثقور",
+      "replace": "حدود و ثغور"
+    },
+    {
+      "trigger": "حدود و سغور",
+      "replace": "حدود و ثغور"
+    },
+    {
+      "trigger": "حدود و سقور",
+      "replace": "حدود و ثغور"
+    },
+    {
+      "trigger": "حدود و صغور",
+      "replace": "حدود و ثغور"
+    },
+    {
+      "trigger": "حدود و صقور",
+      "replace": "حدود و ثغور"
+    },
+    {
+      "trigger": "حدودا",
+      "replace": "حدوداً"
+    },
+    {
+      "trigger": "حراس",
+      "replace": "هراس"
+    },
+    {
+      "trigger": "حرکت‌گزاری",
+      "replace": "حرکت‌گذاری"
+    },
+    {
+      "trigger": "حضورا",
+      "replace": "حضوراً"
+    },
+    {
+      "trigger": "حظرات",
+      "replace": "حضرات"
+    },
+    {
+      "trigger": "حظرت",
+      "replace": "حضرت"
+    },
+    {
+      "trigger": "حظور",
+      "replace": "حضور"
+    },
+    {
+      "trigger": "حقیقتا",
+      "replace": "حقیقتاً"
+    },
+    {
+      "trigger": "حلیم",
+      "replace": "هلیم"
+    },
+    {
+      "trigger": "حواشیح",
+      "replace": "حواشی"
+    },
+    {
+      "trigger": "حواشیه",
+      "replace": "حواشی"
+    },
+    {
+      "trigger": "حوهر",
+      "replace": "جوهر"
+    },
+    {
+      "trigger": "حوهرش",
+      "replace": "جوهرش"
+    },
+    {
+      "trigger": "حیات خانه",
+      "replace": "حیاط خانه"
+    },
+    {
+      "trigger": "حیاط وحش",
+      "replace": "حیات وحش"
+    },
+    {
+      "trigger": "حیضه",
+      "replace": "هیضه"
+    },
+    {
+      "trigger": "حیلی",
+      "replace": "خیلی"
+    },
+    {
+      "trigger": "خابیدن",
+      "replace": "خوابیدن"
+    },
+    {
+      "trigger": "خار و بار",
+      "replace": "خواربار"
+    },
+    {
+      "trigger": "خاربار",
+      "replace": "خواربار"
+    },
+    {
+      "trigger": "خاروبار",
+      "replace": "خواربار"
+    },
+    {
+      "trigger": "خاروذلیل",
+      "replace": "خواروذلیل"
+    },
+    {
+      "trigger": "خاستار",
+      "replace": "خواستار"
+    },
+    {
+      "trigger": "خاستگار",
+      "replace": "خواستگار"
+    },
+    {
+      "trigger": "خاستگاری",
+      "replace": "خواستگاری"
+    },
+    {
+      "trigger": "خانند",
+      "replace": "خوانند"
+    },
+    {
+      "trigger": "خانواده گی",
+      "replace": "خانوادگی"
+    },
+    {
+      "trigger": "خبرگذاری",
+      "replace": "خبرگزاری"
+    },
+    {
+      "trigger": "خجالت اور",
+      "replace": "خجالت‌آور"
+    },
+    {
+      "trigger": "خدمتگذار",
+      "replace": "خدمتگزار"
+    },
+    {
+      "trigger": "خدمتگذاری",
+      "replace": "خدمتگزاری"
+    },
+    {
+      "trigger": "خدمت‌گذاری",
+      "replace": "خدمت‌گزاری"
+    },
+    {
+      "trigger": "خراجگذار",
+      "replace": "خراجگزار"
+    },
+    {
+      "trigger": "خردن",
+      "replace": "خوردن"
+    },
+    {
+      "trigger": "خشم اگین",
+      "replace": "خشم‌آگین"
+    },
+    {
+      "trigger": "خشم اگینی",
+      "replace": "خشم‌آگینی"
+    },
+    {
+      "trigger": "خصوصا",
+      "replace": "خصوصاً"
+    },
+    {
+      "trigger": "خط‌مشی‌ای",
+      "replace": "خط‌مشیی"
+    },
+    {
+      "trigger": "خلا",
+      "replace": "خلاء"
+    },
+    {
+      "trigger": "خلاء",
+      "replace": "خلأ"
+    },
+    {
+      "trigger": "خلاثه",
+      "replace": "خلاصه"
+    },
+    {
+      "trigger": "خلصه",
+      "replace": "خلسه"
+    },
+    {
+      "trigger": "خلع",
+      "replace": "خلأ"
+    },
+    {
+      "trigger": "خواب‌گذاری",
+      "replace": "خواب‌گزاری"
+    },
+    {
+      "trigger": "خوار و بار",
+      "replace": "خواربار"
+    },
+    {
+      "trigger": "خوار و بار فروشی",
+      "replace": "خواربارفروشی"
+    },
+    {
+      "trigger": "خوارش",
+      "replace": "خارش"
+    },
+    {
+      "trigger": "خواروبار",
+      "replace": "خواربار"
+    },
+    {
+      "trigger": "خواروبارفروشی",
+      "replace": "خواربارفروشی"
+    },
+    {
+      "trigger": "خواستگاه",
+      "replace": "خاستگاه"
+    },
+    {
+      "trigger": "خواست‌گاه",
+      "replace": "خاست‌گاه"
+    },
+    {
+      "trigger": "خوانوادگی",
+      "replace": "خانوادگی"
+    },
+    {
+      "trigger": "خوانواده",
+      "replace": "خانواده"
+    },
+    {
+      "trigger": "خودازاری",
+      "replace": "خودآزاری"
+    },
+    {
+      "trigger": "خوردسال",
+      "replace": "خردسال"
+    },
+    {
+      "trigger": "دائما",
+      "replace": "دائماً"
+    },
+    {
+      "trigger": "داغان",
+      "replace": "داغون"
+    },
+    {
+      "trigger": "دانشگده",
+      "replace": "دانشکده"
+    },
+    {
+      "trigger": "داود",
+      "replace": "داوود"
+    },
+    {
+      "trigger": "درامد",
+      "replace": "در‌آمد"
+    },
+    {
+      "trigger": "درامده",
+      "replace": "درآمده"
+    },
+    {
+      "trigger": "دراورد",
+      "replace": "درآورد"
+    },
+    {
+      "trigger": "دراوردم",
+      "replace": "درآوردم"
+    },
+    {
+      "trigger": "دراوردن",
+      "replace": "درآوردن"
+    },
+    {
+      "trigger": "دراورده",
+      "replace": "درآورده"
+    },
+    {
+      "trigger": "دراوردی",
+      "replace": "درآوردی"
+    },
+    {
+      "trigger": "دراوردیم",
+      "replace": "درآوردیم"
+    },
+    {
+      "trigger": "دراوری",
+      "replace": "درآوری"
+    },
+    {
+      "trigger": "دراورید",
+      "replace": "در‌آورید"
+    },
+    {
+      "trigger": "درد و دل",
+      "replace": "دردِدل"
+    },
+    {
+      "trigger": "دردودل",
+      "replace": "درددل"
+    },
+    {
+      "trigger": "دست اویز",
+      "replace": "دست‌آویز"
+    },
+    {
+      "trigger": "دغدقه",
+      "replace": "دغدغه"
+    },
+    {
+      "trigger": "دق و دلی",
+      "replace": "دق‌دلی"
+    },
+    {
+      "trigger": "دق‌ودلی",
+      "replace": "دق‌دلی"
+    },
+    {
+      "trigger": "دقیقا",
+      "replace": "دقیقاً"
+    },
+    {
+      "trigger": "دلهره اور",
+      "replace": "دلهره‌آور"
+    },
+    {
+      "trigger": "دمبه",
+      "replace": "دنبه"
+    },
+    {
+      "trigger": "دمق",
+      "replace": "دمغ"
+    },
+    {
+      "trigger": "دوئیت",
+      "replace": "دوگانگی"
+    },
+    {
+      "trigger": "دوبلکس",
+      "replace": "دوپلکس"
+    },
+    {
+      "trigger": "دوبی",
+      "replace": "دبی"
+    },
+    {
+      "trigger": "دوروزمانه",
+      "replace": "دور زمانه"
+    },
+    {
+      "trigger": "دوکتور",
+      "replace": "دکتر"
+    },
+    {
+      "trigger": "دوما",
+      "replace": "دوماً"
+    },
+    {
+      "trigger": "دومیدانی",
+      "replace": "دوومیدانی"
+    },
+    {
+      "trigger": "دویم",
+      "replace": "دویّم"
+    },
+    {
+      "trigger": "دهوا",
+      "replace": "دعوا"
+    },
+    {
+      "trigger": "دیدبان",
+      "replace": "دیده‌بان"
+    },
+    {
+      "trigger": "دیده‌گان",
+      "replace": "دیدگان"
+    },
+    {
+      "trigger": "دیوس",
+      "replace": "دیوث"
+    },
+    {
+      "trigger": "دیه‌گو",
+      "replace": "دیِگو"
+    },
+    {
+      "trigger": "ذاتا",
+      "replace": "ذاتاً"
+    },
+    {
+      "trigger": "ذباله",
+      "replace": "زباله"
+    },
+    {
+      "trigger": "ذخامت",
+      "replace": "ضخامت"
+    },
+    {
+      "trigger": "ذخیم",
+      "replace": "ضخیم"
+    },
+    {
+      "trigger": "ذغال",
+      "replace": "زغال"
+    },
+    {
+      "trigger": "ذغال سنگ",
+      "replace": "زغال‌سنگ"
+    },
+    {
+      "trigger": "ذغال‌سنگ",
+      "replace": "زغال‌سنگ"
+    },
+    {
+      "trigger": "ذکام",
+      "replace": "زکام"
+    },
+    {
+      "trigger": "ذوذنقه",
+      "replace": "ذوزنقه"
+    },
+    {
+      "trigger": "راجب",
+      "replace": "راجع به"
+    },
+    {
+      "trigger": "راجبه",
+      "replace": "راجع‌به"
+    },
+    {
+      "trigger": "راجه",
+      "replace": "راجع"
+    },
+    {
+      "trigger": "رافت",
+      "replace": "رأفت"
+    },
+    {
+      "trigger": "راکتور",
+      "replace": "رآکتور"
+    },
+    {
+      "trigger": "رای",
+      "replace": "رأی"
+    },
+    {
+      "trigger": "ردی الجوهر",
+      "replace": "ردی‌ءالجوهر"
+    },
+    {
+      "trigger": "ردی الکیموس",
+      "replace": "ردی‌ءالکیموس"
+    },
+    {
+      "trigger": "رزالت",
+      "replace": "رذالت"
+    },
+    {
+      "trigger": "رزل",
+      "replace": "رذل"
+    },
+    {
+      "trigger": "رزیلانه",
+      "replace": "رذیلانه"
+    },
+    {
+      "trigger": "رشگ",
+      "replace": "رشک"
+    },
+    {
+      "trigger": "رطوبت الماء",
+      "replace": "رطوبت‌المّاء"
+    },
+    {
+      "trigger": "رطوبت المائی",
+      "replace": "رطوبت‌المّائی"
+    },
+    {
+      "trigger": "رطیل",
+      "replace": "رتیل"
+    },
+    {
+      "trigger": "رقبت",
+      "replace": "رغبت"
+    },
+    {
+      "trigger": "رقت",
+      "replace": "رقّت"
+    },
+    {
+      "trigger": "رمادیت",
+      "replace": "رمادیّت"
+    },
+    {
+      "trigger": "رمزگزاری",
+      "replace": "رمزگذاری"
+    },
+    {
+      "trigger": "رنج اور",
+      "replace": "رنج‌آور"
+    },
+    {
+      "trigger": "رنگ‌‌و‌رو",
+      "replace": "رنگ رو"
+    },
+    {
+      "trigger": "روانشناسی‏",
+      "replace": "روان‌شناسی"
+    },
+    {
+      "trigger": "روبات",
+      "replace": "ربات"
+    },
+    {
+      "trigger": "روبوت",
+      "replace": "ربات"
+    },
+    {
+      "trigger": "روزمره‌گی",
+      "replace": "روزمرگی"
+    },
+    {
+      "trigger": "روسا",
+      "replace": "رؤسا"
+    },
+    {
+      "trigger": "رووسا",
+      "replace": "رؤسا"
+    },
+    {
+      "trigger": "رویا",
+      "replace": "رؤیا"
+    },
+    {
+      "trigger": "رویای",
+      "replace": "رؤیای"
+    },
+    {
+      "trigger": "ره اورد",
+      "replace": "ره آورد"
+    },
+    {
+      "trigger": "رهبریت",
+      "replace": "رهبری"
+    },
+    {
+      "trigger": "ریل‌گزاری",
+      "replace": "ریل‌گذاری"
+    },
+    {
+      "trigger": "رییس",
+      "replace": "رئیس"
+    },
+    {
+      "trigger": "زادوبوم",
+      "replace": "زادبوم"
+    },
+    {
+      "trigger": "زباله‌گزاری",
+      "replace": "زباله‌گذاری"
+    },
+    {
+      "trigger": "زجه",
+      "replace": "ضجه"
+    },
+    {
+      "trigger": "زخامت",
+      "replace": "ضخامت"
+    },
+    {
+      "trigger": "زخم‌وزبان",
+      "replace": "زخم‌زبان"
+    },
+    {
+      "trigger": "زخیم",
+      "replace": "ضخیم"
+    },
+    {
+      "trigger": "زرته",
+      "replace": "ضرطه"
+    },
+    {
+      "trigger": "زردالو",
+      "replace": "زردآلو"
+    },
+    {
+      "trigger": "زردشت",
+      "replace": "زرتشت"
+    },
+    {
+      "trigger": "زردشتی",
+      "replace": "زرتشتی"
+    },
+    {
+      "trigger": "زرس قاطع",
+      "replace": "ضرس قاطع"
+    },
+    {
+      "trigger": "زرص قاطع",
+      "replace": "ضرس قاطع"
+    },
+    {
+      "trigger": "زرنک",
+      "replace": "زرنگ"
+    },
+    {
+      "trigger": "زمدگی",
+      "replace": "زندگی"
+    },
+    {
+      "trigger": "زندکی",
+      "replace": "زندگی"
+    },
+    {
+      "trigger": "زنده‌ایی",
+      "replace": "زنده‌ای"
+    },
+    {
+      "trigger": "زنده‌گی",
+      "replace": "زندگی"
+    },
+    {
+      "trigger": "زنیت",
+      "replace": "زنانگی"
+    },
+    {
+      "trigger": "زوار",
+      "replace": "زایران"
+    },
+    {
+      "trigger": "زوذنقه",
+      "replace": "ذوزنقه"
+    },
+    {
+      "trigger": "زوزنقه",
+      "replace": "ذوزنفه"
+    },
+    {
+      "trigger": "زیباشناسی",
+      "replace": "زیبایی‌شناسی"
+    },
+    {
+      "trigger": "زیراب",
+      "replace": "زیرآب"
+    },
+    {
+      "trigger": "زیمباوه",
+      "replace": "زیمبابوه"
+    },
+    {
+      "trigger": "ژولای",
+      "replace": "جولای"
+    },
+    {
+      "trigger": "سابقا",
+      "replace": "سابقاً"
+    },
+    {
+      "trigger": "ساتع",
+      "replace": "ساطع"
+    },
+    {
+      "trigger": "ساتور",
+      "replace": "ساطور"
+    },
+    {
+      "trigger": "سالیانه",
+      "replace": "سالانه"
+    },
+    {
+      "trigger": "سانتریفیوژ",
+      "replace": "سانتریفوژ"
+    },
+    {
+      "trigger": "سایبان",
+      "replace": "سایه‌بان"
+    },
+    {
+      "trigger": "سئوال",
+      "replace": "سؤال"
+    },
+    {
+      "trigger": "سبقه",
+      "replace": "صبغه"
+    },
+    {
+      "trigger": "سپاسگذار",
+      "replace": "سپاسگزار"
+    },
+    {
+      "trigger": "سپاس‌گذار",
+      "replace": "سپاسگزار"
+    },
+    {
+      "trigger": "سپاسگذاری",
+      "replace": "سپاسگزاری"
+    },
+    {
+      "trigger": "سپاس‌گذاری",
+      "replace": "سپاسگزاری"
+    },
+    {
+      "trigger": "سپرده‌گزار",
+      "replace": "سپرده‌گذار"
+    },
+    {
+      "trigger": "سپرده‌گزاری",
+      "replace": "سپرده‌گذاری"
+    },
+    {
+      "trigger": "ستل",
+      "replace": "سطل"
+    },
+    {
+      "trigger": "سجده‌گذاری",
+      "replace": "سجده‌گزاری"
+    },
+    {
+      "trigger": "سرکرده گی",
+      "replace": "سرکردگی"
+    },
+    {
+      "trigger": "سرکرده‌گی",
+      "replace": "سرکردگی"
+    },
+    {
+      "trigger": "سرلشگر",
+      "replace": "سرلشکر"
+    },
+    {
+      "trigger": "سرمایه‌گزاری",
+      "replace": "سرمایه‌گذاری"
+    },
+    {
+      "trigger": "سریعا",
+      "replace": "سریعاً"
+    },
+    {
+      "trigger": "سطبر",
+      "replace": "ستبر"
+    },
+    {
+      "trigger": "سعی‌ای",
+      "replace": "سعیی"
+    },
+    {
+      "trigger": "سمیت",
+      "replace": "سمیّت"
+    },
+    {
+      "trigger": "سوآل",
+      "replace": "سؤال"
+    },
+    {
+      "trigger": "سوال",
+      "replace": "سؤال"
+    },
+    {
+      "trigger": "سوالات",
+      "replace": "سؤالات"
+    },
+    {
+      "trigger": "سوالاتشان",
+      "replace": "سؤالاتشان"
+    },
+    {
+      "trigger": "سوالاتی",
+      "replace": "سؤالاتی"
+    },
+    {
+      "trigger": "سوالت",
+      "replace": "سؤالت"
+    },
+    {
+      "trigger": "سوالتان",
+      "replace": "سؤالتان"
+    },
+    {
+      "trigger": "سوالش",
+      "replace": "سؤالش"
+    },
+    {
+      "trigger": "سوالشان",
+      "replace": "سؤالشان"
+    },
+    {
+      "trigger": "سوالم",
+      "replace": "سؤالم"
+    },
+    {
+      "trigger": "سوالی",
+      "replace": "سؤالی"
+    },
+    {
+      "trigger": "سوپرایز",
+      "replace": "سورپرایز"
+    },
+    {
+      "trigger": "سورمه",
+      "replace": "سرمه"
+    },
+    {
+      "trigger": "سورمه‌ای",
+      "replace": "سرمه‌ای"
+    },
+    {
+      "trigger": "سوس",
+      "replace": "سس"
+    },
+    {
+      "trigger": "سوما",
+      "replace": "سوماً"
+    },
+    {
+      "trigger": "سهوا",
+      "replace": "سهواً"
+    },
+    {
+      "trigger": "سیاستگزار",
+      "replace": "سیاست‌گذار"
+    },
+    {
+      "trigger": "سیاست‌گزار",
+      "replace": "سیاست‌گذار"
+    },
+    {
+      "trigger": "سیاست‌گزاری",
+      "replace": "سیاست‌گذاری"
+    },
+    {
+      "trigger": "شاعبه",
+      "replace": "شائبه"
+    },
+    {
+      "trigger": "شاقول",
+      "replace": "شاغول"
+    },
+    {
+      "trigger": "شانزده‌امین",
+      "replace": "شانزدهمین"
+    },
+    {
+      "trigger": "شئ",
+      "replace": "شی‌ء"
+    },
+    {
+      "trigger": "شئون",
+      "replace": "شؤون"
+    },
+    {
+      "trigger": "شخصا",
+      "replace": "شخصاً"
+    },
+    {
+      "trigger": "شدیدا",
+      "replace": "شدیداً"
+    },
+    {
+      "trigger": "شکرگذاری",
+      "replace": "شکرگزاری"
+    },
+    {
+      "trigger": "شماره گزاری",
+      "replace": "شماره‌گذاری"
+    },
+    {
+      "trigger": "شماره‌گزاری",
+      "replace": "شماره‌گذاری"
+    },
+    {
+      "trigger": "شماطه‌دار",
+      "replace": "شماته‌دار"
+    },
+    {
+      "trigger": "شیئ",
+      "replace": "شیء"
+    },
+    {
+      "trigger": "شیش",
+      "replace": "شش"
+    },
+    {
+      "trigger": "صده",
+      "replace": "سده"
+    },
+    {
+      "trigger": "صراحتا",
+      "replace": "صراحتاً"
+    },
+    {
+      "trigger": "صرفا",
+      "replace": "صرفاً"
+    },
+    {
+      "trigger": "صریحا",
+      "replace": "صریحاً"
+    },
+    {
+      "trigger": "صلاه",
+      "replace": "صلاة"
+    },
+    {
+      "trigger": "صیغل",
+      "replace": "صیقل"
+    },
+    {
+      "trigger": "ضجر",
+      "replace": "زجر"
+    },
+    {
+      "trigger": "ضرادخانه",
+      "replace": "زرادخانه"
+    },
+    {
+      "trigger": "ضرب‌العجل",
+      "replace": "ضرب‌الاجل"
+    },
+    {
+      "trigger": "ضرته",
+      "replace": "ضرطه"
+    },
+    {
+      "trigger": "ضرورتا",
+      "replace": "ضرورتاً"
+    },
+    {
+      "trigger": "ضمنا",
+      "replace": "ضمناً"
+    },
+    {
+      "trigger": "ضمینه",
+      "replace": "زمینه"
+    },
+    {
+      "trigger": "طالار",
+      "replace": "تالار"
+    },
+    {
+      "trigger": "طایر",
+      "replace": "تایر"
+    },
+    {
+      "trigger": "طبعا",
+      "replace": "طبعاً"
+    },
+    {
+      "trigger": "طبیعتا",
+      "replace": "طبیعتاً"
+    },
+    {
+      "trigger": "طپانچه",
+      "replace": "تپانچه"
+    },
+    {
+      "trigger": "طپش",
+      "replace": "تپش"
+    },
+    {
+      "trigger": "طپنده",
+      "replace": "تپنده"
+    },
+    {
+      "trigger": "طپیدن",
+      "replace": "تپیدن"
+    },
+    {
+      "trigger": "طراز",
+      "replace": "تراز"
+    },
+    {
+      "trigger": "طشت",
+      "replace": "تشت"
+    },
+    {
+      "trigger": "طنبور",
+      "replace": "تنبور"
+    },
+    {
+      "trigger": "طوتی",
+      "replace": "طوطی"
+    },
+    {
+      "trigger": "طوس",
+      "replace": "توس"
+    },
+    {
+      "trigger": "طوفان",
+      "replace": "توفان"
+    },
+    {
+      "trigger": "طوله",
+      "replace": "توله"
+    },
+    {
+      "trigger": "طهران",
+      "replace": "تهران"
+    },
+    {
+      "trigger": "طهماسب",
+      "replace": "تهماسب"
+    },
+    {
+      "trigger": "طهمورث",
+      "replace": "تهمورث"
+    },
+    {
+      "trigger": "طیمچه",
+      "replace": "تیمچه"
+    },
+    {
+      "trigger": "ظاهرا",
+      "replace": "ظاهراً"
+    },
+    {
+      "trigger": "ظبط",
+      "replace": "ضبط"
+    },
+    {
+      "trigger": "ظرورتا",
+      "replace": "ضرورتاً"
+    },
+    {
+      "trigger": "ظل آفتاب",
+      "replace": "زل آفتاب"
+    },
+    {
+      "trigger": "عاماج",
+      "replace": "آماج"
+    },
+    {
+      "trigger": "عبداله",
+      "replace": "عبدالله"
+    },
+    {
+      "trigger": "عبدالهی",
+      "replace": "عبداللهی"
+    },
+    {
+      "trigger": "عجالتا",
+      "replace": "عجالتاً"
+    },
+    {
+      "trigger": "عرابه",
+      "replace": "ارابه"
+    },
+    {
+      "trigger": "عقلا",
+      "replace": "عقلاً"
+    },
+    {
+      "trigger": "علائم",
+      "replace": "علایم"
+    },
+    {
+      "trigger": "علارغم",
+      "replace": "علی‌رغم"
+    },
+    {
+      "trigger": "علارقم",
+      "replace": "علی‌رغم"
+    },
+    {
+      "trigger": "علاقمند",
+      "replace": "علاقه‌مند"
+    },
+    {
+      "trigger": "علامت‌گزاری",
+      "replace": "علامت‌گذاری"
+    },
+    {
+      "trigger": "علم‌شنگه",
+      "replace": "الم‌شنگه"
+    },
+    {
+      "trigger": "علنا",
+      "replace": "علناً"
+    },
+    {
+      "trigger": "علی اللخصوص",
+      "replace": "علی‌الخصوص"
+    },
+    {
+      "trigger": "علیرقم",
+      "replace": "علی‌رغم"
+    },
+    {
+      "trigger": "علی‌رقم",
+      "replace": "علی‌رغم"
+    },
+    {
+      "trigger": "علیه السلام",
+      "replace": "(علیه‌السلام)"
+    },
+    {
+      "trigger": "عماق",
+      "replace": "اعماق"
+    },
+    {
+      "trigger": "عمامه‌گزاری",
+      "replace": "عمامه‌گذاری"
+    },
+    {
+      "trigger": "عمدا",
+      "replace": "عمداً"
+    },
+    {
+      "trigger": "عمدتا",
+      "replace": "عمدتاً"
+    },
+    {
+      "trigger": "عملا",
+      "replace": "عملاً"
+    },
+    {
+      "trigger": "عمیقا",
+      "replace": "عمیقاً"
+    },
+    {
+      "trigger": "عیاق",
+      "replace": "ایاق"
+    },
+    {
+      "trigger": "عینا",
+      "replace": "عیناً"
+    },
+    {
+      "trigger": "غالبا",
+      "replace": "غالباً"
+    },
+    {
+      "trigger": "غراضه",
+      "replace": "قراضه"
+    },
+    {
+      "trigger": "غرمساق",
+      "replace": "قرمساق"
+    },
+    {
+      "trigger": "غرنتینه",
+      "replace": "قرنطینه"
+    },
+    {
+      "trigger": "غرنطینه",
+      "replace": "قرنطینه"
+    },
+    {
+      "trigger": "غریذه",
+      "replace": "غریزه"
+    },
+    {
+      "trigger": "غریضه",
+      "replace": "غریزه"
+    },
+    {
+      "trigger": "غضه",
+      "replace": "غصه"
+    },
+    {
+      "trigger": "غفلتا",
+      "replace": "غفلتاً"
+    },
+    {
+      "trigger": "غلدر",
+      "replace": "قلدر"
+    },
+    {
+      "trigger": "غلط زدن",
+      "replace": "غلت زدن"
+    },
+    {
+      "trigger": "غلطان",
+      "replace": "غلتان"
+    },
+    {
+      "trigger": "غلطاندن",
+      "replace": "غلتاندن"
+    },
+    {
+      "trigger": "غلطک",
+      "replace": "غلتک"
+    },
+    {
+      "trigger": "غلطنده",
+      "replace": "غلتنده"
+    },
+    {
+      "trigger": "غلطید",
+      "replace": "غلتید"
+    },
+    {
+      "trigger": "غلطیدن",
+      "replace": "غلتیدن"
+    },
+    {
+      "trigger": "غلطیده",
+      "replace": "غلتیده"
+    },
+    {
+      "trigger": "غورباغه",
+      "replace": "قورباغه"
+    },
+    {
+      "trigger": "غورباقه",
+      "replace": "قورباغه"
+    },
+    {
+      "trigger": "غیره‌وذلک",
+      "replace": "غیرذلک"
+    },
+    {
+      "trigger": "غیض",
+      "replace": "غیظ"
+    },
+    {
+      "trigger": "فارق از",
+      "replace": "فارغ از"
+    },
+    {
+      "trigger": "فارق‌التحصیل",
+      "replace": "فارغ‌التحصیل "
+    },
+    {
+      "trigger": "فاصله‌گزار",
+      "replace": "فاصله‌گذار"
+    },
+    {
+      "trigger": "فاصله‌گزاری",
+      "replace": "فاصله‌گذاری"
+    },
+    {
+      "trigger": "فاظل",
+      "replace": "فاضل"
+    },
+    {
+      "trigger": "فالوعر",
+      "replace": "فالوور / فالوئر"
+    },
+    {
+      "trigger": "فتیر",
+      "replace": "فطیر"
+    },
+    {
+      "trigger": "فداراسیون",
+      "replace": "فدراسیون"
+    },
+    {
+      "trigger": "فدارسیون",
+      "replace": "فدراسیون"
+    },
+    {
+      "trigger": "فراقت",
+      "replace": "فراغت"
+    },
+    {
+      "trigger": "فراماسوتر",
+      "replace": "فراماسونر"
+    },
+    {
+      "trigger": "فربگی",
+      "replace": "فربهی"
+    },
+    {
+      "trigger": "فربه‌گی",
+      "replace": "فربهی"
+    },
+    {
+      "trigger": "فرسته‌گزاری",
+      "replace": "فرسته‌گذاری"
+    },
+    {
+      "trigger": "فرضا",
+      "replace": "فرضاً"
+    },
+    {
+      "trigger": "فرفوژه",
+      "replace": "فرفورژه"
+    },
+    {
+      "trigger": "فرمایشان",
+      "replace": "فرمایشات"
+    },
+    {
+      "trigger": "فشنگ‌گزاری",
+      "replace": "فشنگ‌گذاری"
+    },
+    {
+      "trigger": "فطرتا",
+      "replace": "فطرتاً"
+    },
+    {
+      "trigger": "فظیلت",
+      "replace": "فضیلت"
+    },
+    {
+      "trigger": "فعلا",
+      "replace": "فعلاً"
+    },
+    {
+      "trigger": "فعلن",
+      "replace": "فعلاً"
+    },
+    {
+      "trigger": "فقظ",
+      "replace": "فقط"
+    },
+    {
+      "trigger": "فلاتونی",
+      "replace": "فلاطونی"
+    },
+    {
+      "trigger": "فمنیزم",
+      "replace": "فمینیزم"
+    },
+    {
+      "trigger": "فمنیست",
+      "replace": "فمینیست"
+    },
+    {
+      "trigger": "فمنیستی",
+      "replace": "فمینیستی"
+    },
+    {
+      "trigger": "فمنیسم",
+      "replace": "فمینیسم"
+    },
+    {
+      "trigger": "فن‌آوری",
+      "replace": "فناوری"
+    },
+    {
+      "trigger": "فنریت",
+      "replace": "فنری"
+    },
+    {
+      "trigger": "فورا",
+      "replace": "فوراً"
+    },
+    {
+      "trigger": "فورم",
+      "replace": "فرم"
+    },
+    {
+      "trigger": "فوش",
+      "replace": "فحش"
+    },
+    {
+      "trigger": "فیبرشی",
+      "replace": "فیپرشی"
+    },
+    {
+      "trigger": "فیثاغورث",
+      "replace": "فیثاغورس"
+    },
+    {
+      "trigger": "قائده",
+      "replace": "قاعده"
+    },
+    {
+      "trigger": "قائله",
+      "replace": "غائله"
+    },
+    {
+      "trigger": "قاطی",
+      "replace": "قاتی"
+    },
+    {
+      "trigger": "قاطی‌پاطی",
+      "replace": "قاتی‌پاتی"
+    },
+    {
+      "trigger": "قاعدتا",
+      "replace": "قاعدتاً"
+    },
+    {
+      "trigger": "قاعل",
+      "replace": "قائل"
+    },
+    {
+      "trigger": "قانونا",
+      "replace": "قانوناً"
+    },
+    {
+      "trigger": "قانون‌گزار",
+      "replace": "قانون‌گذار"
+    },
+    {
+      "trigger": "قانون‌گزاری",
+      "replace": "قانون‌گذاری "
+    },
+    {
+      "trigger": "قبلا",
+      "replace": "قبلاً"
+    },
+    {
+      "trigger": "قتل‌وعام",
+      "replace": "قتل‌عام"
+    },
+    {
+      "trigger": "قدقن",
+      "replace": "قدغن"
+    },
+    {
+      "trigger": "قرائت",
+      "replace": "قراءت"
+    },
+    {
+      "trigger": "قرانی",
+      "replace": "قرآنی"
+    },
+    {
+      "trigger": "قربال",
+      "replace": "غربال"
+    },
+    {
+      "trigger": "قرقاطی",
+      "replace": "قره‌قاطی"
+    },
+    {
+      "trigger": "قرقروت",
+      "replace": "قره‌قروت"
+    },
+    {
+      "trigger": "قرمساغ",
+      "replace": "قرمساق"
+    },
+    {
+      "trigger": "قرنتینه",
+      "replace": "قرنطینه"
+    },
+    {
+      "trigger": "قریذه",
+      "replace": "غریزه"
+    },
+    {
+      "trigger": "قریزه",
+      "replace": "غریزه"
+    },
+    {
+      "trigger": "قریضه",
+      "replace": "غریزه"
+    },
+    {
+      "trigger": "قطع به یقین",
+      "replace": "به قطع و یقین"
+    },
+    {
+      "trigger": "قطعا",
+      "replace": "قطعاً"
+    },
+    {
+      "trigger": "قلبا",
+      "replace": "قلباً"
+    },
+    {
+      "trigger": "قلت",
+      "replace": "قلّت"
+    },
+    {
+      "trigger": "قلف",
+      "replace": "قفل"
+    },
+    {
+      "trigger": "قل‌و‌زنجیر",
+      "replace": "غل‌و‌زنجیر"
+    },
+    {
+      "trigger": "قوائد",
+      "replace": "قواعد"
+    },
+    {
+      "trigger": "قوت",
+      "replace": "قوّت"
+    },
+    {
+      "trigger": "قوتی",
+      "replace": "قوطی"
+    },
+    {
+      "trigger": "قورباقه",
+      "replace": "قورباغه"
+    },
+    {
+      "trigger": "قوه",
+      "replace": "قوّه"
+    },
+    {
+      "trigger": "قوهٔ",
+      "replace": "قوّهٔ"
+    },
+    {
+      "trigger": "قویا",
+      "replace": "قویاً"
+    },
+    {
+      "trigger": "قویه",
+      "replace": "قویّه"
+    },
+    {
+      "trigger": "قیمت‌گزاری",
+      "replace": "قیمت‌گذاری"
+    },
+    {
+      "trigger": "کارامد",
+      "replace": "کارآمد"
+    },
+    {
+      "trigger": "کاملا",
+      "replace": "کاملاً"
+    },
+    {
+      "trigger": "کاملن",
+      "replace": "کاملاً"
+    },
+    {
+      "trigger": "کپن",
+      "replace": "کوپن"
+    },
+    {
+      "trigger": "کجاست",
+      "replace": "کجا است"
+    },
+    {
+      "trigger": "کج‌دارومریض",
+      "replace": "کج‌دارومریز"
+    },
+    {
+      "trigger": "کدگزاری",
+      "replace": "کدگذاری"
+    },
+    {
+      "trigger": "کشک‌بادمجان",
+      "replace": "کشک‌وبادمجان"
+    },
+    {
+      "trigger": "کلا",
+      "replace": "کلاً"
+    },
+    {
+      "trigger": "کلوپ",
+      "replace": "کلوب"
+    },
+    {
+      "trigger": "کورد",
+      "replace": "کرد"
+    },
+    {
+      "trigger": "کوله‌بر",
+      "replace": "کول‌بر"
+    },
+    {
+      "trigger": "کیفا",
+      "replace": "کیفاً"
+    },
+    {
+      "trigger": "کیلید",
+      "replace": "کلید"
+    },
+    {
+      "trigger": "کی‌یف",
+      "replace": "کیِف"
+    },
+    {
+      "trigger": "گاها",
+      "replace": "گاهاً"
+    },
+    {
+      "trigger": "گذارش",
+      "replace": "گزارش"
+    },
+    {
+      "trigger": "گذارشات",
+      "replace": "گزارشات "
+    },
+    {
+      "trigger": "گروگزاری",
+      "replace": "گروگذاری"
+    },
+    {
+      "trigger": "گله‌گذاری",
+      "replace": "گله‌گزاری"
+    },
+    {
+      "trigger": "گوئی",
+      "replace": "گویی"
+    },
+    {
+      "trigger": "لایت نوول",
+      "replace": "لایت ناول"
+    },
+    {
+      "trigger": "لایتجزی",
+      "replace": "لایتجزا"
+    },
+    {
+      "trigger": "لب تاپ",
+      "replace": "لپ‌تاپ"
+    },
+    {
+      "trigger": "لب‌تاب",
+      "replace": "لپ‌تاپ"
+    },
+    {
+      "trigger": "لب‌تاپ",
+      "replace": "لپ‌تاپ"
+    },
+    {
+      "trigger": "لپ تاب",
+      "replace": "لپ‌تاپ"
+    },
+    {
+      "trigger": "لپ کلام",
+      "replace": "لب‌کلام"
+    },
+    {
+      "trigger": "لپ‌تاب",
+      "replace": "لپ‌تاپ"
+    },
+    {
+      "trigger": "لپ‌کلام",
+      "replace": "لب‌کلام"
+    },
+    {
+      "trigger": "لجیستیک",
+      "replace": "لجستیک"
+    },
+    {
+      "trigger": "لحاض",
+      "replace": "لحاظ"
+    },
+    {
+      "trigger": "لحجه",
+      "replace": "لهجه"
+    },
+    {
+      "trigger": "لحضه",
+      "replace": "لحظه"
+    },
+    {
+      "trigger": "لزا",
+      "replace": "لذا"
+    },
+    {
+      "trigger": "لزوما",
+      "replace": "لزوماً"
+    },
+    {
+      "trigger": "لشگر",
+      "replace": "لشکر"
+    },
+    {
+      "trigger": "لشگری",
+      "replace": "لشکری"
+    },
+    {
+      "trigger": "لضا",
+      "replace": "لذا"
+    },
+    {
+      "trigger": "لطفا",
+      "replace": "لطفاً"
+    },
+    {
+      "trigger": "لظا",
+      "replace": "لذا"
+    },
+    {
+      "trigger": "لغب",
+      "replace": "لقب"
+    },
+    {
+      "trigger": "لفظا",
+      "replace": "لفظاً"
+    },
+    {
+      "trigger": "لقو",
+      "replace": "لغو"
+    },
+    {
+      "trigger": "للاندا",
+      "replace": "لامبدا"
+    },
+    {
+      "trigger": "لوتی",
+      "replace": "لوطی"
+    },
+    {
+      "trigger": "لوجستیک",
+      "replace": "لجستیک"
+    },
+    {
+      "trigger": "مآزار",
+      "replace": "میازار"
+    },
+    {
+      "trigger": "مابازا",
+      "replace": "مابازاء"
+    },
+    {
+      "trigger": "مابون",
+      "replace": "مأبون"
+    },
+    {
+      "trigger": "مابه‌ازا",
+      "replace": "مابازا"
+    },
+    {
+      "trigger": "ماخذ",
+      "replace": "مأخذ"
+    },
+    {
+      "trigger": "ماخذی",
+      "replace": "مأخذی"
+    },
+    {
+      "trigger": "ماخوذ",
+      "replace": "مأخوذ"
+    },
+    {
+      "trigger": "مادرقهوه",
+      "replace": "مادرقحبه"
+    },
+    {
+      "trigger": "مارموز",
+      "replace": "مارموذ"
+    },
+    {
+      "trigger": "ماکارانی",
+      "replace": "ماکارونی"
+    },
+    {
+      "trigger": "ماکول",
+      "replace": "مأکول"
+    },
+    {
+      "trigger": "مامن",
+      "replace": "مأمن"
+    },
+    {
+      "trigger": "ماموران",
+      "replace": "مأموران"
+    },
+    {
+      "trigger": "مامورین",
+      "replace": "مأمورین"
+    },
+    {
+      "trigger": "مانوس",
+      "replace": "مأنوس"
+    },
+    {
+      "trigger": "ماهیتا",
+      "replace": "ماهیتاً"
+    },
+    {
+      "trigger": "ماین کرافت",
+      "replace": "ماینکرفت"
+    },
+    {
+      "trigger": "ماینکرافت",
+      "replace": "ماینکرفت"
+    },
+    {
+      "trigger": "ماینی کرفت",
+      "replace": "ماینکرفت"
+    },
+    {
+      "trigger": "مایوس",
+      "replace": "مأیوس"
+    },
+    {
+      "trigger": "مؤذب",
+      "replace": "معذب"
+    },
+    {
+      "trigger": "مؤفق",
+      "replace": "موفق"
+    },
+    {
+      "trigger": "مؤفقیت",
+      "replace": "موفقیت"
+    },
+    {
+      "trigger": "مبدا",
+      "replace": "مبدأ"
+    },
+    {
+      "trigger": "مبداء",
+      "replace": "مبدأ"
+    },
+    {
+      "trigger": "مبری",
+      "replace": "مبرا"
+    },
+    {
+      "trigger": "متاثر",
+      "replace": "متأثر"
+    },
+    {
+      "trigger": "متاسفانه",
+      "replace": "متأسفانه"
+    },
+    {
+      "trigger": "متاسفم",
+      "replace": "متأسفم"
+    },
+    {
+      "trigger": "متاصفانه",
+      "replace": "متأسفانه"
+    },
+    {
+      "trigger": "متالوژی",
+      "replace": "متالورژی"
+    },
+    {
+      "trigger": "متامل",
+      "replace": "متأمل"
+    },
+    {
+      "trigger": "متسفانه",
+      "replace": "متأسفانه"
+    },
+    {
+      "trigger": "متشخض",
+      "replace": "متشخص"
+    },
+    {
+      "trigger": "متعاقبا",
+      "replace": "متعاقباً"
+    },
+    {
+      "trigger": "متعسفانه",
+      "replace": "متأسفانه"
+    },
+    {
+      "trigger": "متعصفانه",
+      "replace": "متأسفانه"
+    },
+    {
+      "trigger": "متعفش",
+      "replace": "متعفن"
+    },
+    {
+      "trigger": "متغییر",
+      "replace": "متغیر"
+    },
+    {
+      "trigger": "متنابه",
+      "replace": "معتنابه"
+    },
+    {
+      "trigger": "متنابهی",
+      "replace": "معتنابهی"
+    },
+    {
+      "trigger": "متن‌گذاری",
+      "replace": "متن‌گزاری"
+    },
+    {
+      "trigger": "متواضه",
+      "replace": "متواضع"
+    },
+    {
+      "trigger": "مثلا",
+      "replace": "مثلاً"
+    },
+    {
+      "trigger": "مثلن",
+      "replace": "مثلاً"
+    },
+    {
+      "trigger": "مثه",
+      "replace": "مث"
+    },
+    {
+      "trigger": "مجددا",
+      "replace": "مجدداً"
+    },
+    {
+      "trigger": "مجموعا",
+      "replace": "مجموعاً"
+    },
+    {
+      "trigger": "محبور",
+      "replace": "مجبور"
+    },
+    {
+      "trigger": "محجوب‌به‌حیا",
+      "replace": "مأخوذبه‌حیا"
+    },
+    {
+      "trigger": "محزر",
+      "replace": "محضر"
+    },
+    {
+      "trigger": "محصوب",
+      "replace": "محسوب"
+    },
+    {
+      "trigger": "محظر",
+      "replace": "محضر"
+    },
+    {
+      "trigger": "محلل",
+      "replace": "محلّل"
+    },
+    {
+      "trigger": "محیا",
+      "replace": "مهیا"
+    },
+    {
+      "trigger": "محی‌الدین",
+      "replace": "محیی‌الدین"
+    },
+    {
+      "trigger": "مخصوصا",
+      "replace": "مخصوصاً"
+    },
+    {
+      "trigger": "مخمسه",
+      "replace": "مخمصه"
+    },
+    {
+      "trigger": "مدرنیزم",
+      "replace": "مدرنیسم"
+    },
+    {
+      "trigger": "مذبور",
+      "replace": "مزبور"
+    },
+    {
+      "trigger": "مذنه",
+      "replace": "مظنه"
+    },
+    {
+      "trigger": "مرحم",
+      "replace": "مرهم"
+    },
+    {
+      "trigger": "مرفح",
+      "replace": "مرفه"
+    },
+    {
+      "trigger": "مرکبه",
+      "replace": "مرکّبه"
+    },
+    {
+      "trigger": "مرهمت",
+      "replace": "مرحمت"
+    },
+    {
+      "trigger": "مزاهم",
+      "replace": "مزاحم"
+    },
+    {
+      "trigger": "مزاهمت",
+      "replace": "مزاحمت"
+    },
+    {
+      "trigger": "مزحک",
+      "replace": "مضحک"
+    },
+    {
+      "trigger": "مزمت",
+      "replace": "مذمت"
+    },
+    {
+      "trigger": "مسؤل",
+      "replace": "مسئول"
+    },
+    {
+      "trigger": "مسأله",
+      "replace": "مسئله"
+    },
+    {
+      "trigger": "مستاصل",
+      "replace": "مستأصل"
+    },
+    {
+      "trigger": "مستحظر",
+      "replace": "مستحضر"
+    },
+    {
+      "trigger": "مستقلا",
+      "replace": "مستقلاً"
+    },
+    {
+      "trigger": "مستقیما",
+      "replace": "مستقیماً"
+    },
+    {
+      "trigger": "مسدد",
+      "replace": "مسدّد"
+    },
+    {
+      "trigger": "مسلما",
+      "replace": "مسلماً"
+    },
+    {
+      "trigger": "مشخصا",
+      "replace": "مشخصاً"
+    },
+    {
+      "trigger": "مشکلان",
+      "replace": "مشکلات"
+    },
+    {
+      "trigger": "مشمبا",
+      "replace": "مشما"
+    },
+    {
+      "trigger": "مشمول‌الذمه",
+      "replace": "مشغول‌الذمه"
+    },
+    {
+      "trigger": "مشمول‌ذمه",
+      "replace": "مشغول‌ذِمه"
+    },
+    {
+      "trigger": "مشوش",
+      "replace": "مشوّش"
+    },
+    {
+      "trigger": "مصلی تهران",
+      "replace": "مصلای تهران"
+    },
+    {
+      "trigger": "مصلیِ تهران",
+      "replace": "مصلای تهران"
+    },
+    {
+      "trigger": "مضخرف",
+      "replace": "مزخرف"
+    },
+    {
+      "trigger": "مضمت",
+      "replace": "مذمت"
+    },
+    {
+      "trigger": "مضنون",
+      "replace": "مظنون"
+    },
+    {
+      "trigger": "مضنونین",
+      "replace": "مظنونین"
+    },
+    {
+      "trigger": "مضنه",
+      "replace": "مظنه"
+    },
+    {
+      "trigger": "مطلقا",
+      "replace": "مطلقاً"
+    },
+    {
+      "trigger": "مطمئنا",
+      "replace": "مطمئناً"
+    },
+    {
+      "trigger": "مطمعن",
+      "replace": "مطمئن"
+    },
+    {
+      "trigger": "مظطرب",
+      "replace": "مضطرب"
+    },
+    {
+      "trigger": "معتدبه",
+      "replace": "معتدٌبه"
+    },
+    {
+      "trigger": "معزل",
+      "replace": "معضل"
+    },
+    {
+      "trigger": "معظل",
+      "replace": "معضل"
+    },
+    {
+      "trigger": "معفن",
+      "replace": "معفّن"
+    },
+    {
+      "trigger": "معمولا",
+      "replace": "معمولاً"
+    },
+    {
+      "trigger": "معمولن",
+      "replace": "معمولاً"
+    },
+    {
+      "trigger": "مغلته",
+      "replace": "مغلطه"
+    },
+    {
+      "trigger": "مغوله",
+      "replace": "مقوله"
+    },
+    {
+      "trigger": "مغیاس",
+      "replace": "مقیاس"
+    },
+    {
+      "trigger": "مفتح",
+      "replace": "مفتّح"
+    },
+    {
+      "trigger": "مفصلا",
+      "replace": "مفصلاً"
+    },
+    {
+      "trigger": "مقتدی",
+      "replace": "مقتدا"
+    },
+    {
+      "trigger": "مقصوره",
+      "replace": "مقصور"
+    },
+    {
+      "trigger": "مقضوب",
+      "replace": "مغضوب"
+    },
+    {
+      "trigger": "مقلته",
+      "replace": "مغلطه"
+    },
+    {
+      "trigger": "مقلطه",
+      "replace": "مغلطه"
+    },
+    {
+      "trigger": "مکررا",
+      "replace": "مکرراً"
+    },
+    {
+      "trigger": "ملات",
+      "replace": "ملاط"
+    },
+    {
+      "trigger": "ملاحضات",
+      "replace": "ملاحظات"
+    },
+    {
+      "trigger": "ملاحضه",
+      "replace": "ملاحظه"
+    },
+    {
+      "trigger": "ملاحضه‌ای",
+      "replace": "ملاحظه‌ای"
+    },
+    {
+      "trigger": "ملقمه",
+      "replace": "ملغمه"
+    },
+    {
+      "trigger": "ملکول",
+      "replace": "مولکول"
+    },
+    {
+      "trigger": "ملیارد",
+      "replace": "میلیارد"
+    },
+    {
+      "trigger": "ملیون",
+      "replace": "میلیون"
+    },
+    {
+      "trigger": "ممدوده",
+      "replace": "ممدود"
+    },
+    {
+      "trigger": "ممزوح",
+      "replace": "ممزوج"
+    },
+    {
+      "trigger": "مناضره",
+      "replace": "مناظره"
+    },
+    {
+      "trigger": "منبای",
+      "replace": "مبنای"
+    },
+    {
+      "trigger": "منسۀ ظهور",
+      "replace": "منصۀ ظهور"
+    },
+    {
+      "trigger": "منشا",
+      "replace": "منشأ"
+    },
+    {
+      "trigger": "منشاء",
+      "replace": "منشأ"
+    },
+    {
+      "trigger": "منشاش",
+      "replace": "منشأش"
+    },
+    {
+      "trigger": "منصوب به",
+      "replace": "منسوب به"
+    },
+    {
+      "trigger": "منصوبین",
+      "replace": "منسوبین "
+    },
+    {
+      "trigger": "منطقا",
+      "replace": "منطقاً"
+    },
+    {
+      "trigger": "منظبط",
+      "replace": "منضبط"
+    },
+    {
+      "trigger": "مُنقّص",
+      "replace": "مُنغّص"
+    },
+    {
+      "trigger": "مواخذه",
+      "replace": "مؤاخذه"
+    },
+    {
+      "trigger": "موالفت",
+      "replace": "مؤالفت"
+    },
+    {
+      "trigger": "موامره",
+      "replace": "مؤامره"
+    },
+    {
+      "trigger": "موانست",
+      "replace": "مؤانست"
+    },
+    {
+      "trigger": "موانه",
+      "replace": "موانع"
+    },
+    {
+      "trigger": "موتاد",
+      "replace": "معتاد"
+    },
+    {
+      "trigger": "موثر",
+      "replace": "مؤثر"
+    },
+    {
+      "trigger": "موجح",
+      "replace": "موجه"
+    },
+    {
+      "trigger": "مودب",
+      "replace": "مؤدب"
+    },
+    {
+      "trigger": "مودبی",
+      "replace": "مؤدبی"
+    },
+    {
+      "trigger": "موذن",
+      "replace": "مؤذن"
+    },
+    {
+      "trigger": "موزی",
+      "replace": "موذی"
+    },
+    {
+      "trigger": "موسس",
+      "replace": "مؤسس"
+    },
+    {
+      "trigger": "موسسات",
+      "replace": "مؤسسات"
+    },
+    {
+      "trigger": "موسسه",
+      "replace": "مؤسسه"
+    },
+    {
+      "trigger": "موسسین",
+      "replace": "مؤسسین"
+    },
+    {
+      "trigger": "موسیغی",
+      "replace": "موسیقی"
+    },
+    {
+      "trigger": "موسیفی",
+      "replace": "موسیقی"
+    },
+    {
+      "trigger": "موسیقیایی",
+      "replace": "موسیقایی"
+    },
+    {
+      "trigger": "موضف",
+      "replace": "موظف"
+    },
+    {
+      "trigger": "موقتا",
+      "replace": "موقتاً"
+    },
+    {
+      "trigger": "موکد",
+      "replace": "مؤکد"
+    },
+    {
+      "trigger": "موکدا",
+      "replace": "مؤکداً"
+    },
+    {
+      "trigger": "مولف",
+      "replace": "مؤلف"
+    },
+    {
+      "trigger": "مومن",
+      "replace": "مؤمن"
+    },
+    {
+      "trigger": "مومنی",
+      "replace": "مؤمنی"
+    },
+    {
+      "trigger": "مومنین",
+      "replace": "مؤمنین"
+    },
+    {
+      "trigger": "موید",
+      "replace": "مؤید"
+    },
+    {
+      "trigger": "مهراب",
+      "replace": "محراب"
+    },
+    {
+      "trigger": "مهزر",
+      "replace": "محضر"
+    },
+    {
+      "trigger": "مه‌شنوید",
+      "replace": "مشنوید"
+    },
+    {
+      "trigger": "مهظر",
+      "replace": "محضر"
+    },
+    {
+      "trigger": "مه‌گوی",
+      "replace": "مگوی"
+    },
+    {
+      "trigger": "می روم",
+      "replace": "می‌روم"
+    },
+    {
+      "trigger": "میابد",
+      "replace": "می‌یابد"
+    },
+    {
+      "trigger": "مین‌گزاری",
+      "replace": "مین‌گذاری"
+    },
+    {
+      "trigger": "میوفتد",
+      "replace": "می‌افتد"
+    },
+    {
+      "trigger": "میوفتم",
+      "replace": "می‌افتم"
+    },
+    {
+      "trigger": "میوفتند",
+      "replace": "می‌افتند"
+    },
+    {
+      "trigger": "میوفتی",
+      "replace": "می‌افتی"
+    },
+    {
+      "trigger": "میوفتید",
+      "replace": "می‌افتید"
+    },
+    {
+      "trigger": "میوفتیم",
+      "replace": "می‌افتیم"
+    },
+    {
+      "trigger": "نا ارامی",
+      "replace": "نا‌آرامی"
+    },
+    {
+      "trigger": "ناارام",
+      "replace": "ناآرام"
+    },
+    {
+      "trigger": "ناارامم",
+      "replace": "ناآرامم"
+    },
+    {
+      "trigger": "ناارامی",
+      "replace": "نا‌آرامی"
+    },
+    {
+      "trigger": "نااگاه",
+      "replace": "ناآگاه"
+    },
+    {
+      "trigger": "نااگاهم",
+      "replace": "ناآگاهم"
+    },
+    {
+      "trigger": "نااگاهی",
+      "replace": "ناآگاهی"
+    },
+    {
+      "trigger": "ناتور",
+      "replace": "ناطور"
+    },
+    {
+      "trigger": "ناتور دشت",
+      "replace": "ناطور دشت"
+    },
+    {
+      "trigger": "ناچارا",
+      "replace": "ناچاراً"
+    },
+    {
+      "trigger": "ناخوداگاه",
+      "replace": "ناخودآگاه"
+    },
+    {
+      "trigger": "ناگاهم",
+      "replace": "ناآگاهم"
+    },
+    {
+      "trigger": "نام‌گزاری",
+      "replace": "نام‌گذاری"
+    },
+    {
+      "trigger": "ناهنچار",
+      "replace": "ناهنجار"
+    },
+    {
+      "trigger": "نئشه",
+      "replace": "نشئه"
+    },
+    {
+      "trigger": "نتیجتا",
+      "replace": "نتیجتاً"
+    },
+    {
+      "trigger": "ندرتا",
+      "replace": "ندرتاً"
+    },
+    {
+      "trigger": "نزار",
+      "replace": "نذار"
+    },
+    {
+      "trigger": "نسبتا",
+      "replace": "نسبتاً"
+    },
+    {
+      "trigger": "نسیب",
+      "replace": "نصیب"
+    },
+    {
+      "trigger": "نشات",
+      "replace": "نشأت"
+    },
+    {
+      "trigger": "نشانه‌گزاری",
+      "replace": "نشانه‌گذاری"
+    },
+    {
+      "trigger": "نشعه",
+      "replace": "نشئه"
+    },
+    {
+      "trigger": "نعشه",
+      "replace": "نشئه"
+    },
+    {
+      "trigger": "نغض",
+      "replace": "نقض"
+    },
+    {
+      "trigger": "نفش",
+      "replace": "نقش"
+    },
+    {
+      "trigger": "نفوز",
+      "replace": "نفوذ"
+    },
+    {
+      "trigger": "نقاحت",
+      "replace": "نقاهت"
+    },
+    {
+      "trigger": "نقطه‌گزاری",
+      "replace": "نقطه‌گذاری"
+    },
+    {
+      "trigger": "نمازگذاری",
+      "replace": "نمازگزاری"
+    },
+    {
+      "trigger": "نواوری",
+      "replace": "نوآوری"
+    },
+    {
+      "trigger": "نوول",
+      "replace": "ناول"
+    },
+    {
+      "trigger": "نهار",
+      "replace": "ناهار"
+    },
+    {
+      "trigger": "نه‌رفت",
+      "replace": "نرفت"
+    },
+    {
+      "trigger": "نه‌گفت",
+      "replace": "نگفت"
+    },
+    {
+      "trigger": "نه‌نشستم",
+      "replace": "ننشستم"
+    },
+    {
+      "trigger": "نیاکان",
+      "replace": "نیاگان"
+    },
+    {
+      "trigger": "نیانداخت",
+      "replace": "نینداخت"
+    },
+    {
+      "trigger": "نیاندازد",
+      "replace": "نیندازد "
+    },
+    {
+      "trigger": "نیاندازم",
+      "replace": "نیندازم "
+    },
+    {
+      "trigger": "نیاندازند",
+      "replace": "نیندازند"
+    },
+    {
+      "trigger": "نیاندازی",
+      "replace": "نیندازی "
+    },
+    {
+      "trigger": "نیاندازید",
+      "replace": "نیندازید "
+    },
+    {
+      "trigger": "نیاندازیم",
+      "replace": "نیندازیم "
+    },
+    {
+      "trigger": "نیتا",
+      "replace": "نیتاً"
+    },
+    {
+      "trigger": "نیوزلند",
+      "replace": "نیوزیلند"
+    },
+    {
+      "trigger": "نیوفتد",
+      "replace": "نیفتد"
+    },
+    {
+      "trigger": "و الا",
+      "replace": "و اِلّا"
+    },
+    {
+      "trigger": "واشنگتن",
+      "replace": "واشینگتن"
+    },
+    {
+      "trigger": "واشنگتون",
+      "replace": "واشینگتن"
+    },
+    {
+      "trigger": "واشینگتون",
+      "replace": "واشینگتن"
+    },
+    {
+      "trigger": "واقعا",
+      "replace": "واقعاً"
+    },
+    {
+      "trigger": "واگزاری",
+      "replace": "واگذاری"
+    },
+    {
+      "trigger": "وحله",
+      "replace": "وهله"
+    },
+    {
+      "trigger": "وهم اور",
+      "replace": "وهم‌آور"
+    },
+    {
+      "trigger": "ویالون",
+      "replace": "ویولن"
+    },
+    {
+      "trigger": "ویژ‌ه‌گی",
+      "replace": "ویژگی"
+    },
+    {
+      "trigger": "هٔ",
+      "replace": "ۀ"
+    },
+    {
+      "trigger": "هاشیح",
+      "replace": "حاشیه"
+    },
+    {
+      "trigger": "هاشیه",
+      "replace": "حاشیه"
+    },
+    {
+      "trigger": "هاوی",
+      "replace": "حاوی"
+    },
+    {
+      "trigger": "ـه‌ایی",
+      "replace": "ـه‌ای"
+    },
+    {
+      "trigger": "هدف‌گزار",
+      "replace": "هدف‌گذار"
+    },
+    {
+      "trigger": "هدف‌گزاری",
+      "replace": "هدف‌گذاری"
+    },
+    {
+      "trigger": "هکاکی",
+      "replace": "حکاکی"
+    },
+    {
+      "trigger": "هم‌آواز",
+      "replace": "هماواز"
+    },
+    {
+      "trigger": "هم‌آورد",
+      "replace": "هماورد"
+    },
+    {
+      "trigger": "هم‌آهنگ",
+      "replace": "هماهنگ"
+    },
+    {
+      "trigger": "هنور",
+      "replace": "هنوز"
+    },
+    {
+      "trigger": "هواشی",
+      "replace": "حواشی"
+    },
+    {
+      "trigger": "هواشیح",
+      "replace": "حواشی"
+    },
+    {
+      "trigger": "هواشیه",
+      "replace": "حواشی"
+    },
+    {
+      "trigger": "هولدینگ",
+      "replace": "هلدینگ"
+    },
+    {
+      "trigger": "هیات",
+      "replace": "هیئت"
+    },
+    {
+      "trigger": "یا ابوالفضل",
+      "replace": "یا اباالفضل"
+    },
+    {
+      "trigger": "یاداوری",
+      "replace": "یادآوری"
+    },
+    {
+      "trigger": "یاروغار",
+      "replace": "یار غار"
+    },
+    {
+      "trigger": "یاس",
+      "replace": "یأس"
+    },
+    {
+      "trigger": "یأس اور",
+      "replace": "یأس‌آور"
+    },
+    {
+      "trigger": "یخه",
+      "replace": "یقه"
+    },
+    {
+      "trigger": "یقینا",
+      "replace": "یقیناً"
+    },
+    {
+      "trigger": "یوگوسلاوی",
+      "replace": "یوگسلاوی"
+    },
+    {
+      "trigger": "یهو",
+      "replace": "یه‌هو"
+    }
+  ]
+}

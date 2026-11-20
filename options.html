@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تصحیح خودکار</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">افزونهٔ فایرفاکس</p>
+        <h1>تصحیح خودکار</h1>
+      </div>
+      <div class="toolbar">
+        <label class="button secondary" for="import-file">واژه‌های خودت را وارد کن</label>
+        <input id="import-file" type="file" accept=".json,application/json" hidden>
+        <button id="export" class="button secondary" type="button">پشتیبان بگیر</button>
+      </div>
+    </header>
+
+    <section class="intro">
+      <strong>هر جا در فایرفاکس می‌نویسی، واژه‌ها به‌طور خودکار تصحیح می‌شوند.</strong>
+      <span>بانک واژه‌ها روی همین دستگاه نگهداری می‌شود. برای نمونه، پس از افزودن «می روم ← می‌روم»، با زدن کلید فاصله تصحیح انجام می‌شود.</span>
+    </section>
+
+    <section class="editor card" aria-label="افزودن یا ویرایش واژه">
+      <div class="field">
+        <label for="trigger">اگر این را تایپ کردم</label>
+        <input id="trigger" type="text" autocomplete="off" placeholder="مثلاً: می روم">
+      </div>
+      <div class="arrow" aria-hidden="true">←</div>
+      <div class="field">
+        <label for="replacement">جایگزین شود با</label>
+        <input id="replacement" type="text" autocomplete="off" placeholder="مثلاً: می‌روم">
+      </div>
+      <button id="save" class="button primary" type="button">افزودن واژه</button>
+      <button id="cancel-edit" class="button secondary" type="button" hidden>لغو ویرایش</button>
+    </section>
+
+    <section class="list card">
+      <div class="list-heading">
+        <div>
+          <h2>بانک واژه‌ها</h2>
+          <span id="count" class="count">در حال بارگذاری…</span>
+        </div>
+        <input id="search" class="search" type="search" placeholder="جست‌وجو در واژه‌ها" aria-label="جست‌وجو در واژه‌ها">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>متن تایپ‌شده</th><th>متن جایگزین</th><th class="actions-heading">عملیات</th></tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <p id="empty" class="empty" hidden>واژه‌ای پیدا نشد.</p>
+      </div>
+      <div class="list-footer">
+        <span>برای اصلاح هر مورد، «ویرایش» را بزن.</span>
+        <button id="reset" class="text-button" type="button">بازگردانی بانک آغازین</button>
+      </div>
+    </section>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
