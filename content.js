@@ -2,8 +2,14 @@
   let rules = [];
   let rulesReady = false;
   let halfSpaceSettingsReady = false;
-  const halfSpaceSettings = { mi: true, ha: true, suffix: true };
+  const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
+  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
+  const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
+  const comparativeExceptions = new Map([
+    ["به", "بهتر"], ["که", "کهتر"], ["مه", "مهتر"], ["بیش", "بیشتر"], ["کم", "کمتر"]
+  ]);
+  const yayeSpokenHehWords = new Set(["گره"]);
 
   browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
     .then((result) => {
@@ -15,11 +21,19 @@
   browser.storage.local.get({
     halfSpaceMiEnabled: true,
     halfSpaceHaEnabled: true,
-    halfSpaceSuffixEnabled: true
+    halfSpaceSuffixEnabled: true,
+    halfSpaceBiEnabled: true,
+    halfSpaceComparativeEnabled: true,
+    halfSpaceHamEnabled: true,
+    yayeNakerahEnabled: true
   }).then((settings) => {
     halfSpaceSettings.mi = settings.halfSpaceMiEnabled !== false;
     halfSpaceSettings.ha = settings.halfSpaceHaEnabled !== false;
     halfSpaceSettings.suffix = settings.halfSpaceSuffixEnabled !== false;
+    halfSpaceSettings.bi = settings.halfSpaceBiEnabled !== false;
+    halfSpaceSettings.comparative = settings.halfSpaceComparativeEnabled !== false;
+    halfSpaceSettings.ham = settings.halfSpaceHamEnabled !== false;
+    halfSpaceSettings.indefiniteYa = settings.yayeNakerahEnabled !== false;
     halfSpaceSettingsReady = true;
   }).catch(() => {
     halfSpaceSettingsReady = true;
@@ -39,6 +53,18 @@
     }
     if (changes.halfSpaceSuffixEnabled) {
       halfSpaceSettings.suffix = changes.halfSpaceSuffixEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceBiEnabled) {
+      halfSpaceSettings.bi = changes.halfSpaceBiEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceComparativeEnabled) {
+      halfSpaceSettings.comparative = changes.halfSpaceComparativeEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceHamEnabled) {
+      halfSpaceSettings.ham = changes.halfSpaceHamEnabled.newValue !== false;
+    }
+    if (changes.yayeNakerahEnabled) {
+      halfSpaceSettings.indefiniteYa = changes.yayeNakerahEnabled.newValue !== false;
     }
   });
 
@@ -99,6 +125,83 @@
         if ([...halfSpaceExceptions].some((exception) => wholeWord.startsWith(exception))) return null;
         const start = attachedMatch.index + attachedMatch[1].length;
         return { start, end: text.length, replace: stem + "\u200c" + attachedMatch[3] };
+      }
+    }
+
+    if (halfSpaceSettings.bi) {
+      const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
+      const biParts = biPrefixWords.join("|");
+      const spacedBi = new RegExp(`${boundary}بی +(${biParts})$`, "u").exec(text);
+      if (spacedBi) {
+        const start = spacedBi.index + spacedBi[1].length;
+        return { start, end: text.length, replace: `بی\u200c${spacedBi[2]}` };
+      }
+      const attachedBi = new RegExp(`${boundary}(بی(?:${biParts}))$`, "u").exec(text);
+      if (attachedBi) {
+        const start = attachedBi.index + attachedBi[1].length;
+        return { start, end: text.length, replace: `بی\u200c${attachedBi[2].slice(2)}` };
+      }
+      const spacedBiChon = new RegExp(`${boundary}بی چون و چرا$`, "u").exec(text);
+      if (spacedBiChon) {
+        const start = spacedBiChon.index + spacedBiChon[1].length;
+        return { start, end: text.length, replace: "بی\u200cچون\u200cوچرا" };
+      }
+      const attachedBiChon = new RegExp(`${boundary}بیچون(?:و)?چرا$`, "u").exec(text);
+      if (attachedBiChon) {
+        const start = attachedBiChon.index + attachedBiChon[1].length;
+        return { start, end: text.length, replace: "بی\u200cچون\u200cوچرا" };
+      }
+    }
+
+    if (halfSpaceSettings.comparative) {
+      const spacedComparative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +(ترین|تر)$/u.exec(text);
+      if (spacedComparative) {
+        const stem = spacedComparative[2].replace(/\u200c+$/u, "");
+        const suffix = spacedComparative[3];
+        const replacement = suffix === "تر" && comparativeExceptions.has(stem)
+          ? comparativeExceptions.get(stem)
+          : stem + "\u200c" + suffix;
+        const start = spacedComparative.index + spacedComparative[1].length;
+        return { start, end: text.length, replace: replacement };
+      }
+      const attachedSuperlative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+)ترین$/u.exec(text);
+      if (attachedSuperlative && !attachedSuperlative[2].endsWith("\u200c")) {
+        const whole = attachedSuperlative[2] + "ترین";
+        if (!["بهترین", "بیشترین", "کمترین", "کهترین", "مهترین", "نسترین"].includes(whole)) {
+          const start = attachedSuperlative.index + attachedSuperlative[1].length;
+          return { start, end: text.length, replace: attachedSuperlative[2] + "\u200cترین" };
+        }
+      }
+    }
+
+    if (halfSpaceSettings.ham) {
+      const escapedParts = hamCompoundWords.join("|");
+      const spacedHam = new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}_])هم +(${escapedParts})$`, "u").exec(text);
+      if (spacedHam) {
+        const start = spacedHam.index + spacedHam[1].length;
+        return { start, end: text.length, replace: `هم\u200c${spacedHam[2]}` };
+      }
+      const attachedHam = new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}_])(هم(?:${escapedParts}))$`, "u").exec(text);
+      if (attachedHam) {
+        const start = attachedHam.index + attachedHam[1].length;
+        return { start, end: text.length, replace: `هم\u200c${attachedHam[2].slice(2)}` };
+      }
+    }
+
+    if (halfSpaceSettings.indefiniteYa) {
+      const spacedYa = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +ای$/u.exec(text);
+      if (spacedYa) {
+        const stem = spacedYa[2].replace(/\u200c+$/u, "");
+        const last = [...stem].pop();
+        let replacement;
+        if (stem === "جزء") replacement = "جزئی";
+        else if (stem === "خلأ") replacement = "خلأی";
+        else if (last === "ی") replacement = stem + "\u200cای";
+        else if (last === "ه" && (yayeSpokenHehWords.has(stem) || /اه$/u.test(stem))) replacement = stem + "ی";
+        else if (last === "ه") replacement = stem + "\u200cای";
+        else replacement = stem + "ی";
+        const start = spacedYa.index + spacedYa[1].length;
+        return { start, end: text.length, replace: replacement };
       }
     }
 
@@ -221,3 +324,4 @@
 
   document.addEventListener("keydown", onKeydown, true);
 })();
+

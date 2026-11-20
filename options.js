@@ -6,6 +6,10 @@ const searchInput = $("search");
 const halfSpaceMiInput = $("half-space-mi");
 const halfSpaceHaInput = $("half-space-ha");
 const halfSpaceSuffixInput = $("half-space-suffix");
+const halfSpaceBiInput = $("half-space-bi");
+const halfSpaceComparativeInput = $("half-space-comparative");
+const halfSpaceHamInput = $("half-space-ham");
+const halfSpaceYaInput = $("half-space-ya");
 const symbolTriggers = new Set([
   ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
   ":.:", ":':", ":/:", ":\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
@@ -88,7 +92,11 @@ async function saveHalfSpaceSettings() {
   await browser.storage.local.set({
     halfSpaceMiEnabled: halfSpaceMiInput.checked,
     halfSpaceHaEnabled: halfSpaceHaInput.checked,
-    halfSpaceSuffixEnabled: halfSpaceSuffixInput.checked
+    halfSpaceSuffixEnabled: halfSpaceSuffixInput.checked,
+    halfSpaceBiEnabled: halfSpaceBiInput.checked,
+    halfSpaceComparativeEnabled: halfSpaceComparativeInput.checked,
+    halfSpaceHamEnabled: halfSpaceHamInput.checked,
+    yayeNakerahEnabled: halfSpaceYaInput.checked
   });
   showStatus("تنظیمات نیم‌فاصله ذخیره شد.");
 }
@@ -97,11 +105,19 @@ async function loadHalfSpaceSettings() {
   const settings = await browser.storage.local.get({
     halfSpaceMiEnabled: true,
     halfSpaceHaEnabled: true,
-    halfSpaceSuffixEnabled: true
+    halfSpaceSuffixEnabled: true,
+    halfSpaceBiEnabled: true,
+    halfSpaceComparativeEnabled: true,
+    halfSpaceHamEnabled: true,
+    yayeNakerahEnabled: true
   });
   halfSpaceMiInput.checked = settings.halfSpaceMiEnabled !== false;
   halfSpaceHaInput.checked = settings.halfSpaceHaEnabled !== false;
   halfSpaceSuffixInput.checked = settings.halfSpaceSuffixEnabled !== false;
+  halfSpaceBiInput.checked = settings.halfSpaceBiEnabled !== false;
+  halfSpaceComparativeInput.checked = settings.halfSpaceComparativeEnabled !== false;
+  halfSpaceHamInput.checked = settings.halfSpaceHamEnabled !== false;
+  halfSpaceYaInput.checked = settings.yayeNakerahEnabled !== false;
 }
 
 function beginEdit(rule) {
@@ -162,6 +178,10 @@ $("save").addEventListener("click", saveRule);
 halfSpaceMiInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 halfSpaceHaInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 halfSpaceSuffixInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceBiInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceComparativeInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceHamInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceYaInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 $("cancel-edit").addEventListener("click", endEdit);
 searchInput.addEventListener("input", render);
 
@@ -210,3 +230,4 @@ $("reset").addEventListener("click", async () => {
     showStatus("بارگذاری تنظیمات یا بانک واژه‌ها ناموفق بود.", true);
   }
 })();
+

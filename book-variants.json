@@ -1,0 +1,470 @@
+{
+  "version": 1,
+  "source": "دستور خطِ فارسی، ویراست دوم؛ فهرست واژه‌های عام و نام‌های خاص چنداملایی",
+  "rules": [
+    {
+      "trigger": "آخُر",
+      "replace": "آخور"
+    },
+    {
+      "trigger": "آغاخان",
+      "replace": "آقاخان"
+    },
+    {
+      "trigger": "آقاجری",
+      "replace": "آغاجری"
+    },
+    {
+      "trigger": "آلاداق",
+      "replace": "آلاداغ"
+    },
+    {
+      "trigger": "اسطخر",
+      "replace": "استخر"
+    },
+    {
+      "trigger": "اسطهبانات",
+      "replace": "استهبانات"
+    },
+    {
+      "trigger": "اسلامبول",
+      "replace": "استانبول"
+    },
+    {
+      "trigger": "اصطبل",
+      "replace": "اسطبل"
+    },
+    {
+      "trigger": "اصطخر",
+      "replace": "استخر"
+    },
+    {
+      "trigger": "اصطهبانات",
+      "replace": "استهبانات"
+    },
+    {
+      "trigger": "امپراطریس",
+      "replace": "امپراتریس"
+    },
+    {
+      "trigger": "اوریب",
+      "replace": "اُریب"
+    },
+    {
+      "trigger": "اَرک",
+      "replace": "اَرگ"
+    },
+    {
+      "trigger": "اُطرار",
+      "replace": "اُترار"
+    },
+    {
+      "trigger": "اُطراق",
+      "replace": "اُتراق"
+    },
+    {
+      "trigger": "ایزه",
+      "replace": "ایذه"
+    },
+    {
+      "trigger": "تاراغ‌وتوروغ",
+      "replace": "تَرَق‌وتوروق"
+    },
+    {
+      "trigger": "تارم",
+      "replace": "طارم"
+    },
+    {
+      "trigger": "تاس‌کباب",
+      "replace": "طاس‌کباب"
+    },
+    {
+      "trigger": "تاقدیس",
+      "replace": "طاقدیس"
+    },
+    {
+      "trigger": "ترابلس",
+      "replace": "طرابلس"
+    },
+    {
+      "trigger": "ترقبه",
+      "replace": "طرقبه"
+    },
+    {
+      "trigger": "توشک",
+      "replace": "تُشک"
+    },
+    {
+      "trigger": "توطیا",
+      "replace": "توتیا"
+    },
+    {
+      "trigger": "تُپُغ",
+      "replace": "تُپُق"
+    },
+    {
+      "trigger": "جابلصا",
+      "replace": "جابلسا"
+    },
+    {
+      "trigger": "جغّه",
+      "replace": "جقّه"
+    },
+    {
+      "trigger": "حیز",
+      "replace": "هیز"
+    },
+    {
+      "trigger": "خاف",
+      "replace": "خواف"
+    },
+    {
+      "trigger": "خطا",
+      "replace": "ختا"
+    },
+    {
+      "trigger": "خورجین",
+      "replace": "خرجین"
+    },
+    {
+      "trigger": "خورسند",
+      "replace": "خرسند"
+    },
+    {
+      "trigger": "خوشنود",
+      "replace": "خشنود"
+    },
+    {
+      "trigger": "دوشک",
+      "replace": "دُشک"
+    },
+    {
+      "trigger": "دوغلو",
+      "replace": "دوقلو"
+    },
+    {
+      "trigger": "ذنن",
+      "replace": "زنون"
+    },
+    {
+      "trigger": "ساوجبلاق",
+      "replace": "ساوجبلاغ"
+    },
+    {
+      "trigger": "سندل",
+      "replace": "صندل"
+    },
+    {
+      "trigger": "سن‌پطرزبورگ",
+      "replace": "سن‌پترزبورگ"
+    },
+    {
+      "trigger": "سوقات",
+      "replace": "سوغات"
+    },
+    {
+      "trigger": "شاغول",
+      "replace": "شاقول"
+    },
+    {
+      "trigger": "شبورقان",
+      "replace": "شبورغان"
+    },
+    {
+      "trigger": "شرائین",
+      "replace": "شرایین"
+    },
+    {
+      "trigger": "صاروج",
+      "replace": "ساروج"
+    },
+    {
+      "trigger": "صُغد",
+      "replace": "سُغد"
+    },
+    {
+      "trigger": "طاب",
+      "replace": "تاب"
+    },
+    {
+      "trigger": "طاول",
+      "replace": "تاول"
+    },
+    {
+      "trigger": "طایباد",
+      "replace": "تایباد"
+    },
+    {
+      "trigger": "طباشیر",
+      "replace": "تباشیر"
+    },
+    {
+      "trigger": "طبرزین",
+      "replace": "تبرزین"
+    },
+    {
+      "trigger": "طرشیز",
+      "replace": "ترشیز"
+    },
+    {
+      "trigger": "طرقّه",
+      "replace": "ترقّه"
+    },
+    {
+      "trigger": "طغار",
+      "replace": "تغار"
+    },
+    {
+      "trigger": "طَبَرک",
+      "replace": "تَبَرک"
+    },
+    {
+      "trigger": "طُپُق",
+      "replace": "تُپُق"
+    },
+    {
+      "trigger": "طپور",
+      "replace": "تپور"
+    },
+    {
+      "trigger": "طیسفون",
+      "replace": "تیسفون"
+    },
+    {
+      "trigger": "عنتر",
+      "replace": "انتر"
+    },
+    {
+      "trigger": "عَلَم‌شنگه",
+      "replace": "اَلَم‌شنگه"
+    },
+    {
+      "trigger": "عیصو",
+      "replace": "عیسو"
+    },
+    {
+      "trigger": "غاروغور",
+      "replace": "قاروقور"
+    },
+    {
+      "trigger": "غباد",
+      "replace": "قباد"
+    },
+    {
+      "trigger": "غدقن",
+      "replace": "غدغن"
+    },
+    {
+      "trigger": "غرتی",
+      "replace": "قرتی"
+    },
+    {
+      "trigger": "غرشمال",
+      "replace": "قرشمال"
+    },
+    {
+      "trigger": "غرمه",
+      "replace": "قورمه"
+    },
+    {
+      "trigger": "غروش",
+      "replace": "قروش"
+    },
+    {
+      "trigger": "غشغرق",
+      "replace": "قشقرق"
+    },
+    {
+      "trigger": "غلنبه",
+      "replace": "قلنبه"
+    },
+    {
+      "trigger": "غلْیان",
+      "replace": "قلْیان"
+    },
+    {
+      "trigger": "غورت",
+      "replace": "قورت"
+    },
+    {
+      "trigger": "غوز",
+      "replace": "قوز"
+    },
+    {
+      "trigger": "غَدّاره",
+      "replace": "قَدّاره"
+    },
+    {
+      "trigger": "غُدغُد",
+      "replace": "قُدقد"
+    },
+    {
+      "trigger": "غُرُق",
+      "replace": "قُرُق"
+    },
+    {
+      "trigger": "غُلُپ",
+      "replace": "قُلُپ"
+    },
+    {
+      "trigger": "غُلّک",
+      "replace": "قُلّک"
+    },
+    {
+      "trigger": "غِیقاج",
+      "replace": "قِیقاج"
+    },
+    {
+      "trigger": "فُرقون",
+      "replace": "فُرغون"
+    },
+    {
+      "trigger": "قدغن",
+      "replace": "غدغن"
+    },
+    {
+      "trigger": "قرمه",
+      "replace": "قورمه"
+    },
+    {
+      "trigger": "قره‌آقاج",
+      "replace": "قره‌آغاج"
+    },
+    {
+      "trigger": "قره‌قوروت",
+      "replace": "قره‌قروت"
+    },
+    {
+      "trigger": "قشلاغ",
+      "replace": "قشلاق"
+    },
+    {
+      "trigger": "قفص",
+      "replace": "قفس"
+    },
+    {
+      "trigger": "قُدقُد",
+      "replace": "قُدقد"
+    },
+    {
+      "trigger": "قُرلغ",
+      "replace": "قُرلق"
+    },
+    {
+      "trigger": "قِیماغ",
+      "replace": "قِیماق"
+    },
+    {
+      "trigger": "لاطاری",
+      "replace": "لاتاری"
+    },
+    {
+      "trigger": "لغوه",
+      "replace": "لقوه"
+    },
+    {
+      "trigger": "لغ‌ولوغ",
+      "replace": "لَق‌ولُوق"
+    },
+    {
+      "trigger": "لَغ",
+      "replace": "لَق"
+    },
+    {
+      "trigger": "لَغ‌لَغ",
+      "replace": "لَق‌لَق"
+    },
+    {
+      "trigger": "ناصور",
+      "replace": "ناسور"
+    },
+    {
+      "trigger": "نستوری",
+      "replace": "نسطوری"
+    },
+    {
+      "trigger": "نفط",
+      "replace": "نفت"
+    },
+    {
+      "trigger": "نفطالین",
+      "replace": "نفتالین"
+    },
+    {
+      "trigger": "نِغ‌نِغ",
+      "replace": "نِق‌نِق"
+    },
+    {
+      "trigger": "هلیم",
+      "replace": "حلیم"
+    },
+    {
+      "trigger": "هوله",
+      "replace": "حوله"
+    },
+    {
+      "trigger": "ورغُلُنبیدن",
+      "replace": "ورقُلُنبیدن"
+    },
+    {
+      "trigger": "وَق‌وَق",
+      "replace": "وَغ‌وَغ"
+    },
+    {
+      "trigger": "پاطوق",
+      "replace": "پاتوق"
+    },
+    {
+      "trigger": "چارغ",
+      "replace": "چارق"
+    },
+    {
+      "trigger": "چقندر",
+      "replace": "چغندر"
+    },
+    {
+      "trigger": "چلقوز",
+      "replace": "چلغوز"
+    },
+    {
+      "trigger": "کورنا",
+      "replace": "کرونا"
+    },
+    {
+      "trigger": "کورونا",
+      "replace": "کرونا"
+    },
+    {
+      "trigger": "کوید",
+      "replace": "کووید"
+    },
+    {
+      "trigger": "کیغباد",
+      "replace": "کیقباد"
+    },
+    {
+      "trigger": "یاطاقان",
+      "replace": "یاتاقان"
+    },
+    {
+      "trigger": "یالغوز",
+      "replace": "یالقوز"
+    },
+    {
+      "trigger": "یورقه",
+      "replace": "یورغه"
+    },
+    {
+      "trigger": "یُرغه",
+      "replace": "یورغه"
+    },
+    {
+      "trigger": "یُرقه",
+      "replace": "یورغه"
+    },
+    {
+      "trigger": "یُقور",
+      "replace": "یُغور"
+    }
+  ]
+}
