@@ -34,7 +34,7 @@ input:focus { outline: 2px solid #a3d4c9; border-color: #398b7c; }
 .list-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 20px; border-bottom: 1px solid #e8eeee; }
 .list-heading h2 { display: inline; margin: 0 9px 0 0; font-size: 17px; color: #294540; }
 .count { color: #758581; font-size: 12px; }
-.search { width: min(300px, 40%); min-height: 38px; }
+.search-wrap { position: relative; width: min(300px, 40%); }\n.search { width: 100%; min-height: 38px; padding-inline-start: 11px; padding-inline-end: 38px; }\n.search-icon { position: absolute; inset-inline-start: 12px; top: 50%; width: 17px; height: 17px; color: #287c70; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transform: translateY(-50%); pointer-events: none; }
 .table-wrap { max-height: 560px; overflow: auto; }
 table { width: 100%; border-collapse: collapse; text-align: right; }
 thead { position: sticky; top: 0; z-index: 1; background: #f7f9f9; }
@@ -63,6 +63,6 @@ tbody tr:hover { background: #fbfcfc; }
   .editor { grid-template-columns: 1fr 24px 1fr; gap: 8px; padding: 12px; }
   .editor > .button { grid-column: span 3; }
   #cancel-edit { grid-column: span 3; }
-  .search { width: 100%; }
+  .search-wrap { width: 100%; }
   th, td { padding: 9px 10px; }
 }
