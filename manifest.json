@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "واژه‌بان",
   "description": "تصحیح خودکار واژه‌ها در مرورگر فایرفاکس",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "browser_specific_settings": {
     "gecko": {
       "id": "autocorrect-fa@afshin-ir.github.io",
