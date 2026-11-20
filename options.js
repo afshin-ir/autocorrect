@@ -100,6 +100,7 @@ function updateRulesSummary() {
 function setRulesExpanded(expanded) {
   rulesToggle.setAttribute("aria-expanded", String(expanded));
   rulesContent.hidden = !expanded;
+  $("rules-action-label").textContent = expanded ? "بستن قواعد" : "نمایش قواعد";
 }
 
 async function loadRulesPanelState() {
