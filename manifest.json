@@ -5,7 +5,7 @@
   "version": "0.1.1",
   "browser_specific_settings": {
     "gecko": {
-      "id": "autocorrect-fa@example.org",
+      "id": "autocorrect-fa@afshin-ir.github.io",
       "strict_min_version": "115.0",
       "data_collection_permissions": {
         "required": ["none"]
