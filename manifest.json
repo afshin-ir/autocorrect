@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "تصحیح خودکار فارسی",
   "description": "جایگزینی خودکار واژه‌ها در کادرهای نوشتن فایرفاکس",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "browser_specific_settings": {
     "gecko": {
       "id": "autocorrect-fa@afshin-ir.github.io",
