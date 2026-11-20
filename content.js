@@ -100,20 +100,20 @@
     }
 
     if (halfSpaceSettings.suffix) {
-      if (/\\u200c(?:ام|ایم|اید|اند)$/u.test(text)) return null;
+      if (/\u200c(?:ام|ایم|اید|اند)$/u.test(text)) return null;
 
-      const spacedSuffixMatch = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+ه) +(ام|ایم|اید|اند)$/u.exec(text);
+      const spacedSuffixMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+ه) +(ام|ایم|اید|اند)$/u.exec(text);
       if (spacedSuffixMatch) {
-        const stem = spacedSuffixMatch[2].replace(/\\u200c+$/u, "");
+        const stem = spacedSuffixMatch[2].replace(/\u200c+$/u, "");
         const start = spacedSuffixMatch.index + spacedSuffixMatch[1].length;
-        return { start, end: text.length, replace: stem + "\\u200c" + spacedSuffixMatch[3] };
+        return { start, end: text.length, replace: stem + "\u200c" + spacedSuffixMatch[3] };
       }
 
-      const attachedSuffixMatch = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+ه)(ام|ایم|اید|اند)$/u.exec(text);
+      const attachedSuffixMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+ه)(ام|ایم|اید|اند)$/u.exec(text);
       if (attachedSuffixMatch) {
-        const stem = attachedSuffixMatch[2].replace(/\\u200c+$/u, "");
+        const stem = attachedSuffixMatch[2].replace(/\u200c+$/u, "");
         const start = attachedSuffixMatch.index + attachedSuffixMatch[1].length;
-        return { start, end: text.length, replace: stem + "\\u200c" + attachedSuffixMatch[3] };
+        return { start, end: text.length, replace: stem + "\u200c" + attachedSuffixMatch[3] };
       }
     }
 
