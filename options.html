@@ -10,13 +10,24 @@
   <main class="app">
     <header class="topbar">
       <div>
-        <p class="eyebrow">افزونهٔ فایرفاکس</p>
         <h1>واژه‌بان</h1>
       </div>
       <div class="toolbar">
-        <label class="button secondary" for="import-file">واژه‌های خودت را وارد کن</label>
+        <label class="button secondary button-with-icon" for="import-file">
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 15V3m0 0L7.5 7.5M12 3l4.5 4.5"></path>
+            <path d="M5 13v6h14v-6"></path>
+          </svg>
+          <span>واژه‌های خودت را وارد کن</span>
+        </label>
         <input id="import-file" type="file" accept=".json,application/json" hidden>
-        <button id="export" class="button secondary" type="button">پشتیبان بگیر</button>
+        <button id="export" class="button secondary button-with-icon" type="button">
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"></path>
+            <path d="M5 17v4h14v-4"></path>
+          </svg>
+          <span>پشتیبان بگیر</span>
+        </button>
       </div>
     </header>
 
