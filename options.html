@@ -21,10 +21,18 @@
     </header>
 
     <section class="half-space-settings card" aria-labelledby="half-space-title">
-      <div class="half-space-heading">
-        <h2 id="half-space-title">قواعد رسم‌الخط (فاصله‌گذاری) بر اساس ویراست دوم از کتاب <em>دستور خطِ فارسی</em></h2>
-        <span>هر قاعده را می‌توانی جداگانه روشن یا خاموش کنی.</span>
-      </div>
+      <button id="rules-toggle" class="rules-toggle" type="button" aria-expanded="false" aria-controls="rules-content">
+        <span class="rules-title-group">
+          <span id="half-space-title" class="rules-title" role="heading" aria-level="2">قواعد رسم‌الخط (فاصله‌گذاری) بر اساس ویراست دوم از کتاب <em>دستور خطِ فارسی</em></span>
+          <span id="rules-summary" class="rules-summary" aria-live="polite">۷ قاعده روشن · ۰ خاموش</span>
+        </span>
+        <svg class="rules-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </button>
+      <div id="rules-content" class="rules-content" hidden>
+        <p class="rules-help">هر قاعده را می‌توانی جداگانه روشن یا خاموش کنی.</p>
+        <div class="rules-grid">
       <label class="setting-row" for="half-space-mi">
         <input id="half-space-mi" type="checkbox" checked>
         <span class="setting-copy">
@@ -79,7 +87,9 @@
           <small>مثلاً: خانه ای، گره ای، کتاب ای و دانشجو ای ← خانه‌ای، گرهی، کتابی و دانشجویی</small>
           <small>شکل واژه با توجه به حرف پایانی آن تعیین می‌شود.</small>
         </span>
-      </label>
+        </label>
+        </div>
+      </div>
     </section>
 
     <section class="editor card" aria-label="افزودن یا ویرایش واژه">

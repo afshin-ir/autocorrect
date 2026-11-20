@@ -10,6 +10,9 @@ const halfSpaceBiInput = $("half-space-bi");
 const halfSpaceComparativeInput = $("half-space-comparative");
 const halfSpaceHamInput = $("half-space-ham");
 const halfSpaceYaInput = $("half-space-ya");
+const rulesToggle = $("rules-toggle");
+const rulesContent = $("rules-content");
+const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput];
 const symbolTriggers = new Set([
   ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
   ":.:", ":':", ":/:", ":\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
@@ -88,6 +91,22 @@ async function persist() {
   render();
 }
 
+function updateRulesSummary() {
+  const enabled = ruleInputs.filter((input) => input.checked).length;
+  const disabled = ruleInputs.length - enabled;
+  $("rules-summary").textContent = `${enabled.toLocaleString("fa-IR")} قاعده روشن · ${disabled.toLocaleString("fa-IR")} خاموش`;
+}
+
+function setRulesExpanded(expanded) {
+  rulesToggle.setAttribute("aria-expanded", String(expanded));
+  rulesContent.hidden = !expanded;
+}
+
+async function loadRulesPanelState() {
+  const settings = await browser.storage.local.get({ rulesPanelExpanded: false });
+  setRulesExpanded(settings.rulesPanelExpanded === true);
+}
+
 async function saveHalfSpaceSettings() {
   await browser.storage.local.set({
     halfSpaceMiEnabled: halfSpaceMiInput.checked,
@@ -98,7 +117,8 @@ async function saveHalfSpaceSettings() {
     halfSpaceHamEnabled: halfSpaceHamInput.checked,
     yayeNakerahEnabled: halfSpaceYaInput.checked
   });
-  showStatus("تنظیمات نیم‌فاصله ذخیره شد.");
+  updateRulesSummary();
+  showStatus("تنظیمات رسم‌الخط ذخیره شد.");
 }
 
 async function loadHalfSpaceSettings() {
@@ -118,7 +138,18 @@ async function loadHalfSpaceSettings() {
   halfSpaceComparativeInput.checked = settings.halfSpaceComparativeEnabled !== false;
   halfSpaceHamInput.checked = settings.halfSpaceHamEnabled !== false;
   halfSpaceYaInput.checked = settings.yayeNakerahEnabled !== false;
+  updateRulesSummary();
 }
+
+rulesToggle.addEventListener("click", async () => {
+  const expanded = rulesToggle.getAttribute("aria-expanded") !== "true";
+  setRulesExpanded(expanded);
+  try {
+    await browser.storage.local.set({ rulesPanelExpanded: expanded });
+  } catch {
+    showStatus("ذخیرهٔ حالت نمایش قواعد ناموفق بود.", true);
+  }
+});
 
 function beginEdit(rule) {
   editingTrigger = rule.trigger;
@@ -223,6 +254,7 @@ $("reset").addEventListener("click", async () => {
 
 (async () => {
   try {
+    await loadRulesPanelState();
     await loadHalfSpaceSettings();
     rules = await browser.runtime.sendMessage({ type: "autocorrect:get-rules" });
     render();
