@@ -2,7 +2,7 @@
   let rules = [];
   let rulesReady = false;
   let halfSpaceSettingsReady = false;
-  const halfSpaceSettings = { mi: true, ha: true };
+  const halfSpaceSettings = { mi: true, ha: true, suffix: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
 
   browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
@@ -14,10 +14,12 @@
 
   browser.storage.local.get({
     halfSpaceMiEnabled: true,
-    halfSpaceHaEnabled: true
+    halfSpaceHaEnabled: true,
+    halfSpaceSuffixEnabled: true
   }).then((settings) => {
     halfSpaceSettings.mi = settings.halfSpaceMiEnabled !== false;
     halfSpaceSettings.ha = settings.halfSpaceHaEnabled !== false;
+    halfSpaceSettings.suffix = settings.halfSpaceSuffixEnabled !== false;
     halfSpaceSettingsReady = true;
   }).catch(() => {
     halfSpaceSettingsReady = true;
@@ -34,6 +36,9 @@
     }
     if (changes.halfSpaceHaEnabled) {
       halfSpaceSettings.ha = changes.halfSpaceHaEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceSuffixEnabled) {
+      halfSpaceSettings.suffix = changes.halfSpaceSuffixEnabled.newValue !== false;
     }
   });
 
@@ -91,6 +96,24 @@
         const stem = attachedMatch[2].replace(/\u200c+$/u, "");
         const start = attachedMatch.index + attachedMatch[1].length;
         return { start, end: text.length, replace: stem + "\u200cها" };
+      }
+    }
+
+    if (halfSpaceSettings.suffix) {
+      if (/\\u200c(?:ام|ایم|اید|اند)$/u.test(text)) return null;
+
+      const spacedSuffixMatch = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+ه) +(ام|ایم|اید|اند)$/u.exec(text);
+      if (spacedSuffixMatch) {
+        const stem = spacedSuffixMatch[2].replace(/\\u200c+$/u, "");
+        const start = spacedSuffixMatch.index + spacedSuffixMatch[1].length;
+        return { start, end: text.length, replace: stem + "\\u200c" + spacedSuffixMatch[3] };
+      }
+
+      const attachedSuffixMatch = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+ه)(ام|ایم|اید|اند)$/u.exec(text);
+      if (attachedSuffixMatch) {
+        const stem = attachedSuffixMatch[2].replace(/\\u200c+$/u, "");
+        const start = attachedSuffixMatch.index + attachedSuffixMatch[1].length;
+        return { start, end: text.length, replace: stem + "\\u200c" + attachedSuffixMatch[3] };
       }
     }
 
