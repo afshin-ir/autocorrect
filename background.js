@@ -1,8 +1,18 @@
 let initialRulesPromise;
 
+function removeIncorrectIdealRule(rules) {
+  return rules.filter((rule) => !(rule?.trigger === "ایدئال" && rule?.replace === "ایده‌آل"));
+}
+
 async function ensureRules() {
   const stored = await browser.storage.local.get("rules");
-  if (Array.isArray(stored.rules)) return stored.rules;
+  if (Array.isArray(stored.rules)) {
+    const rules = removeIncorrectIdealRule(stored.rules);
+    if (rules.length !== stored.rules.length) {
+      await browser.storage.local.set({ rules });
+    }
+    return rules;
+  }
 
   if (!initialRulesPromise) {
     initialRulesPromise = fetch(browser.runtime.getURL("dictionary.json"))
@@ -11,7 +21,7 @@ async function ensureRules() {
         return response.json();
       })
       .then(async (data) => {
-        const rules = Array.isArray(data.rules) ? data.rules : [];
+        const rules = removeIncorrectIdealRule(Array.isArray(data.rules) ? data.rules : []);
         await browser.storage.local.set({ rules });
         return rules;
       });
