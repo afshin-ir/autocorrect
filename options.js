@@ -3,6 +3,11 @@ const triggerInput = $("trigger");
 const replacementInput = $("replacement");
 const rowsElement = $("rows");
 const searchInput = $("search");
+const symbolTriggers = new Set([
+  ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
+  ":.:", ":' :".replace(" ", ""), ":/:", ":\\\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
+  "1/2", "1/4", "3/4"
+]);
 let rules = [];
 let editingTrigger = null;
 
@@ -13,7 +18,12 @@ function showStatus(message, error = false) {
 }
 
 function sortRules() {
-  rules.sort((a, b) => a.trigger.localeCompare(b.trigger, "fa"));
+  rules.sort((a, b) => {
+    const aIsSymbol = symbolTriggers.has(a.trigger);
+    const bIsSymbol = symbolTriggers.has(b.trigger);
+    if (aIsSymbol !== bIsSymbol) return aIsSymbol ? 1 : -1;
+    return a.trigger.localeCompare(b.trigger, "fa");
+  });
 }
 
 function render() {
@@ -26,7 +36,20 @@ function render() {
   rowsElement.replaceChildren();
   $("empty").hidden = visible.length !== 0;
 
+  let symbolsHeadingShown = false;
   for (const rule of visible) {
+    if (symbolTriggers.has(rule.trigger) && !symbolsHeadingShown) {
+      const groupRow = document.createElement("tr");
+      groupRow.className = "group-row";
+      const heading = document.createElement("th");
+      heading.colSpan = 3;
+      heading.scope = "rowgroup";
+      heading.textContent = "نمادها و کسرها";
+      groupRow.append(heading);
+      rowsElement.append(groupRow);
+      symbolsHeadingShown = true;
+    }
+
     const tr = document.createElement("tr");
     const triggerCell = document.createElement("td");
     const replacementCell = document.createElement("td");
