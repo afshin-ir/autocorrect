@@ -21,7 +21,7 @@ h1 { margin: 0; font-size: 27px; font-weight: 700; color: #203c38; }
 .secondary { color: #34564f; background: #fff; border-color: #d4dddc; }
 .card { background: #fff; border: 1px solid #dce3e3; border-radius: 9px; box-shadow: 0 2px 8px #1a3b3510; }
 .half-space-settings { padding: 15px 19px; margin-bottom: 18px; }
-.half-space-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.half-space-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-bottom: 8px; }
 .half-space-heading h2 { margin: 0; color: #294540; font-size: 16px; }
 .half-space-heading span { color: #758581; font-size: 12px; }
 .setting-row { display: flex; align-items: flex-start; gap: 9px; padding: 9px 0; cursor: pointer; }
