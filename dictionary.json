@@ -2,24 +2,12 @@
   "version": 1,
   "rules": [
     {
-      "trigger": ":\\\\:",
-      "replace": "∖"
-    },
-    {
       "trigger": "آروق",
       "replace": "آروغ"
     },
     {
       "trigger": "آزوقه",
       "replace": "آذوقه"
-    },
-    {
-      "trigger": "آماده‌ایی",
-      "replace": "آماده‌ای"
-    },
-    {
-      "trigger": "آنفلوآنزا",
-      "replace": "آنفولانزا"
     },
     {
       "trigger": "آنهائیکه",
