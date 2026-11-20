@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "واژه‌بان",
   "description": "تصحیح خودکار واژه‌ها در مرورگر فایرفاکس",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "browser_specific_settings": {
     "gecko": {
       "id": "autocorrect-fa@afshin-ir.github.io",
@@ -29,7 +29,11 @@
     ]
   },
   "action": {
-    "default_title": "واژه‌بان"
+    "default_title": "واژه‌بان",
+    "default_icon": {
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
   },
   "options_ui": {
     "page": "options.html",
@@ -45,5 +49,11 @@
       ],
       "run_at": "document_start"
     }
-  ]
+  ],
+  "icons": {
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  }
 }
