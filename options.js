@@ -19,7 +19,116 @@ const symbolTriggers = new Set([
   "1/2", "1/4", "3/4"
 ]);
 let rules = [];
+let defaultRules = [];
+let suggestionMatches = [];
+let activeSuggestionIndex = -1;
 let editingTrigger = null;
+
+async function loadDefaultRules() {
+  const [dictionaryResponse, bookResponse] = await Promise.all([
+    fetch(browser.runtime.getURL("dictionary.json")),
+    fetch(browser.runtime.getURL("book-variants.json"))
+  ]);
+  if (!dictionaryResponse.ok || !bookResponse.ok) throw new Error("خواندن بانک آغازین ناموفق بود.");
+  const [dictionary, book] = await Promise.all([dictionaryResponse.json(), bookResponse.json()]);
+  const byTrigger = new Map();
+  for (const rule of [...(dictionary.rules || []), ...(book.rules || [])]) {
+    if (rule && typeof rule.trigger === "string" && typeof rule.replace === "string" && !byTrigger.has(rule.trigger)) {
+      byTrigger.set(rule.trigger, rule);
+    }
+  }
+  defaultRules = [...byTrigger.values()];
+}
+
+function hideSuggestions() {
+  $("trigger-suggestions").hidden = true;
+  triggerInput.setAttribute("aria-expanded", "false");
+  triggerInput.removeAttribute("aria-activedescendant");
+  activeSuggestionIndex = -1;
+}
+
+function selectSuggestion(rule) {
+  const currentRule = rules.find((item) => item.trigger === rule.trigger);
+  if (currentRule) {
+    beginEdit(currentRule);
+  } else {
+    editingTrigger = null;
+    triggerInput.value = rule.trigger;
+    replacementInput.value = rule.replace;
+    $("save").textContent = "اضافه کن";
+    $("cancel-edit").hidden = true;
+    replacementInput.focus();
+  }
+  hideSuggestions();
+}
+
+function renderSuggestions() {
+  const query = triggerInput.value.trim().toLocaleLowerCase("fa");
+  const list = $("trigger-suggestions");
+  list.replaceChildren();
+  suggestionMatches = [];
+  activeSuggestionIndex = -1;
+  triggerInput.removeAttribute("aria-activedescendant");
+
+  if (!query) return hideSuggestions();
+
+  suggestionMatches = defaultRules
+    .filter((rule) => rule.trigger.toLocaleLowerCase("fa").startsWith(query))
+    .slice(0, 8);
+
+  if (suggestionMatches.length === 0) return hideSuggestions();
+
+  suggestionMatches.forEach((rule, index) => {
+    const option = document.createElement("button");
+    option.type = "button";
+    option.id = `trigger-suggestion-${index}`;
+    option.className = "word-suggestion";
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+
+    const term = document.createElement("span");
+    term.className = "word-suggestion-term";
+    term.textContent = rule.trigger;
+    const detail = document.createElement("span");
+    const isExact = rule.trigger.toLocaleLowerCase("fa") === query;
+    detail.className = isExact ? "word-suggestion-exact" : "word-suggestion-replacement";
+    detail.textContent = isExact ? "از قبل در بانک پیش‌فرض هست" : `تصحیحش کن به: ${rule.replace}`;
+
+    option.append(term, detail);
+    option.addEventListener("mousedown", (event) => event.preventDefault());
+    option.addEventListener("click", () => selectSuggestion(rule));
+    list.append(option);
+  });
+
+  list.hidden = false;
+  triggerInput.setAttribute("aria-expanded", "true");
+}
+
+function moveSuggestionSelection(direction) {
+  if (suggestionMatches.length === 0) return;
+  activeSuggestionIndex = (activeSuggestionIndex + direction + suggestionMatches.length) % suggestionMatches.length;
+  const options = $("trigger-suggestions").querySelectorAll('[role="option"]');
+  options.forEach((option, index) => option.setAttribute("aria-selected", String(index === activeSuggestionIndex)));
+  const active = options[activeSuggestionIndex];
+  triggerInput.setAttribute("aria-activedescendant", active.id);
+  active.scrollIntoView({ block: "nearest" });
+}
+
+triggerInput.addEventListener("input", renderSuggestions);
+triggerInput.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown" && suggestionMatches.length) {
+    event.preventDefault();
+    moveSuggestionSelection(1);
+  } else if (event.key === "ArrowUp" && suggestionMatches.length) {
+    event.preventDefault();
+    moveSuggestionSelection(-1);
+  } else if (event.key === "Enter" && activeSuggestionIndex >= 0) {
+    event.preventDefault();
+    selectSuggestion(suggestionMatches[activeSuggestionIndex]);
+  } else if (event.key === "Escape") {
+    hideSuggestions();
+  }
+});
 
 function showStatus(message, error = false) {
   const status = $("status");
@@ -153,6 +262,7 @@ rulesToggle.addEventListener("click", async () => {
 });
 
 function beginEdit(rule) {
+  hideSuggestions();
   editingTrigger = rule.trigger;
   triggerInput.value = rule.trigger;
   replacementInput.value = rule.replace;
@@ -165,6 +275,7 @@ function endEdit() {
   editingTrigger = null;
   triggerInput.value = "";
   replacementInput.value = "";
+  hideSuggestions();
   $("save").textContent = "اضافه کن";
   $("cancel-edit").hidden = true;
 }
@@ -258,6 +369,7 @@ $("reset").addEventListener("click", async () => {
     await loadRulesPanelState();
     await loadHalfSpaceSettings();
     rules = await browser.runtime.sendMessage({ type: "autocorrect:get-rules" });
+    await loadDefaultRules();
     render();
   } catch {
     showStatus("بارگذاری تنظیمات یا بانک واژه‌ها ناموفق بود.", true);
