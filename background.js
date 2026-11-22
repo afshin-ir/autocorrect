@@ -1,9 +1,12 @@
 let initialRulesPromise;
 let bookVariantMigrationPromise;
-const CURRENT_BOOK_VARIANTS_VERSION = 1;
+const CURRENT_BOOK_VARIANTS_VERSION = 2;
 
-function removeIncorrectIdealRule(rules) {
-  return rules.filter((rule) => !(rule?.trigger === "ایدئال" && rule?.replace === "ایده‌آل"));
+function removeExcludedDefaultRules(rules) {
+  return rules.filter((rule) => !(
+    (rule?.trigger === "ایدئال" && rule?.replace === "ایده‌آل") ||
+    (rule?.trigger === "خطا" && rule?.replace === "ختا")
+  ));
 }
 
 async function loadBookVariants() {
@@ -25,7 +28,7 @@ async function loadInitialRules() {
       rulesByTrigger.set(rule.trigger, rule);
     }
   }
-  return { rules: removeIncorrectIdealRule([...rulesByTrigger.values()]), bookVersion: bookData.version || 1 };
+  return { rules: removeExcludedDefaultRules([...rulesByTrigger.values()]), bookVersion: bookData.version || 1 };
 }
 
 async function migrateBookVariants(storedRules, bookVersion) {
@@ -36,7 +39,7 @@ async function migrateBookVariants(storedRules, bookVersion) {
       rulesByTrigger.set(rule.trigger, rule);
     }
   }
-  const rules = removeIncorrectIdealRule([...rulesByTrigger.values()]);
+  const rules = removeExcludedDefaultRules([...rulesByTrigger.values()]);
   await browser.storage.local.set({ rules, bookVariantsVersion: bookData.version || bookVersion || 1 });
   return rules;
 }
@@ -51,7 +54,7 @@ async function ensureRules() {
       }
       return bookVariantMigrationPromise;
     }
-    const rules = removeIncorrectIdealRule(stored.rules);
+    const rules = removeExcludedDefaultRules(stored.rules);
     if (rules.length !== stored.rules.length) {
       await browser.storage.local.set({ rules });
     }
