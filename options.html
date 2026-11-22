@@ -109,7 +109,11 @@
     <section class="editor card" aria-label="افزودن یا ویرایش واژه">
       <div class="field">
         <label for="trigger">اگر این را تایپ کردم</label>
-        <input id="trigger" type="text" autocomplete="off" placeholder="مثلاً: انظباط">
+        <div class="suggestion-wrap">
+          <input id="trigger" type="text" autocomplete="off" placeholder="مثلاً: انظباط"
+            aria-autocomplete="list" aria-controls="trigger-suggestions" aria-expanded="false">
+          <div id="trigger-suggestions" class="word-suggestions" role="listbox" aria-label="واژه‌های هم‌آغاز در بانک پیش‌فرض" hidden></div>
+        </div>
       </div>
       <div class="arrow" aria-hidden="true">←</div>
       <div class="field">
