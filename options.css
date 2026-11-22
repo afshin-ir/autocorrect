@@ -46,6 +46,15 @@ h1 { margin: 0; font-size: 27px; font-weight: 700; color: #203c38; }
 .setting-copy small { color: #758581; font-size: 12px; line-height: 1.6; }
 .editor { display: grid; grid-template-columns: 1fr 30px 1fr auto; align-items: end; gap: 12px; padding: 18px; margin-bottom: 18px; }
 .field { display: flex; flex-direction: column; gap: 7px; }
+.suggestion-wrap { position: relative; }
+.word-suggestions { position: absolute; inset: calc(100% + 4px) 0 auto; z-index: 5; display: flex; max-height: 280px; flex-direction: column; overflow-y: auto; border: 1px solid #cfd9d8; border-radius: 7px; background: #fff; box-shadow: 0 8px 22px #203c3824; }
+.word-suggestions[hidden] { display: none; }
+.word-suggestion { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 11px; border: 0; border-bottom: 1px solid #edf0f0; background: #fff; color: #294540; font: inherit; text-align: right; cursor: pointer; }
+.word-suggestion:last-child { border-bottom: 0; }
+.word-suggestion:hover, .word-suggestion[aria-selected="true"] { background: #edf7f4; }
+.word-suggestion-term { font-size: 14px; font-weight: 600; }
+.word-suggestion-replacement { color: #758581; font-size: 12px; white-space: nowrap; }
+.word-suggestion-exact { color: #287c70; font-size: 11px; white-space: nowrap; }
 .field label { color: #4d625e; font-size: 13px; }
 input[type="text"], .search { width: 100%; min-height: 42px; padding: 8px 11px; border: 1px solid #cfd9d8; border-radius: 6px; background: #fff; font: inherit; font-size: 14px; direction: auto; }
 input:focus { outline: 2px solid #a3d4c9; border-color: #398b7c; }
