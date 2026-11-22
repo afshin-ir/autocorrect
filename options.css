@@ -75,7 +75,7 @@ tbody tr:hover { background: #fbfcfc; }
 .list-footer { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; color: #74817e; font-size: 12px; }
 .text-button { padding: 5px; border: 0; background: none; color: #667b76; font: inherit; cursor: pointer; }
 .text-button:hover { color: #b54c4c; }
-.status { min-height: 25px; margin: 10px 3px; color: #287c70; font-size: 13px; }
+.editor .status { grid-column: 1 / -1; min-height: 25px; margin: 0; color: #287c70; font-size: 13px; }
 .status.error { color: #b54c4c; }
 
 @media (max-width: 760px) {
