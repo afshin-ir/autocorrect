@@ -37,7 +37,7 @@ async function loadDefaultRules() {
       byTrigger.set(rule.trigger, rule);
     }
   }
-  defaultRules = [...byTrigger.values()];
+  defaultRules = [...byTrigger.values()].filter((rule) => !(rule.trigger === "ایدئال" && rule.replace === "ایده‌آل"));
 }
 
 function hideSuggestions() {
@@ -369,7 +369,7 @@ $("reset").addEventListener("click", async () => {
     await loadRulesPanelState();
     await loadHalfSpaceSettings();
     rules = await browser.runtime.sendMessage({ type: "autocorrect:get-rules" });
-    await loadDefaultRules();
+    await loadDefaultRules().catch(() => { defaultRules = []; });
     render();
   } catch {
     showStatus("بارگذاری تنظیمات یا بانک واژه‌ها ناموفق بود.", true);
