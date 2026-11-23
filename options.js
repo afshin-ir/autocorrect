@@ -224,7 +224,7 @@ function renderCultureManager() {
     const edit = document.createElement("button");
     edit.type = "button";
     edit.className = "culture-action";
-    edit.textContent = "ویرایش";
+    edit.textContent = "ویرایش کن";
     edit.addEventListener("click", () => {
       editingCultureWord = word;
       renderCultureManager();
@@ -412,7 +412,7 @@ function render() {
     const edit = document.createElement("button");
     edit.type = "button";
     edit.className = "small-button";
-    edit.textContent = "ویرایش";
+    edit.textContent = "ویرایش کن";
     edit.addEventListener("click", () => beginEdit(rule));
 
     const remove = document.createElement("button");
