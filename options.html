@@ -114,6 +114,32 @@
       </div>
     </section>
 
+    <section class="culture-manager card" aria-labelledby="culture-title">
+      <button id="culture-toggle" class="rules-toggle" type="button" aria-expanded="false" aria-controls="culture-content">
+        <span class="rules-title-group">
+          <span id="culture-title" class="rules-title" role="heading" aria-level="2">مدیریت مدخل‌های فرهنگ املایی</span>
+          <span id="culture-summary" class="rules-summary" aria-live="polite">۰ ویرایش · ۰ خاموش</span>
+        </span>
+        <span class="rules-open-action">
+          <span id="culture-action-label">جست‌وجو و مدیریت</span>
+          <svg class="rules-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </span>
+      </button>
+      <div id="culture-content" class="rules-content culture-content" hidden>
+        <p class="rules-help">برای تغییر صورت مرجّح یا خاموش‌کردن تصحیح یک مدخل، آن را جست‌وجو کن. تغییرها فقط در همین دستگاه ذخیره می‌شوند؛ خاموش‌کردن فقط تصحیح بر پایهٔ همان مدخل را غیرفعال می‌کند.</p>
+        <div class="culture-search-field">
+          <label for="culture-search">جست‌وجو در مدخل‌های فرهنگ</label>
+          <input id="culture-search" class="search" type="search" autocomplete="off" placeholder="مثلاً: باغبان یا با شکوه">
+        </div>
+        <p id="culture-results-summary" class="culture-results-summary">برای دیدن مدخل‌ها، بخشی از واژه را جست‌وجو کن.</p>
+        <div id="culture-results" class="culture-results"></div>
+        <p id="culture-empty" class="empty" hidden>مدخلی پیدا نشد.</p>
+        <p id="culture-status" class="culture-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <section class="editor card" aria-label="افزودن یا ویرایش واژه">
       <div class="field">
         <label for="trigger">اگر این را تایپ کردم</label>
