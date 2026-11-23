@@ -27,8 +27,8 @@
       const candidates = new Map();
       const ambiguous = new Set();
       for (const word of data?.words || []) {
-        if (typeof word !== "string" || !word.includes("\u200c")) continue;
-        const key = word.replace(/[\s\u200c]+/gu, "");
+        if (typeof word !== "string") continue;
+        const key = normalizePreferredKey(word);
         if (!key) continue;
         if (candidates.has(key) && candidates.get(key) !== word) ambiguous.add(key);
         else candidates.set(key, word);
@@ -253,9 +253,15 @@
     return null;
   }
 
+  function normalizePreferredKey(value) {
+    return value.normalize("NFC")
+      .replace(/[\u064b-\u0652]/gu, "")
+      .replace(/[\s\u200c]+/gu, "");
+  }
+
   function findPreferredWordMatch(text) {
     if (!preferredWordsEnabled || !preferredWordsReady || !preferredWords.size) return null;
-    const tailLength = Math.max(preferredWordMaxLength + 2, 2);
+    const tailLength = Math.max(preferredWordMaxLength * 2 + 2, 2);
     const offset = Math.max(0, text.length - tailLength);
     const tail = text.slice(offset);
     for (let start = 0; start < tail.length; start++) {
@@ -263,7 +269,7 @@
       if (start === 0 && offset > 0 && /[\p{L}\p{M}\p{N}_\u200c]/u.test(text[offset - 1])) continue;
       const typed = tail.slice(start);
       if (!/^[\p{L}\p{M}\p{N}_\u200c ]+$/u.test(typed)) continue;
-      const key = typed.replace(/[\s\u200c]+/gu, "");
+      const key = normalizePreferredKey(typed);
       const replacement = preferredWords.get(key);
       if (replacement && typed !== replacement) {
         return { start: offset + start, end: text.length, replace: replacement };
