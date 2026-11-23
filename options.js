@@ -11,6 +11,9 @@ const halfSpaceComparativeInput = $("half-space-comparative");
 const halfSpaceHamInput = $("half-space-ham");
 const halfSpaceYaInput = $("half-space-ya");
 const preferredWordsInput = $("preferred-words");
+const cultureToggle = $("culture-toggle");
+const cultureSearchInput = $("culture-search");
+const cultureResultsElement = $("culture-results");
 const rulesToggle = $("rules-toggle");
 const rulesContent = $("rules-content");
 const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput, preferredWordsInput];
@@ -24,6 +27,13 @@ let defaultRules = [];
 let suggestionMatches = [];
 let activeSuggestionIndex = -1;
 let editingTrigger = null;
+let cultureWords = [];
+let cultureWordSet = new Set();
+let cultureKeyByWord = new Map();
+let cultureAmbiguous = new Set();
+let cultureOverrides = {};
+let cultureDisabled = new Set();
+let editingCultureWord = null;
 
 async function loadDefaultRules() {
   const [dictionaryResponse, bookResponse] = await Promise.all([
@@ -39,6 +49,222 @@ async function loadDefaultRules() {
     }
   }
   defaultRules = [...byTrigger.values()].filter((rule) => !(rule.trigger === "ایدئال" && rule.replace === "ایده‌آل"));
+}
+
+function normalizeCultureKey(value) {
+  return value.normalize("NFC")
+    .replace(/[\u064b-\u0652]/gu, "")
+    .replace(/[\s\u200c]+/gu, "");
+}
+
+async function loadCultureWords() {
+  const response = await fetch(browser.runtime.getURL("preferred-words.json"));
+  if (!response.ok) throw new Error("خواندن فرهنگ املایی ناموفق بود.");
+  const data = await response.json();
+  cultureWords = Array.isArray(data.words) ? data.words : [];
+  cultureWordSet = new Set(cultureWords);
+  cultureKeyByWord = new Map(cultureWords.map((word) => [word, normalizeCultureKey(word)]));
+}
+
+async function loadCultureSettings() {
+  const settings = await browser.storage.local.get({
+    preferredWordOverrides: {},
+    preferredWordDisabled: [],
+    culturePanelExpanded: false
+  });
+  cultureOverrides = settings.preferredWordOverrides && typeof settings.preferredWordOverrides === "object"
+    ? { ...settings.preferredWordOverrides }
+    : {};
+  cultureDisabled = new Set(Array.isArray(settings.preferredWordDisabled)
+    ? settings.preferredWordDisabled.filter((word) => cultureWordSet.has(word))
+    : []);
+  rebuildCultureAmbiguity();
+  setCulturePanelExpanded(settings.culturePanelExpanded === true);
+  renderCultureManager();
+}
+
+function rebuildCultureAmbiguity() {
+  const targetsByKey = new Map();
+  const wordsByKey = new Map();
+  for (const word of cultureWords) {
+    if (cultureDisabled.has(word)) continue;
+    const key = cultureKeyByWord.get(word);
+    const replacement = cultureOverrides[word] || word;
+    if (!targetsByKey.has(key)) {
+      targetsByKey.set(key, new Set());
+      wordsByKey.set(key, []);
+    }
+    targetsByKey.get(key).add(replacement);
+    wordsByKey.get(key).push(word);
+  }
+  cultureAmbiguous = new Set();
+  for (const [key, targets] of targetsByKey) {
+    if (targets.size > 1) {
+      for (const word of wordsByKey.get(key)) cultureAmbiguous.add(word);
+    }
+  }
+}
+
+function setCulturePanelExpanded(expanded) {
+  cultureToggle.setAttribute("aria-expanded", String(expanded));
+  $("culture-content").hidden = !expanded;
+  $("culture-action-label").textContent = expanded ? "بستن فهرست" : "جست‌وجو و مدیریت";
+}
+
+function updateCultureSummary() {
+  $("culture-summary").textContent = `${Object.keys(cultureOverrides).length.toLocaleString("fa-IR")} ویرایش · ${cultureDisabled.size.toLocaleString("fa-IR")} خاموش`;
+}
+
+function setCultureStatus(message, error = false) {
+  const status = $("culture-status");
+  status.textContent = message;
+  status.classList.toggle("error", error);
+}
+
+function renderCultureManager() {
+  updateCultureSummary();
+  cultureResultsElement.replaceChildren();
+  const query = cultureSearchInput.value.trim();
+  const empty = $("culture-empty");
+  const summary = $("culture-results-summary");
+  if (!query) {
+    summary.textContent = "برای دیدن مدخل‌ها، بخشی از واژه را جست‌وجو کن.";
+    empty.hidden = true;
+    return;
+  }
+
+  const foldedQuery = query.toLocaleLowerCase("fa");
+  const normalizedQuery = normalizeCultureKey(query);
+  const matches = cultureWords.filter((word) => {
+    const replacement = cultureOverrides[word] || word;
+    return word.toLocaleLowerCase("fa").includes(foldedQuery) ||
+      replacement.toLocaleLowerCase("fa").includes(foldedQuery) ||
+      (normalizedQuery && cultureKeyByWord.get(word).includes(normalizedQuery)) ||
+      (normalizedQuery && normalizeCultureKey(replacement).includes(normalizedQuery));
+  });
+  const shown = matches.slice(0, 50);
+  summary.textContent = matches.length > shown.length
+    ? `${matches.length.toLocaleString("fa-IR")} مدخل پیدا شد؛ ۵۰ مورد نخست نمایش داده می‌شود.`
+    : `${matches.length.toLocaleString("fa-IR")} مدخل پیدا شد.`;
+  empty.hidden = matches.length !== 0;
+
+  for (const word of shown) {
+    const row = document.createElement("div");
+    row.className = "culture-row";
+    const copy = document.createElement("div");
+    copy.className = "culture-word-copy";
+
+    if (editingCultureWord === word) {
+      const sourceTerm = document.createElement("strong");
+      sourceTerm.textContent = word;
+      copy.append(sourceTerm);
+      const input = document.createElement("input");
+      input.className = "culture-edit-input";
+      input.type = "text";
+      input.value = cultureOverrides[word] || word;
+      input.setAttribute("aria-label", `صورت مرجّح برای ${word}`);
+      const form = document.createElement("div");
+      form.className = "culture-edit-form";
+      const actions = document.createElement("div");
+      actions.className = "culture-actions";
+      const save = document.createElement("button");
+      save.type = "button";
+      save.className = "culture-action";
+      save.textContent = "ذخیره";
+      save.addEventListener("click", () => saveCultureOverride(word, input.value));
+      const cancel = document.createElement("button");
+      cancel.type = "button";
+      cancel.className = "culture-action";
+      cancel.textContent = "لغو";
+      cancel.addEventListener("click", () => {
+        editingCultureWord = null;
+        renderCultureManager();
+      });
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") saveCultureOverride(word, input.value);
+        if (event.key === "Escape") {
+          editingCultureWord = null;
+          renderCultureManager();
+        }
+      });
+      form.append(input);
+      actions.append(save, cancel);
+      form.append(actions);
+      row.append(copy, form);
+      cultureResultsElement.append(row);
+      requestAnimationFrame(() => input.focus());
+      continue;
+    }
+
+    const term = document.createElement("strong");
+    term.textContent = word;
+    copy.append(term);
+    if (cultureOverrides[word]) {
+      const edited = document.createElement("small");
+      edited.textContent = `صورت دلخواه تو: ${cultureOverrides[word]}`;
+      copy.append(edited);
+    }
+    if (cultureDisabled.has(word)) {
+      const disabled = document.createElement("small");
+      disabled.className = "culture-disabled-label";
+      disabled.textContent = "تصحیح این مدخل خاموش است";
+      copy.append(disabled);
+    }
+    if (cultureAmbiguous.has(word)) {
+      const ambiguous = document.createElement("small");
+      ambiguous.className = "culture-ambiguous-label";
+      ambiguous.textContent = "این مدخل با صورت مرجّح دیگری هم‌کلید است؛ تا رفع ابهام تصحیح نمی‌شود.";
+      copy.append(ambiguous);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "culture-actions";
+    const edit = document.createElement("button");
+    edit.type = "button";
+    edit.className = "culture-action";
+    edit.textContent = "ویرایش";
+    edit.addEventListener("click", () => {
+      editingCultureWord = word;
+      renderCultureManager();
+    });
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = `culture-action${cultureDisabled.has(word) ? "" : " disable"}`;
+    toggle.textContent = cultureDisabled.has(word) ? "روشن کن" : "خاموش کن";
+    toggle.addEventListener("click", () => toggleCultureWord(word));
+    actions.append(edit, toggle);
+    row.append(copy, actions);
+    cultureResultsElement.append(row);
+  }
+}
+
+async function saveCultureOverride(word, value) {
+  const replacement = value.trim();
+  if (!replacement) return setCultureStatus("صورت مرجّح نمی‌تواند خالی باشد.", true);
+  if (replacement === word) delete cultureOverrides[word];
+  else cultureOverrides[word] = replacement;
+  try {
+    await browser.storage.local.set({ preferredWordOverrides: cultureOverrides });
+    editingCultureWord = null;
+    rebuildCultureAmbiguity();
+    renderCultureManager();
+    setCultureStatus(replacement === word ? "صورت اصلی فرهنگ بازگردانده شد." : "صورت مرجّح ذخیره شد.");
+  } catch {
+    setCultureStatus("ذخیرهٔ صورت مرجّح ناموفق بود.", true);
+  }
+}
+
+async function toggleCultureWord(word) {
+  if (cultureDisabled.has(word)) cultureDisabled.delete(word);
+  else cultureDisabled.add(word);
+  try {
+    await browser.storage.local.set({ preferredWordDisabled: [...cultureDisabled] });
+    rebuildCultureAmbiguity();
+    renderCultureManager();
+    setCultureStatus(cultureDisabled.has(word) ? "تصحیح این مدخل خاموش شد." : "تصحیح این مدخل روشن شد.");
+  } catch {
+    setCultureStatus("ذخیرهٔ وضعیت مدخل ناموفق بود.", true);
+  }
 }
 
 function hideSuggestions() {
@@ -265,6 +491,17 @@ rulesToggle.addEventListener("click", async () => {
   }
 });
 
+cultureToggle.addEventListener("click", async () => {
+  const expanded = cultureToggle.getAttribute("aria-expanded") !== "true";
+  setCulturePanelExpanded(expanded);
+  try {
+    await browser.storage.local.set({ culturePanelExpanded: expanded });
+  } catch {
+    setCultureStatus("ذخیرهٔ حالت نمایش فهرست ناموفق بود.", true);
+  }
+});
+cultureSearchInput.addEventListener("input", renderCultureManager);
+
 function beginEdit(rule) {
   hideSuggestions();
   editingTrigger = rule.trigger;
@@ -336,11 +573,33 @@ $("import-file").addEventListener("change", async (event) => {
   const file = event.target.files?.[0];
   if (!file) return;
   try {
-    const imported = validateRules(JSON.parse(await file.text()));
+    const data = JSON.parse(await file.text());
+    const imported = validateRules(data);
     const byTrigger = new Map(rules.map((rule) => [rule.trigger, rule]));
     for (const rule of imported) byTrigger.set(rule.trigger, rule);
     rules = [...byTrigger.values()];
     await persist();
+    if (data && !Array.isArray(data)) {
+      const incomingOverrides = data.preferredWordOverrides;
+      if (incomingOverrides && typeof incomingOverrides === "object" && !Array.isArray(incomingOverrides)) {
+        for (const [word, replacement] of Object.entries(incomingOverrides)) {
+          if (cultureWordSet.has(word) && typeof replacement === "string" && replacement.trim()) {
+            cultureOverrides[word] = replacement;
+          }
+        }
+      }
+      if (Array.isArray(data.preferredWordDisabled)) {
+        for (const word of data.preferredWordDisabled) {
+          if (cultureWordSet.has(word)) cultureDisabled.add(word);
+        }
+      }
+      await browser.storage.local.set({
+        preferredWordOverrides: cultureOverrides,
+        preferredWordDisabled: [...cultureDisabled]
+      });
+      rebuildCultureAmbiguity();
+      renderCultureManager();
+    }
     showStatus(`${imported.length.toLocaleString("fa-IR")} واژه از فایل JSON وارد شد.`);
   } catch (error) {
     showStatus(error.message || "خواندن فایل JSON ناموفق بود.", true);
@@ -350,7 +609,12 @@ $("import-file").addEventListener("change", async (event) => {
 });
 
 $("export").addEventListener("click", () => {
-  const data = { version: 1, rules };
+  const data = {
+    version: 2,
+    rules,
+    preferredWordOverrides: cultureOverrides,
+    preferredWordDisabled: [...cultureDisabled]
+  };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" }));
   const link = document.createElement("a");
   link.href = url;
@@ -374,6 +638,8 @@ $("reset").addEventListener("click", async () => {
     await loadHalfSpaceSettings();
     rules = await browser.runtime.sendMessage({ type: "autocorrect:get-rules" });
     await loadDefaultRules().catch(() => { defaultRules = []; });
+    await loadCultureWords();
+    await loadCultureSettings();
     render();
   } catch {
     showStatus("بارگذاری تنظیمات یا بانک واژه‌ها ناموفق بود.", true);
