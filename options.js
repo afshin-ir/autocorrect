@@ -10,9 +10,10 @@ const halfSpaceBiInput = $("half-space-bi");
 const halfSpaceComparativeInput = $("half-space-comparative");
 const halfSpaceHamInput = $("half-space-ham");
 const halfSpaceYaInput = $("half-space-ya");
+const preferredWordsInput = $("preferred-words");
 const rulesToggle = $("rules-toggle");
 const rulesContent = $("rules-content");
-const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput];
+const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput, preferredWordsInput];
 const symbolTriggers = new Set([
   ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
   ":.:", ":':", ":/:", ":\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
@@ -225,7 +226,8 @@ async function saveHalfSpaceSettings() {
     halfSpaceBiEnabled: halfSpaceBiInput.checked,
     halfSpaceComparativeEnabled: halfSpaceComparativeInput.checked,
     halfSpaceHamEnabled: halfSpaceHamInput.checked,
-    yayeNakerahEnabled: halfSpaceYaInput.checked
+    yayeNakerahEnabled: halfSpaceYaInput.checked,
+    preferredWordsEnabled: preferredWordsInput.checked
   });
   updateRulesSummary();
   showStatus("تنظیمات رسم‌الخط ذخیره شد.");
@@ -239,7 +241,8 @@ async function loadHalfSpaceSettings() {
     halfSpaceBiEnabled: true,
     halfSpaceComparativeEnabled: true,
     halfSpaceHamEnabled: true,
-    yayeNakerahEnabled: true
+    yayeNakerahEnabled: true,
+    preferredWordsEnabled: true
   });
   halfSpaceMiInput.checked = settings.halfSpaceMiEnabled !== false;
   halfSpaceHaInput.checked = settings.halfSpaceHaEnabled !== false;
@@ -248,6 +251,7 @@ async function loadHalfSpaceSettings() {
   halfSpaceComparativeInput.checked = settings.halfSpaceComparativeEnabled !== false;
   halfSpaceHamInput.checked = settings.halfSpaceHamEnabled !== false;
   halfSpaceYaInput.checked = settings.yayeNakerahEnabled !== false;
+  preferredWordsInput.checked = settings.preferredWordsEnabled !== false;
   updateRulesSummary();
 }
 
