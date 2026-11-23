@@ -89,7 +89,8 @@ function rebuildCultureAmbiguity() {
   for (const word of cultureWords) {
     if (cultureDisabled.has(word)) continue;
     const key = cultureKeyByWord.get(word);
-    const replacement = cultureOverrides[word] || word;
+    const override = cultureOverrides[word];
+    const replacement = typeof override === "string" && override.trim() ? override : word;
     if (!targetsByKey.has(key)) {
       targetsByKey.set(key, new Set());
       wordsByKey.set(key, []);
@@ -136,7 +137,8 @@ function renderCultureManager() {
   const foldedQuery = query.toLocaleLowerCase("fa");
   const normalizedQuery = normalizeCultureKey(query);
   const matches = cultureWords.filter((word) => {
-    const replacement = cultureOverrides[word] || word;
+    const override = cultureOverrides[word];
+    const replacement = typeof override === "string" && override.trim() ? override : word;
     return word.toLocaleLowerCase("fa").includes(foldedQuery) ||
       replacement.toLocaleLowerCase("fa").includes(foldedQuery) ||
       (normalizedQuery && cultureKeyByWord.get(word).includes(normalizedQuery)) ||
@@ -255,7 +257,8 @@ async function saveCultureOverride(word, value) {
 }
 
 async function toggleCultureWord(word) {
-  if (cultureDisabled.has(word)) cultureDisabled.delete(word);
+  const wasDisabled = cultureDisabled.has(word);
+  if (wasDisabled) cultureDisabled.delete(word);
   else cultureDisabled.add(word);
   try {
     await browser.storage.local.set({ preferredWordDisabled: [...cultureDisabled] });
@@ -263,6 +266,8 @@ async function toggleCultureWord(word) {
     renderCultureManager();
     setCultureStatus(cultureDisabled.has(word) ? "تصحیح این مدخل خاموش شد." : "تصحیح این مدخل روشن شد.");
   } catch {
+    if (wasDisabled) cultureDisabled.add(word);
+    else cultureDisabled.delete(word);
     setCultureStatus("ذخیرهٔ وضعیت مدخل ناموفق بود.", true);
   }
 }
@@ -582,6 +587,7 @@ $("import-file").addEventListener("change", async (event) => {
     if (data && !Array.isArray(data)) {
       const incomingOverrides = data.preferredWordOverrides;
       if (incomingOverrides && typeof incomingOverrides === "object" && !Array.isArray(incomingOverrides)) {
+        cultureOverrides = {};
         for (const [word, replacement] of Object.entries(incomingOverrides)) {
           if (cultureWordSet.has(word) && typeof replacement === "string" && replacement.trim()) {
             cultureOverrides[word] = replacement;
@@ -589,9 +595,7 @@ $("import-file").addEventListener("change", async (event) => {
         }
       }
       if (Array.isArray(data.preferredWordDisabled)) {
-        for (const word of data.preferredWordDisabled) {
-          if (cultureWordSet.has(word)) cultureDisabled.add(word);
-        }
+        cultureDisabled = new Set(data.preferredWordDisabled.filter((word) => cultureWordSet.has(word)));
       }
       await browser.storage.local.set({
         preferredWordOverrides: cultureOverrides,
