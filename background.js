@@ -1,3 +1,4 @@
+let preferredWordsPromise;
 let initialRulesPromise;
 let bookVariantMigrationPromise;
 const CURRENT_BOOK_VARIANTS_VERSION = 2;
@@ -7,6 +8,17 @@ function removeExcludedDefaultRules(rules) {
     (rule?.trigger === "ایدئال" && rule?.replace === "ایده‌آل") ||
     (rule?.trigger === "خطا" && rule?.replace === "ختا")
   ));
+}
+
+async function loadPreferredWords() {
+  if (!preferredWordsPromise) {
+    preferredWordsPromise = fetch(browser.runtime.getURL("preferred-words.json"))
+      .then((response) => {
+        if (!response.ok) throw new Error("خواندن فرهنگ املایی ناموفق بود.");
+        return response.json();
+      });
+  }
+  return preferredWordsPromise;
 }
 
 async function loadBookVariants() {
@@ -73,6 +85,7 @@ async function ensureRules() {
 
 browser.runtime.onMessage.addListener((message) => {
   if (message?.type === "autocorrect:get-rules") return ensureRules();
+  if (message?.type === "autocorrect:get-preferred-words") return loadPreferredWords();
   if (message?.type === "autocorrect:set-rules" && Array.isArray(message.rules)) {
     return browser.storage.local.set({ rules: message.rules });
   }
