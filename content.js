@@ -2,6 +2,10 @@
   let rules = [];
   let rulesReady = false;
   let halfSpaceSettingsReady = false;
+  let preferredWordsReady = false;
+  let preferredWordsEnabled = true;
+  let preferredWords = new Map();
+  let preferredWordMaxLength = 0;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
   const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
@@ -18,7 +22,26 @@
     })
     .catch(() => {});
 
+  browser.runtime.sendMessage({ type: "autocorrect:get-preferred-words" })
+    .then((data) => {
+      const candidates = new Map();
+      const ambiguous = new Set();
+      for (const word of data?.words || []) {
+        if (typeof word !== "string" || !word.includes("\u200c")) continue;
+        const key = word.replace(/[\s\u200c]+/gu, "");
+        if (!key) continue;
+        if (candidates.has(key) && candidates.get(key) !== word) ambiguous.add(key);
+        else candidates.set(key, word);
+        preferredWordMaxLength = Math.max(preferredWordMaxLength, word.length);
+      }
+      for (const key of ambiguous) candidates.delete(key);
+      preferredWords = candidates;
+      preferredWordsReady = true;
+    })
+    .catch(() => { preferredWordsReady = true; });
+
   browser.storage.local.get({
+    preferredWordsEnabled: true,
     halfSpaceMiEnabled: true,
     halfSpaceHaEnabled: true,
     halfSpaceSuffixEnabled: true,
@@ -27,6 +50,7 @@
     halfSpaceHamEnabled: true,
     yayeNakerahEnabled: true
   }).then((settings) => {
+    preferredWordsEnabled = settings.preferredWordsEnabled !== false;
     halfSpaceSettings.mi = settings.halfSpaceMiEnabled !== false;
     halfSpaceSettings.ha = settings.halfSpaceHaEnabled !== false;
     halfSpaceSettings.suffix = settings.halfSpaceSuffixEnabled !== false;
@@ -44,6 +68,9 @@
     if (changes.rules) {
       rules = normalizeRules(changes.rules.newValue);
       rulesReady = true;
+    }
+    if (changes.preferredWordsEnabled) {
+      preferredWordsEnabled = changes.preferredWordsEnabled.newValue !== false;
     }
     if (changes.halfSpaceMiEnabled) {
       halfSpaceSettings.mi = changes.halfSpaceMiEnabled.newValue !== false;
@@ -226,6 +253,25 @@
     return null;
   }
 
+  function findPreferredWordMatch(text) {
+    if (!preferredWordsEnabled || !preferredWordsReady || !preferredWords.size) return null;
+    const tailLength = Math.max(preferredWordMaxLength + 2, 2);
+    const offset = Math.max(0, text.length - tailLength);
+    const tail = text.slice(offset);
+    for (let start = 0; start < tail.length; start++) {
+      if (start > 0 && /[\p{L}\p{M}\p{N}_\u200c]/u.test(tail[start - 1])) continue;
+      if (start === 0 && offset > 0 && /[\p{L}\p{M}\p{N}_\u200c]/u.test(text[offset - 1])) continue;
+      const typed = tail.slice(start);
+      if (!/^[\p{L}\p{M}\p{N}_\u200c ]+$/u.test(typed)) continue;
+      const key = typed.replace(/[\s\u200c]+/gu, "");
+      const replacement = preferredWords.get(key);
+      if (replacement && typed !== replacement) {
+        return { start: offset + start, end: text.length, replace: replacement };
+      }
+    }
+    return null;
+  }
+
   function findCorrection(text) {
     const exactMatch = findMatch(text);
     if (exactMatch) {
@@ -235,6 +281,8 @@
         replace: exactMatch.rule.replace
       };
     }
+    const preferredMatch = findPreferredWordMatch(text);
+    if (preferredMatch) return preferredMatch;
     return findHalfSpaceMatch(text);
   }
 
