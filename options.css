@@ -86,6 +86,28 @@ tbody tr:hover { background: #fbfcfc; }
 .text-button:hover { color: #b54c4c; }
 .editor .status { grid-column: 1 / -1; min-height: 25px; margin: 0; color: #287c70; font-size: 13px; }
 .status.error { color: #b54c4c; }
+.culture-manager { padding: 0; margin-bottom: 18px; }
+.culture-content { padding-bottom: 16px; }
+.culture-search-field { display: flex; flex-direction: column; gap: 7px; margin: 12px 0; }
+.culture-search-field label { color: #4d625e; font-size: 13px; }
+.culture-results-summary { margin: 8px 0; color: #758581; font-size: 12px; }
+.culture-results { max-height: 420px; overflow: auto; border: 1px solid #e5ebea; border-radius: 7px; }
+.culture-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-bottom: 1px solid #edf0f0; }
+.culture-row:last-child { border-bottom: 0; }
+.culture-row:hover { background: #fbfcfc; }
+.culture-word-copy { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+.culture-word-copy strong { color: #294540; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.culture-word-copy small { color: #758581; font-size: 12px; overflow-wrap: anywhere; }
+.culture-word-copy .culture-disabled-label { color: #a65a43; }
+.culture-word-copy .culture-ambiguous-label { color: #8b6a25; }
+.culture-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+.culture-action { min-height: 32px; padding: 4px 9px; border: 1px solid #d4dddc; border-radius: 6px; background: #fff; color: #287c70; font: inherit; font-size: 12px; cursor: pointer; }
+.culture-action:hover { background: #edf7f4; }
+.culture-action.disable { color: #a65a43; }
+.culture-edit-form { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.culture-edit-form input { flex: 1 1 210px; min-width: 0; min-height: 38px; padding: 7px 10px; border: 1px solid #cfd9d8; border-radius: 6px; font: inherit; direction: auto; }
+.culture-status { min-height: 20px; margin: 8px 0 0; color: #287c70; font-size: 12px; }
+.culture-status.error { color: #b54c4c; }
 
 @media (max-width: 760px) {
   body { min-width: 360px; }
@@ -95,6 +117,8 @@ tbody tr:hover { background: #fbfcfc; }
   .rules-toggle { gap: 10px; padding: 13px 12px; }
   .rules-title { font-size: 14px; }
   .rules-open-action { min-height: 38px; padding: 7px 10px; border-radius: 7px; }
+  .culture-row { grid-template-columns: 1fr; gap: 8px; }
+  .culture-actions { justify-content: flex-start; }
   .toolbar { width: 100%; }
   .toolbar .button { flex: 1; min-width: 0; padding-inline: 9px; gap: 6px; font-size: 13px; }
   .editor { grid-template-columns: 1fr 24px 1fr; gap: 8px; padding: 12px; }
