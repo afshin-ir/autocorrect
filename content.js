@@ -6,6 +6,10 @@
   let preferredWordsEnabled = true;
   let preferredWords = new Map();
   let preferredWordMaxLength = 0;
+  let preferredWordSource = [];
+  let preferredWordOverrides = {};
+  let preferredWordDisabled = new Set();
+  let preferredSettingsReady = false;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
   const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
@@ -24,24 +28,15 @@
 
   browser.runtime.sendMessage({ type: "autocorrect:get-preferred-words" })
     .then((data) => {
-      const candidates = new Map();
-      const ambiguous = new Set();
-      for (const word of data?.words || []) {
-        if (typeof word !== "string") continue;
-        const key = normalizePreferredKey(word);
-        if (!key) continue;
-        if (candidates.has(key) && candidates.get(key) !== word) ambiguous.add(key);
-        else candidates.set(key, word);
-        preferredWordMaxLength = Math.max(preferredWordMaxLength, word.length);
-      }
-      for (const key of ambiguous) candidates.delete(key);
-      preferredWords = candidates;
-      preferredWordsReady = true;
+      preferredWordSource = Array.isArray(data?.words) ? data.words : [];
+      rebuildPreferredWordIndex();
     })
     .catch(() => { preferredWordsReady = true; });
 
   browser.storage.local.get({
     preferredWordsEnabled: true,
+    preferredWordOverrides: {},
+    preferredWordDisabled: [],
     halfSpaceMiEnabled: true,
     halfSpaceHaEnabled: true,
     halfSpaceSuffixEnabled: true,
@@ -51,6 +46,14 @@
     yayeNakerahEnabled: true
   }).then((settings) => {
     preferredWordsEnabled = settings.preferredWordsEnabled !== false;
+    preferredWordOverrides = settings.preferredWordOverrides && typeof settings.preferredWordOverrides === "object"
+      ? settings.preferredWordOverrides
+      : {};
+    preferredWordDisabled = new Set(Array.isArray(settings.preferredWordDisabled)
+      ? settings.preferredWordDisabled.filter((word) => typeof word === "string")
+      : []);
+    preferredSettingsReady = true;
+    rebuildPreferredWordIndex();
     halfSpaceSettings.mi = settings.halfSpaceMiEnabled !== false;
     halfSpaceSettings.ha = settings.halfSpaceHaEnabled !== false;
     halfSpaceSettings.suffix = settings.halfSpaceSuffixEnabled !== false;
@@ -71,6 +74,18 @@
     }
     if (changes.preferredWordsEnabled) {
       preferredWordsEnabled = changes.preferredWordsEnabled.newValue !== false;
+    }
+    if (changes.preferredWordOverrides) {
+      preferredWordOverrides = changes.preferredWordOverrides.newValue && typeof changes.preferredWordOverrides.newValue === "object"
+        ? changes.preferredWordOverrides.newValue
+        : {};
+      rebuildPreferredWordIndex();
+    }
+    if (changes.preferredWordDisabled) {
+      preferredWordDisabled = new Set(Array.isArray(changes.preferredWordDisabled.newValue)
+        ? changes.preferredWordDisabled.newValue.filter((word) => typeof word === "string")
+        : []);
+      rebuildPreferredWordIndex();
     }
     if (changes.halfSpaceMiEnabled) {
       halfSpaceSettings.mi = changes.halfSpaceMiEnabled.newValue !== false;
@@ -257,6 +272,27 @@
     return value.normalize("NFC")
       .replace(/[\u064b-\u0652]/gu, "")
       .replace(/[\s\u200c]+/gu, "");
+  }
+
+  function rebuildPreferredWordIndex() {
+    if (!preferredSettingsReady) return;
+    const candidates = new Map();
+    const ambiguous = new Set();
+    preferredWordMaxLength = 0;
+    for (const word of preferredWordSource) {
+      if (typeof word !== "string" || preferredWordDisabled.has(word)) continue;
+      const key = normalizePreferredKey(word);
+      if (!key) continue;
+      const replacement = typeof preferredWordOverrides[word] === "string" && preferredWordOverrides[word].trim()
+        ? preferredWordOverrides[word]
+        : word;
+      if (candidates.has(key) && candidates.get(key) !== replacement) ambiguous.add(key);
+      else candidates.set(key, replacement);
+      preferredWordMaxLength = Math.max(preferredWordMaxLength, word.length);
+    }
+    for (const key of ambiguous) candidates.delete(key);
+    preferredWords = candidates;
+    preferredWordsReady = true;
   }
 
   function findPreferredWordMatch(text) {
