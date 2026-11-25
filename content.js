@@ -239,10 +239,9 @@
         const suffix = halfSpacedComparative[3];
         if (suffix === "تر" && comparativeAmbiguousStems.has(stem)) return null;
         const exception = suffix === "تر" ? comparativeExceptions.get(stem) : superlativeExceptions.get(stem);
-        if (exception) {
-          const start = halfSpacedComparative.index + halfSpacedComparative[1].length;
-          return { start, end: text.length, replace: exception };
-        }
+        const start = halfSpacedComparative.index + halfSpacedComparative[1].length;
+        const replacement = exception || formatComparative(stem, suffix);
+        if (text.slice(start) !== replacement) return { start, end: text.length, replace: replacement };
         return null;
       }
 
@@ -261,7 +260,8 @@
         const whole = attachedSuperlative[2] + attachedSuperlative[3];
         if (!attachedSuperlativeExceptions.has(whole)) {
           const start = attachedSuperlative.index + attachedSuperlative[1].length;
-          return { start, end: text.length, replace: formatComparative(attachedSuperlative[2], attachedSuperlative[3]) };
+          const replacement = formatComparative(attachedSuperlative[2], attachedSuperlative[3]);
+          if (text.slice(start) !== replacement) return { start, end: text.length, replace: replacement };
         }
       }
     }
