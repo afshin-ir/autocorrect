@@ -10,13 +10,14 @@ const halfSpaceBiInput = $("half-space-bi");
 const halfSpaceComparativeInput = $("half-space-comparative");
 const halfSpaceHamInput = $("half-space-ham");
 const halfSpaceYaInput = $("half-space-ya");
+const halfSpaceFixedInput = $("half-space-fixed");
 const preferredWordsInput = $("preferred-words");
 const cultureToggle = $("culture-toggle");
 const cultureSearchInput = $("culture-search");
 const cultureResultsElement = $("culture-results");
 const rulesToggle = $("rules-toggle");
 const rulesContent = $("rules-content");
-const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput, preferredWordsInput];
+const ruleInputs = [halfSpaceMiInput, halfSpaceHaInput, halfSpaceSuffixInput, halfSpaceBiInput, halfSpaceComparativeInput, halfSpaceHamInput, halfSpaceYaInput, halfSpaceFixedInput, preferredWordsInput];
 const symbolTriggers = new Set([
   ":_-:", ":_(:", ":_):", ":---:", ":--:", ":-:", ":!:", ":!!:", ":!?:", ":?:",
   ":.:", ":':", ":/:", ":\\:", ":^-:", ":^(:", ":^):", ":<<:", ":>>:",
@@ -458,6 +459,7 @@ async function saveHalfSpaceSettings() {
     halfSpaceComparativeEnabled: halfSpaceComparativeInput.checked,
     halfSpaceHamEnabled: halfSpaceHamInput.checked,
     yayeNakerahEnabled: halfSpaceYaInput.checked,
+    fixedCompoundsEnabled: halfSpaceFixedInput.checked,
     preferredWordsEnabled: preferredWordsInput.checked
   });
   updateRulesSummary();
@@ -473,6 +475,7 @@ async function loadHalfSpaceSettings() {
     halfSpaceComparativeEnabled: true,
     halfSpaceHamEnabled: true,
     yayeNakerahEnabled: true,
+    fixedCompoundsEnabled: true,
     preferredWordsEnabled: false
   });
   halfSpaceMiInput.checked = settings.halfSpaceMiEnabled !== false;
@@ -482,6 +485,7 @@ async function loadHalfSpaceSettings() {
   halfSpaceComparativeInput.checked = settings.halfSpaceComparativeEnabled !== false;
   halfSpaceHamInput.checked = settings.halfSpaceHamEnabled !== false;
   halfSpaceYaInput.checked = settings.yayeNakerahEnabled !== false;
+  halfSpaceFixedInput.checked = settings.fixedCompoundsEnabled !== false;
   preferredWordsInput.checked = settings.preferredWordsEnabled === true;
   updateRulesSummary();
 }
@@ -571,6 +575,7 @@ halfSpaceBiInput.addEventListener("change", () => saveHalfSpaceSettings().catch(
 halfSpaceComparativeInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 halfSpaceHamInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 halfSpaceYaInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
+halfSpaceFixedInput.addEventListener("change", () => saveHalfSpaceSettings().catch(() => showStatus("ذخیرهٔ تنظیمات ناموفق بود.", true)));
 $("cancel-edit").addEventListener("click", endEdit);
 searchInput.addEventListener("input", render);
 

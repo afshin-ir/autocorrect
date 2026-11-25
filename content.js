@@ -10,7 +10,7 @@
   let preferredWordOverrides = {};
   let preferredWordDisabled = new Set();
   let preferredSettingsReady = false;
-  const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
+  const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true, fixedCompounds: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
   const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
   const biExceptionWords = ["جا", "چاره", "خود", "داد", "دل", "راه", "زار", "عار", "کار", "نوا", "هوش", "هوده", "گانه"];
@@ -27,6 +27,35 @@
   const attachedSuperlativeExceptions = new Set([...superlativeExceptions.values(), "نسترین"]);
   const nonJoiningFinalLetters = new Set(["ا", "آ", "د", "ذ", "ر", "ز", "ژ", "و"]);
   const yayeSpokenHehWords = new Set(["گره"]);
+  const yaSilentHehCorrections = new Map([
+    ["بی علاقه گی", "بی‌علاقگی"], ["بی‌علاقه گی", "بی‌علاقگی"], ["بی‌علاقه‌گی", "بی‌علاقگی"],
+    ["جمله گی", "جملگی"], ["جمله‌گی", "جملگی"], ["خانه گی", "خانگی"], ["خانه‌گی", "خانگی"],
+    ["ویژه گی", "ویژگی"], ["ویژه‌گی", "ویژگی"], ["هفته گی", "هفتگی"], ["هفته‌گی", "هفتگی"],
+    ["همه گی", "همگی"], ["همه‌گی", "همگی"], ["همیشه گی", "همیشگی"], ["همیشه‌گی", "همیشگی"]
+  ]);
+  const fixedCompoundCorrections = new Map([
+    ["این طور", "این‌طور"], ["اینطور", "این‌طور"], ["آن طور", "آن‌طور"], ["آنگونه", "آن‌گونه"], ["آن گونه", "آن‌گونه"],
+    ["این گونه", "این‌گونه"], ["اینگونه", "این‌گونه"],
+    ["همان جا", "همان‌جا"], ["همانجا", "همان‌جا"], ["همین جا", "همین‌جا"], ["همینجا", "همین‌جا"],
+    ["همان جور", "همان‌جور"], ["همانجور", "همان‌جور"], ["همین جور", "همین‌جور"], ["همینجور", "همین‌جور"],
+    ["همان که", "همان‌که"], ["همین که", "همین‌که"],
+    ["همان گونه", "همان‌گونه"], ["همانگونه", "همان‌گونه"], ["همین گونه", "همین‌گونه"], ["همینگونه", "همین‌گونه"],
+    ["چنان که", "چنان‌که"], ["چنانکه", "چنان‌که"], ["چون که", "چون‌که"], ["چونکه", "چون‌که"],
+    ["هیچ کدام", "هیچکدام"], ["هیچ کس", "هیچکس"], ["هیچ گاه", "هیچگاه"], ["هیچ گونه", "هیچگونه"], ["هیچ یک", "هیچیک"],
+    ["هر کدام", "هرکدام"], ["هر کس", "هرکس"], ["هر که", "هرکه"], ["هر گاه", "هرگاه"], ["هر گونه", "هرگونه"], ["هر یک", "هریک"],
+    ["چه طور", "چطور"], ["چه‌طور", "چطور"], ["چه قدر", "چقدر"], ["چه‌قدر", "چقدر"],
+    ["چه گونه", "چگونه"], ["چه‌گونه", "چگونه"],
+    ["به خصوص", "به‌خصوص"], ["به سختی", "به‌سختی"], ["به محض", "به‌محض"], ["به موجب", "به‌موجب"],
+    ["به جهت", "به‌جهت"]
+  ]);
+  const lexicalizedAnyWords = new Set([
+    "هرآینه", "هرازگاهی", "هرچند", "هرطور", "هرکدام", "هرکس", "هرکه", "هرگاه", "هرگونه", "هریک",
+    "هیچکدام", "هیچکس", "هیچگاه", "هیچگونه", "هیچیک"
+  ]);
+  const fixedZwnjWords = new Set([
+    "این‌طور", "آن‌طور", "این‌گونه", "آن‌گونه", "همان‌جا", "همین‌جا", "همان‌جور", "همین‌جور",
+    "همان‌که", "همین‌که", "همان‌گونه", "همین‌گونه", "چنان‌که", "چون‌که"
+  ]);
 
   browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
     .then((result) => {
@@ -52,7 +81,8 @@
     halfSpaceBiEnabled: true,
     halfSpaceComparativeEnabled: true,
     halfSpaceHamEnabled: true,
-    yayeNakerahEnabled: true
+    yayeNakerahEnabled: true,
+    fixedCompoundsEnabled: true
   }).then((settings) => {
     preferredWordsEnabled = settings.preferredWordsEnabled === true;
     preferredWordOverrides = settings.preferredWordOverrides && typeof settings.preferredWordOverrides === "object"
@@ -70,6 +100,7 @@
     halfSpaceSettings.comparative = settings.halfSpaceComparativeEnabled !== false;
     halfSpaceSettings.ham = settings.halfSpaceHamEnabled !== false;
     halfSpaceSettings.indefiniteYa = settings.yayeNakerahEnabled !== false;
+    halfSpaceSettings.fixedCompounds = settings.fixedCompoundsEnabled !== false;
     halfSpaceSettingsReady = true;
   }).catch(() => {
     halfSpaceSettingsReady = true;
@@ -116,6 +147,9 @@
     }
     if (changes.yayeNakerahEnabled) {
       halfSpaceSettings.indefiniteYa = changes.yayeNakerahEnabled.newValue !== false;
+    }
+    if (changes.fixedCompoundsEnabled) {
+      halfSpaceSettings.fixedCompounds = changes.fixedCompoundsEnabled.newValue !== false;
     }
   });
 
@@ -292,14 +326,25 @@
         const stem = spacedYa[2].replace(/\u200c+$/u, "");
         const last = [...stem].pop();
         let replacement;
-        if (stem === "جزء") replacement = "جزئی";
-        else if (stem === "خلأ") replacement = "خلأی";
+        if (stem === "خلأ") replacement = "خلأی";
+        else if (last === "ء") replacement = stem.slice(0, -1) + "ئی";
+        else if (last === "ى") replacement = stem.slice(0, -1) + "ایی";
         else if (last === "ی") replacement = stem + "\u200cای";
         else if (last === "ه" && (yayeSpokenHehWords.has(stem) || /اه$/u.test(stem))) replacement = stem + "ی";
         else if (last === "ه") replacement = stem + "\u200cای";
         else replacement = stem + "ی";
         const start = spacedYa.index + spacedYa[1].length;
         return { start, end: text.length, replace: replacement };
+      }
+
+      const silentHeh = [...yaSilentHehCorrections.entries()].find(([trigger]) => {
+        if (!text.endsWith(trigger)) return false;
+        const previous = [...text.slice(0, -trigger.length)].pop() || "";
+        return !isWordCharacter(previous);
+      });
+      if (silentHeh) {
+        const start = text.length - silentHeh[0].length;
+        return { start, end: text.length, replace: silentHeh[1] };
       }
     }
 
@@ -313,6 +358,44 @@
         return { start, end: text.length, replace: stem + "\u200c" + spacedSuffixMatch[3] };
       }
 
+    }
+
+    if (halfSpaceSettings.fixedCompounds) {
+      for (const [trigger, replacement] of fixedCompoundCorrections) {
+        if (!text.endsWith(trigger)) continue;
+        const start = text.length - trigger.length;
+        const previous = [...text.slice(0, start)].pop() || "";
+        if (isWordCharacter(previous)) continue;
+        if (text.slice(start) !== replacement) return { start, end: text.length, replace: replacement };
+      }
+
+      const prefixMatch = /(^|[^\p{L}\p{M}\p{N}_])(هر|هیچ|همین|همان)\u200c([\p{L}\p{M}]+)$/u.exec(text);
+      if (prefixMatch) {
+        const prefix = prefixMatch[2];
+        const suffix = prefixMatch[3];
+        const start = prefixMatch.index + prefixMatch[1].length;
+        const whole = prefix + suffix;
+        if (prefix === "همین" || prefix === "همان") {
+          if (fixedZwnjWords.has(prefix + "\u200c" + suffix)) return null;
+          return { start, end: text.length, replace: prefix + " " + suffix };
+        }
+        const replacement = lexicalizedAnyWords.has(whole) ? whole : prefix + " " + suffix;
+        return { start, end: text.length, replace: replacement };
+      }
+
+      const demonstrativeMatch = /(^|[^\p{L}\p{M}\p{N}_])(این|آن)\u200c([\p{L}\p{M}]+)$/u.exec(text);
+      if (demonstrativeMatch) {
+        const joined = demonstrativeMatch[2] + "\u200c" + demonstrativeMatch[3];
+        if (fixedZwnjWords.has(joined) || ["این‌که", "آن‌که", "این‌چه", "آن‌چه"].includes(joined)) return null;
+        const start = demonstrativeMatch.index + demonstrativeMatch[1].length;
+        return { start, end: text.length, replace: demonstrativeMatch[2] + " " + demonstrativeMatch[3] };
+      }
+
+      const vocative = /(^|[^\p{L}\p{M}\p{N}_])ای\u200c([\p{L}\p{M}]+)$/u.exec(text);
+      if (vocative) {
+        const start = vocative.index + vocative[1].length;
+        return { start, end: text.length, replace: "ای " + vocative[2] };
+      }
     }
 
     return null;
