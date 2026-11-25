@@ -144,12 +144,11 @@
   }
 
   function formatComparative(stem, suffix) {
-    const cleanStem = stem.replace(/\\u200c+$/u, "");
+    const cleanStem = stem.replace(/\u200c+$/u, "");
     const finalLetter = [...cleanStem].pop() || "";
-    const separator = nonJoiningFinalLetters.has(finalLetter) ? "" : "\\u200c";
+    const separator = nonJoiningFinalLetters.has(finalLetter) ? "" : "\u200c";
     return cleanStem + separator + suffix;
   }
-
   function findHalfSpaceMatch(text) {
     if (halfSpaceSettings.mi) {
       const prefixMatch = /(^|[^\p{L}\p{M}\p{N}_])(نمی|می) +([\p{L}\p{M}\u200c]+)$/u.exec(text);
@@ -232,12 +231,11 @@
     }
 
     if (halfSpaceSettings.comparative) {
-      const boundary = "(^|[^\\\\p{L}\\\\p{M}\\\\p{N}_])";
-      const comparativeParts = "(ترین|تر)";
+      const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
 
-      const halfSpacedComparative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+)\\u200c(ترین|تر)$/u.exec(text);
+      const halfSpacedComparative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+)\u200c(ترین|تر)$/u.exec(text);
       if (halfSpacedComparative) {
-        const stem = halfSpacedComparative[2].replace(/\\u200c+$/u, "");
+        const stem = halfSpacedComparative[2].replace(/\u200c+$/u, "");
         const suffix = halfSpacedComparative[3];
         if (suffix === "تر" && comparativeAmbiguousStems.has(stem)) return null;
         const exception = suffix === "تر" ? comparativeExceptions.get(stem) : superlativeExceptions.get(stem);
@@ -248,9 +246,9 @@
         return null;
       }
 
-      const spacedComparative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+) +(ترین|تر)$/u.exec(text);
+      const spacedComparative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +(ترین|تر)$/u.exec(text);
       if (spacedComparative) {
-        const stem = spacedComparative[2].replace(/\\u200c+$/u, "");
+        const stem = spacedComparative[2].replace(/\u200c+$/u, "");
         const suffix = spacedComparative[3];
         if (suffix === "تر" && comparativeAmbiguousStems.has(stem)) return null;
         const exception = suffix === "تر" ? comparativeExceptions.get(stem) : superlativeExceptions.get(stem);
@@ -258,8 +256,8 @@
         return { start, end: text.length, replace: exception || formatComparative(stem, suffix) };
       }
 
-      const attachedSuperlative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+)(ترین)$/u.exec(text);
-      if (attachedSuperlative && !attachedSuperlative[2].endsWith("\\u200c")) {
+      const attachedSuperlative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+)(ترین)$/u.exec(text);
+      if (attachedSuperlative && !attachedSuperlative[2].endsWith("\u200c")) {
         const whole = attachedSuperlative[2] + attachedSuperlative[3];
         if (!attachedSuperlativeExceptions.has(whole)) {
           const start = attachedSuperlative.index + attachedSuperlative[1].length;
@@ -268,9 +266,9 @@
       }
     }
     if (halfSpaceSettings.ham) {
-      const boundary = "(^|[^\\\\p{L}\\\\p{M}\\\\p{N}_])";
+      const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
       const exceptionParts = hamExceptionWords.map((word) => word.slice(2)).join("|");
-      const halfSpacedHamException = new RegExp(`${boundary}هم\\\\u200c(${exceptionParts})$`, "u").exec(text);
+      const halfSpacedHamException = new RegExp(`${boundary}هم\\u200c(${exceptionParts})$`, "u").exec(text);
       if (halfSpacedHamException) {
         const start = halfSpacedHamException.index + halfSpacedHamException[1].length;
         return { start, end: text.length, replace: `هم${halfSpacedHamException[2]}` };
@@ -280,12 +278,12 @@
       const spacedHam = new RegExp(`${boundary}هم +(${compoundParts})$`, "u").exec(text);
       if (spacedHam) {
         const start = spacedHam.index + spacedHam[1].length;
-        return { start, end: text.length, replace: `هم\\\\u200c${spacedHam[2]}` };
+        return { start, end: text.length, replace: `هم\u200c${spacedHam[2]}` };
       }
       const attachedHam = new RegExp(`${boundary}(هم(?:${compoundParts}))$`, "u").exec(text);
       if (attachedHam) {
         const start = attachedHam.index + attachedHam[1].length;
-        return { start, end: text.length, replace: `هم\\\\u200c${attachedHam[2].slice(2)}` };
+        return { start, end: text.length, replace: `هم\u200c${attachedHam[2].slice(2)}` };
       }
     }
     if (halfSpaceSettings.indefiniteYa) {
