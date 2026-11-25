@@ -12,7 +12,7 @@
   let preferredSettingsReady = false;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
-  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار", "اخلاق", "صفت", "شعور"];
+  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
   const biExceptionWords = ["جا", "چاره", "خود", "داد", "دل", "راه", "زار", "عار", "کار", "نوا", "هوش", "هوده", "گانه"];
   const biPrepositionWords = ["هیچ"];
   const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
@@ -178,6 +178,12 @@
       const exceptionParts = biExceptionWords.join("|");
       const prepositionParts = biPrepositionWords.join("|");
 
+      const spacedException = new RegExp(`${boundary}بی +(${exceptionParts})$`, "u").exec(text);
+      if (spacedException) {
+        const start = spacedException.index + spacedException[1].length;
+        return { start, end: text.length, replace: `بی${spacedException[2]}` };
+      }
+
       const halfSpacedException = new RegExp(`${boundary}بی\\u200c(${exceptionParts})$`, "u").exec(text);
       if (halfSpacedException) {
         const start = halfSpacedException.index + halfSpacedException[1].length;
@@ -190,8 +196,8 @@
         return { start, end: text.length, replace: `بی ${joinedPreposition[2]}` };
       }
 
-      const spacedBi = new RegExp(`${boundary}بی +(${biParts})$`, "u").exec(text);
-      if (spacedBi) {
+      const spacedBi = new RegExp(`${boundary}بی +([\\p{L}\\p{M}\\u200c]+)$`, "u").exec(text);
+      if (spacedBi && !biPrepositionWords.includes(spacedBi[2])) {
         const start = spacedBi.index + spacedBi[1].length;
         return { start, end: text.length, replace: `بی\\u200c${spacedBi[2]}` };
       }
