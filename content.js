@@ -18,8 +18,6 @@
     ["به", "بهتر"], ["که", "کهتر"], ["مه", "مهتر"], ["بیش", "بیشتر"], ["کم", "کمتر"]
   ]);
   const yayeSpokenHehWords = new Set(["گره"]);
-  // These standalone words can be mistaken for a verb plus the suffix «ام».
-  const halfSpaceSuffixExceptions = new Set(["الهام", "سهام"]);
 
   browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
     .then((result) => {
@@ -255,18 +253,10 @@
       const spacedSuffixMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+ه) +(ایم|ای|ام|اید|اند)$/u.exec(text);
       if (spacedSuffixMatch) {
         const stem = spacedSuffixMatch[2].replace(/\u200c+$/u, "");
-        if (halfSpaceSuffixExceptions.has(stem + spacedSuffixMatch[3])) return null;
         const start = spacedSuffixMatch.index + spacedSuffixMatch[1].length;
         return { start, end: text.length, replace: stem + "\u200c" + spacedSuffixMatch[3] };
       }
 
-      const attachedSuffixMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+ه)(ایم|ای|ام|اید|اند)$/u.exec(text);
-      if (attachedSuffixMatch) {
-        const stem = attachedSuffixMatch[2].replace(/\u200c+$/u, "");
-        if (halfSpaceSuffixExceptions.has(stem + attachedSuffixMatch[3])) return null;
-        const start = attachedSuffixMatch.index + attachedSuffixMatch[1].length;
-        return { start, end: text.length, replace: stem + "\u200c" + attachedSuffixMatch[3] };
-      }
     }
 
     return null;
