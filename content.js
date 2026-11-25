@@ -246,20 +246,20 @@
       const spacedBi = new RegExp(`${boundary}بی +([\\p{L}\\p{M}\\u200c]+)$`, "u").exec(text);
       if (spacedBi && !biPrepositionWords.includes(spacedBi[2])) {
         const start = spacedBi.index + spacedBi[1].length;
-        return { start, end: text.length, replace: `بی\\u200c${spacedBi[2]}` };
+        return { start, end: text.length, replace: "بی‌" + spacedBi[2] };
       }
 
       const attachedBi = new RegExp(`${boundary}(بی(?:${biParts}))$`, "u").exec(text);
       if (attachedBi) {
         const start = attachedBi.index + attachedBi[1].length;
-        return { start, end: text.length, replace: `بی\\u200c${attachedBi[2].slice(2)}` };
+        return { start, end: text.length, replace: "بی‌" + attachedBi[2].slice(2) };
       }
 
       const biChon = new RegExp(`${boundary}بی(?: |\\u200c)?چون(?: |\\u200c)?و(?: |\\u200c)?چرا$`, "u").exec(text);
       if (biChon) {
         const start = biChon.index + biChon[1].length;
         const typed = text.slice(start);
-        const canonical = "بی\\u200cچون\\u200cوچرا";
+        const canonical = "بی‌چون‌وچرا";
         if (typed !== canonical) return { start, end: text.length, replace: canonical };
       }
     }
