@@ -12,8 +12,6 @@
   let preferredSettingsReady = false;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
-  // Preserve ordinary words that collide with dictionary spacing variants.
-  const preferredWordInputExceptions = new Set(["بینشان"]);
   const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
   const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
   const comparativeExceptions = new Map([
@@ -291,6 +289,12 @@
     preferredWordsReady = true;
   }
 
+  function isKnownJoinedBiVariant(text) {
+    const key = normalizePreferredKey(text);
+    return biPrefixWords.some((word) => key === normalizePreferredKey("بی" + word)) ||
+      ["بیچون و چرا", "بیچونوچرا", "بیچون‌وچرا"].some((form) => key === normalizePreferredKey(form));
+  }
+
   function findPreferredWordMatch(text) {
     if (!preferredWordsEnabled || !preferredWordsReady || !preferredWords.size) return null;
     const tailLength = Math.max(preferredWordMaxLength * 2 + 2, 2);
@@ -301,9 +305,12 @@
       if (start === 0 && offset > 0 && /[\p{L}\p{M}\p{N}_\u200c]/u.test(text[offset - 1])) continue;
       const typed = tail.slice(start);
       if (!/^[\p{L}\p{M}\p{N}_\u200c ]+$/u.test(typed)) continue;
-      if (preferredWordInputExceptions.has(typed)) continue;
       const key = normalizePreferredKey(typed);
       const replacement = preferredWords.get(key);
+      const startsBiPrefix = replacement?.startsWith("بی‌");
+      const hasBiBoundary = typed.startsWith("بی ") || typed.startsWith("بی‌");
+      if (startsBiPrefix && !hasBiBoundary &&
+          !(halfSpaceSettings.bi && isKnownJoinedBiVariant(typed))) continue;
       if (replacement && typed !== replacement) {
         return { start: offset + start, end: text.length, replace: replacement };
       }
