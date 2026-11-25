@@ -473,7 +473,7 @@ async function loadHalfSpaceSettings() {
     halfSpaceComparativeEnabled: true,
     halfSpaceHamEnabled: true,
     yayeNakerahEnabled: true,
-    preferredWordsEnabled: true
+    preferredWordsEnabled: false
   });
   halfSpaceMiInput.checked = settings.halfSpaceMiEnabled !== false;
   halfSpaceHaInput.checked = settings.halfSpaceHaEnabled !== false;
@@ -482,7 +482,7 @@ async function loadHalfSpaceSettings() {
   halfSpaceComparativeInput.checked = settings.halfSpaceComparativeEnabled !== false;
   halfSpaceHamInput.checked = settings.halfSpaceHamEnabled !== false;
   halfSpaceYaInput.checked = settings.yayeNakerahEnabled !== false;
-  preferredWordsInput.checked = settings.preferredWordsEnabled !== false;
+  preferredWordsInput.checked = settings.preferredWordsEnabled === true;
   updateRulesSummary();
 }
 

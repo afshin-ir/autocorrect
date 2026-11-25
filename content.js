@@ -3,7 +3,7 @@
   let rulesReady = false;
   let halfSpaceSettingsReady = false;
   let preferredWordsReady = false;
-  let preferredWordsEnabled = true;
+  let preferredWordsEnabled = false;
   let preferredWords = new Map();
   let preferredWordMaxLength = 0;
   let preferredWordSource = [];
@@ -34,7 +34,7 @@
     .catch(() => { preferredWordsReady = true; });
 
   browser.storage.local.get({
-    preferredWordsEnabled: true,
+    preferredWordsEnabled: false,
     preferredWordOverrides: {},
     preferredWordDisabled: [],
     halfSpaceMiEnabled: true,
@@ -45,7 +45,7 @@
     halfSpaceHamEnabled: true,
     yayeNakerahEnabled: true
   }).then((settings) => {
-    preferredWordsEnabled = settings.preferredWordsEnabled !== false;
+    preferredWordsEnabled = settings.preferredWordsEnabled === true;
     preferredWordOverrides = settings.preferredWordOverrides && typeof settings.preferredWordOverrides === "object"
       ? settings.preferredWordOverrides
       : {};
@@ -73,7 +73,7 @@
       rulesReady = true;
     }
     if (changes.preferredWordsEnabled) {
-      preferredWordsEnabled = changes.preferredWordsEnabled.newValue !== false;
+      preferredWordsEnabled = changes.preferredWordsEnabled.newValue === true;
     }
     if (changes.preferredWordOverrides) {
       preferredWordOverrides = changes.preferredWordOverrides.newValue && typeof changes.preferredWordOverrides.newValue === "object"
