@@ -12,7 +12,9 @@
   let preferredSettingsReady = false;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
-  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
+  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار", "اخلاق", "صفت", "شعور"];
+  const biExceptionWords = ["جا", "چاره", "خود", "داد", "دل", "راه", "زار", "عار", "کار", "نوا", "هوش", "هوده", "گانه"];
+  const biPrepositionWords = ["هیچ"];
   const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
   const comparativeExceptions = new Map([
     ["به", "بهتر"], ["که", "کهتر"], ["مه", "مهتر"], ["بیش", "بیشتر"], ["کم", "کمتر"]
@@ -173,25 +175,39 @@
     if (halfSpaceSettings.bi) {
       const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
       const biParts = biPrefixWords.join("|");
-      const spacedBi = new RegExp(`${boundary}بی +([\\p{L}\\p{M}\\u200c]+)$`, "u").exec(text);
+      const exceptionParts = biExceptionWords.join("|");
+      const prepositionParts = biPrepositionWords.join("|");
+
+      const halfSpacedException = new RegExp(`${boundary}بی\\u200c(${exceptionParts})$`, "u").exec(text);
+      if (halfSpacedException) {
+        const start = halfSpacedException.index + halfSpacedException[1].length;
+        return { start, end: text.length, replace: `بی${halfSpacedException[2]}` };
+      }
+
+      const joinedPreposition = new RegExp(`${boundary}بی(?:\\u200c)?(${prepositionParts})$`, "u").exec(text);
+      if (joinedPreposition) {
+        const start = joinedPreposition.index + joinedPreposition[1].length;
+        return { start, end: text.length, replace: `بی ${joinedPreposition[2]}` };
+      }
+
+      const spacedBi = new RegExp(`${boundary}بی +(${biParts})$`, "u").exec(text);
       if (spacedBi) {
         const start = spacedBi.index + spacedBi[1].length;
-        return { start, end: text.length, replace: `بی\u200c${spacedBi[2]}` };
+        return { start, end: text.length, replace: `بی\\u200c${spacedBi[2]}` };
       }
+
       const attachedBi = new RegExp(`${boundary}(بی(?:${biParts}))$`, "u").exec(text);
       if (attachedBi) {
         const start = attachedBi.index + attachedBi[1].length;
-        return { start, end: text.length, replace: `بی\u200c${attachedBi[2].slice(2)}` };
+        return { start, end: text.length, replace: `بی\\u200c${attachedBi[2].slice(2)}` };
       }
-      const spacedBiChon = new RegExp(`${boundary}بی چون و چرا$`, "u").exec(text);
-      if (spacedBiChon) {
-        const start = spacedBiChon.index + spacedBiChon[1].length;
-        return { start, end: text.length, replace: "بی\u200cچون\u200cوچرا" };
-      }
-      const attachedBiChon = new RegExp(`${boundary}بیچون(?:و)?چرا$`, "u").exec(text);
-      if (attachedBiChon) {
-        const start = attachedBiChon.index + attachedBiChon[1].length;
-        return { start, end: text.length, replace: "بی\u200cچون\u200cوچرا" };
+
+      const biChon = new RegExp(`${boundary}بی(?: |\\u200c)?چون(?: |\\u200c)?و(?: |\\u200c)?چرا$`, "u").exec(text);
+      if (biChon) {
+        const start = biChon.index + biChon[1].length;
+        const typed = text.slice(start);
+        const canonical = "بی\\u200cچون\\u200cوچرا";
+        if (typed !== canonical) return { start, end: text.length, replace: canonical };
       }
     }
 
