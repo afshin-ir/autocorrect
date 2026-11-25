@@ -16,9 +16,16 @@
   const biExceptionWords = ["جا", "چاره", "خود", "داد", "دل", "راه", "زار", "عار", "کار", "نوا", "هوش", "هوده", "گانه"];
   const biPrepositionWords = ["هیچ"];
   const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
+  const hamExceptionWords = ["هماره", "همان", "هماورد", "هماهنگ", "همایش", "همباز", "همتا", "همچنان", "همچنین", "همچو", "همچون", "همدل", "همدم", "همدیگر", "همراه", "همزن", "همسان", "همسایه", "همسر", "همشهری", "همشیره", "همکار", "همکرد", "همکف", "همگن", "همگون", "همو", "هموار", "همواره", "هموند", "همیدون", "همین"];
   const comparativeExceptions = new Map([
     ["به", "بهتر"], ["که", "کهتر"], ["مه", "مهتر"], ["بیش", "بیشتر"], ["کم", "کمتر"]
   ]);
+  const superlativeExceptions = new Map([
+    ["به", "بهترین"], ["که", "کهترین"], ["مه", "مهترین"], ["بیش", "بیشترین"], ["کم", "کمترین"]
+  ]);
+  const comparativeAmbiguousStems = new Set(["کلان"]);
+  const attachedSuperlativeExceptions = new Set([...superlativeExceptions.values(), "نسترین"]);
+  const nonJoiningFinalLetters = new Set(["ا", "آ", "د", "ذ", "ر", "ز", "ژ", "و"]);
   const yayeSpokenHehWords = new Set(["گره"]);
 
   browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
@@ -136,6 +143,13 @@
     return null;
   }
 
+  function formatComparative(stem, suffix) {
+    const cleanStem = stem.replace(/\\u200c+$/u, "");
+    const finalLetter = [...cleanStem].pop() || "";
+    const separator = nonJoiningFinalLetters.has(finalLetter) ? "" : "\\u200c";
+    return cleanStem + separator + suffix;
+  }
+
   function findHalfSpaceMatch(text) {
     if (halfSpaceSettings.mi) {
       const prefixMatch = /(^|[^\p{L}\p{M}\p{N}_])(نمی|می) +([\p{L}\p{M}\u200c]+)$/u.exec(text);
@@ -218,40 +232,62 @@
     }
 
     if (halfSpaceSettings.comparative) {
-      const spacedComparative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +(ترین|تر)$/u.exec(text);
-      if (spacedComparative) {
-        const stem = spacedComparative[2].replace(/\u200c+$/u, "");
-        const suffix = spacedComparative[3];
-        const replacement = suffix === "تر" && comparativeExceptions.has(stem)
-          ? comparativeExceptions.get(stem)
-          : stem + "\u200c" + suffix;
-        const start = spacedComparative.index + spacedComparative[1].length;
-        return { start, end: text.length, replace: replacement };
+      const boundary = "(^|[^\\\\p{L}\\\\p{M}\\\\p{N}_])";
+      const comparativeParts = "(ترین|تر)";
+
+      const halfSpacedComparative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+)\\u200c(ترین|تر)$/u.exec(text);
+      if (halfSpacedComparative) {
+        const stem = halfSpacedComparative[2].replace(/\\u200c+$/u, "");
+        const suffix = halfSpacedComparative[3];
+        if (suffix === "تر" && comparativeAmbiguousStems.has(stem)) return null;
+        const exception = suffix === "تر" ? comparativeExceptions.get(stem) : superlativeExceptions.get(stem);
+        if (exception) {
+          const start = halfSpacedComparative.index + halfSpacedComparative[1].length;
+          return { start, end: text.length, replace: exception };
+        }
+        return null;
       }
-      const attachedSuperlative = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+)ترین$/u.exec(text);
-      if (attachedSuperlative && !attachedSuperlative[2].endsWith("\u200c")) {
-        const whole = attachedSuperlative[2] + "ترین";
-        if (!["بهترین", "بیشترین", "کمترین", "کهترین", "مهترین", "نسترین"].includes(whole)) {
+
+      const spacedComparative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+) +(ترین|تر)$/u.exec(text);
+      if (spacedComparative) {
+        const stem = spacedComparative[2].replace(/\\u200c+$/u, "");
+        const suffix = spacedComparative[3];
+        if (suffix === "تر" && comparativeAmbiguousStems.has(stem)) return null;
+        const exception = suffix === "تر" ? comparativeExceptions.get(stem) : superlativeExceptions.get(stem);
+        const start = spacedComparative.index + spacedComparative[1].length;
+        return { start, end: text.length, replace: exception || formatComparative(stem, suffix) };
+      }
+
+      const attachedSuperlative = /(^|[^\\p{L}\\p{M}\\p{N}_])([\\p{L}\\p{M}\\u200c]+)(ترین)$/u.exec(text);
+      if (attachedSuperlative && !attachedSuperlative[2].endsWith("\\u200c")) {
+        const whole = attachedSuperlative[2] + attachedSuperlative[3];
+        if (!attachedSuperlativeExceptions.has(whole)) {
           const start = attachedSuperlative.index + attachedSuperlative[1].length;
-          return { start, end: text.length, replace: attachedSuperlative[2] + "\u200cترین" };
+          return { start, end: text.length, replace: formatComparative(attachedSuperlative[2], attachedSuperlative[3]) };
         }
       }
     }
-
     if (halfSpaceSettings.ham) {
-      const escapedParts = hamCompoundWords.join("|");
-      const spacedHam = new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}_])هم +(${escapedParts})$`, "u").exec(text);
+      const boundary = "(^|[^\\\\p{L}\\\\p{M}\\\\p{N}_])";
+      const exceptionParts = hamExceptionWords.map((word) => word.slice(2)).join("|");
+      const halfSpacedHamException = new RegExp(`${boundary}هم\\\\u200c(${exceptionParts})$`, "u").exec(text);
+      if (halfSpacedHamException) {
+        const start = halfSpacedHamException.index + halfSpacedHamException[1].length;
+        return { start, end: text.length, replace: `هم${halfSpacedHamException[2]}` };
+      }
+
+      const compoundParts = hamCompoundWords.join("|");
+      const spacedHam = new RegExp(`${boundary}هم +(${compoundParts})$`, "u").exec(text);
       if (spacedHam) {
         const start = spacedHam.index + spacedHam[1].length;
-        return { start, end: text.length, replace: `هم\u200c${spacedHam[2]}` };
+        return { start, end: text.length, replace: `هم\\\\u200c${spacedHam[2]}` };
       }
-      const attachedHam = new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}_])(هم(?:${escapedParts}))$`, "u").exec(text);
+      const attachedHam = new RegExp(`${boundary}(هم(?:${compoundParts}))$`, "u").exec(text);
       if (attachedHam) {
         const start = attachedHam.index + attachedHam[1].length;
-        return { start, end: text.length, replace: `هم\u200c${attachedHam[2].slice(2)}` };
+        return { start, end: text.length, replace: `هم\\\\u200c${attachedHam[2].slice(2)}` };
       }
     }
-
     if (halfSpaceSettings.indefiniteYa) {
       const spacedYa = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +ای$/u.exec(text);
       if (spacedYa) {
