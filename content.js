@@ -12,6 +12,8 @@
   let preferredSettingsReady = false;
   const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
   const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
+  // Preserve ordinary words that collide with dictionary spacing variants.
+  const preferredWordInputExceptions = new Set(["بینشان"]);
   const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
   const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
   const comparativeExceptions = new Map([
@@ -299,6 +301,7 @@
       if (start === 0 && offset > 0 && /[\p{L}\p{M}\p{N}_\u200c]/u.test(text[offset - 1])) continue;
       const typed = tail.slice(start);
       if (!/^[\p{L}\p{M}\p{N}_\u200c ]+$/u.test(typed)) continue;
+      if (preferredWordInputExceptions.has(typed)) continue;
       const key = normalizePreferredKey(typed);
       const replacement = preferredWords.get(key);
       if (replacement && typed !== replacement) {
