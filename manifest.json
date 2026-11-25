@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "دستورخط",
   "description": "تصحیح خودکار واژه‌ها در مرورگر فایرفاکس بر اساس دستور خط و فرهنگ املایی",
-  "version": "0.3.37",
+  "version": "0.3.38",
   "browser_specific_settings": {
     "gecko": {
       "id": "autocorrect-fa@afshin-ir.github.io",
