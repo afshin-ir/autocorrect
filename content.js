@@ -173,7 +173,182 @@
     if (halfSpaceSettings.bi) {
       const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
       const biParts = biPrefixWords.join("|");
-      const spacedBi = new RegExp(`${boundary}بی +(${biParts})$`, "u").exec(text);
+      const spacedBi = new RegExp(`${boundary}بی +([\\p{L}\\p{M}\\u200c]+)(() => {
+  let rules = [];
+  let rulesReady = false;
+  let halfSpaceSettingsReady = false;
+  let preferredWordsReady = false;
+  let preferredWordsEnabled = false;
+  let preferredWords = new Map();
+  let preferredWordMaxLength = 0;
+  let preferredWordSource = [];
+  let preferredWordOverrides = {};
+  let preferredWordDisabled = new Set();
+  let preferredSettingsReady = false;
+  const halfSpaceSettings = { mi: true, ha: true, suffix: true, bi: true, comparative: true, ham: true, indefiniteYa: true };
+  const halfSpaceExceptions = new Set(["تنها", "رها", "بها", "آها", "مها"]);
+  const biPrefixWords = ["تردید", "توجّه", "توجه", "حاصل", "حساب", "حوصله", "جهت", "قرار"];
+  const hamCompoundWords = ["اتاق", "بازی", "پایه", "قدم", "گروه", "نسل", "نگاشت", "مخرج", "وطن"];
+  const comparativeExceptions = new Map([
+    ["به", "بهتر"], ["که", "کهتر"], ["مه", "مهتر"], ["بیش", "بیشتر"], ["کم", "کمتر"]
+  ]);
+  const yayeSpokenHehWords = new Set(["گره"]);
+
+  browser.runtime.sendMessage({ type: "autocorrect:get-rules" })
+    .then((result) => {
+      rules = normalizeRules(result);
+      rulesReady = true;
+    })
+    .catch(() => {});
+
+  browser.runtime.sendMessage({ type: "autocorrect:get-preferred-words" })
+    .then((data) => {
+      preferredWordSource = Array.isArray(data?.words) ? data.words : [];
+      rebuildPreferredWordIndex();
+    })
+    .catch(() => { preferredWordsReady = true; });
+
+  browser.storage.local.get({
+    preferredWordsEnabled: false,
+    preferredWordOverrides: {},
+    preferredWordDisabled: [],
+    halfSpaceMiEnabled: true,
+    halfSpaceHaEnabled: true,
+    halfSpaceSuffixEnabled: true,
+    halfSpaceBiEnabled: true,
+    halfSpaceComparativeEnabled: true,
+    halfSpaceHamEnabled: true,
+    yayeNakerahEnabled: true
+  }).then((settings) => {
+    preferredWordsEnabled = settings.preferredWordsEnabled === true;
+    preferredWordOverrides = settings.preferredWordOverrides && typeof settings.preferredWordOverrides === "object"
+      ? settings.preferredWordOverrides
+      : {};
+    preferredWordDisabled = new Set(Array.isArray(settings.preferredWordDisabled)
+      ? settings.preferredWordDisabled.filter((word) => typeof word === "string")
+      : []);
+    preferredSettingsReady = true;
+    rebuildPreferredWordIndex();
+    halfSpaceSettings.mi = settings.halfSpaceMiEnabled !== false;
+    halfSpaceSettings.ha = settings.halfSpaceHaEnabled !== false;
+    halfSpaceSettings.suffix = settings.halfSpaceSuffixEnabled !== false;
+    halfSpaceSettings.bi = settings.halfSpaceBiEnabled !== false;
+    halfSpaceSettings.comparative = settings.halfSpaceComparativeEnabled !== false;
+    halfSpaceSettings.ham = settings.halfSpaceHamEnabled !== false;
+    halfSpaceSettings.indefiniteYa = settings.yayeNakerahEnabled !== false;
+    halfSpaceSettingsReady = true;
+  }).catch(() => {
+    halfSpaceSettingsReady = true;
+  });
+
+  browser.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+    if (changes.rules) {
+      rules = normalizeRules(changes.rules.newValue);
+      rulesReady = true;
+    }
+    if (changes.preferredWordsEnabled) {
+      preferredWordsEnabled = changes.preferredWordsEnabled.newValue === true;
+    }
+    if (changes.preferredWordOverrides) {
+      preferredWordOverrides = changes.preferredWordOverrides.newValue && typeof changes.preferredWordOverrides.newValue === "object"
+        ? changes.preferredWordOverrides.newValue
+        : {};
+      rebuildPreferredWordIndex();
+    }
+    if (changes.preferredWordDisabled) {
+      preferredWordDisabled = new Set(Array.isArray(changes.preferredWordDisabled.newValue)
+        ? changes.preferredWordDisabled.newValue.filter((word) => typeof word === "string")
+        : []);
+      rebuildPreferredWordIndex();
+    }
+    if (changes.halfSpaceMiEnabled) {
+      halfSpaceSettings.mi = changes.halfSpaceMiEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceHaEnabled) {
+      halfSpaceSettings.ha = changes.halfSpaceHaEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceSuffixEnabled) {
+      halfSpaceSettings.suffix = changes.halfSpaceSuffixEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceBiEnabled) {
+      halfSpaceSettings.bi = changes.halfSpaceBiEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceComparativeEnabled) {
+      halfSpaceSettings.comparative = changes.halfSpaceComparativeEnabled.newValue !== false;
+    }
+    if (changes.halfSpaceHamEnabled) {
+      halfSpaceSettings.ham = changes.halfSpaceHamEnabled.newValue !== false;
+    }
+    if (changes.yayeNakerahEnabled) {
+      halfSpaceSettings.indefiniteYa = changes.yayeNakerahEnabled.newValue !== false;
+    }
+  });
+
+  function normalizeRules(value) {
+    if (!Array.isArray(value)) return [];
+    return value
+      .filter((item) => item && typeof item.trigger === "string" && item.trigger.length && typeof item.replace === "string")
+      .slice()
+      .sort((a, b) => b.trigger.length - a.trigger.length);
+  }
+
+  function isWordCharacter(char) {
+    return Boolean(char && /[\p{L}\p{N}_]/u.test(char));
+  }
+
+  function findMatch(text) {
+    for (const rule of rules) {
+      if (!text.endsWith(rule.trigger)) continue;
+      const start = text.length - rule.trigger.length;
+      const first = [...rule.trigger][0] || "";
+      const previous = [...text.slice(0, start)].pop() || "";
+      if (isWordCharacter(first) && isWordCharacter(previous)) continue;
+      return { rule, start };
+    }
+    return null;
+  }
+
+  function findHalfSpaceMatch(text) {
+    if (halfSpaceSettings.mi) {
+      const prefixMatch = /(^|[^\p{L}\p{M}\p{N}_])(نمی|می) +([\p{L}\p{M}\u200c]+)$/u.exec(text);
+      if (prefixMatch) {
+        const start = prefixMatch.index + prefixMatch[1].length;
+        return {
+          start,
+          end: text.length,
+          replace: prefixMatch[2] + "\u200c" + prefixMatch[3]
+        };
+      }
+    }
+
+    if (halfSpaceSettings.ha) {
+      const canonicalMatch = /(^|[^\p{L}\p{M}\p{N}_])[\p{L}\p{M}\u200c]+\u200c(?:هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
+      if (canonicalMatch) return null;
+
+      const spacedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+) +(هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
+      if (spacedMatch) {
+        const stem = spacedMatch[2].replace(/\u200c+$/u, "");
+        const wholeWord = stem + spacedMatch[3];
+        if ([...halfSpaceExceptions].some((exception) => wholeWord.startsWith(exception))) return null;
+        const start = spacedMatch.index + spacedMatch[1].length;
+        return { start, end: text.length, replace: stem + "\u200c" + spacedMatch[3] };
+      }
+
+      const attachedMatch = /(^|[^\p{L}\p{M}\p{N}_])([\p{L}\p{M}\u200c]+?)(هایشان|هایمان|هایتان|هایش|هایم|هایت|های|ها)$/u.exec(text);
+      if (attachedMatch) {
+        const stem = attachedMatch[2].replace(/\u200c+$/u, "");
+        const wholeWord = stem + attachedMatch[3];
+        if ([...halfSpaceExceptions].some((exception) => wholeWord.startsWith(exception))) return null;
+        const start = attachedMatch.index + attachedMatch[1].length;
+        return { start, end: text.length, replace: stem + "\u200c" + attachedMatch[3] };
+      }
+    }
+
+    if (halfSpaceSettings.bi) {
+      const boundary = "(^|[^\\p{L}\\p{M}\\p{N}_])";
+      const biParts = biPrefixWords.join("|");
+, "u").exec(text);
       if (spacedBi) {
         const start = spacedBi.index + spacedBi[1].length;
         return { start, end: text.length, replace: `بی\u200c${spacedBi[2]}` };
